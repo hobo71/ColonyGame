@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: 7e053ba955c0fb2409de09c1fe86e58f
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Cylinder001
+    100002: GeoSphere001
+    100004: LightPart
+    100006: LightPart001
+    100008: PlasmaRing
+    100010: //RootNode
+    100012: RoundBase
+    100014: RoundBase001
+    100016: Sides
+    400000: Cylinder001
+    400002: GeoSphere001
+    400004: LightPart
+    400006: LightPart001
+    400008: PlasmaRing
+    400010: //RootNode
+    400012: RoundBase
+    400014: RoundBase001
+    400016: Sides
+    2100000: WorkerRecycler
+    2100002: SidePanels
+    2100004: SidePillars
+    2100006: EmissiveLights
+    2100008: TileRing
+    2100010: PlasmaRing
+    2300000: Cylinder001
+    2300002: GeoSphere001
+    2300004: LightPart
+    2300006: LightPart001
+    2300008: PlasmaRing
+    2300010: //RootNode
+    2300012: RoundBase
+    2300014: RoundBase001
+    2300016: Sides
+    3300000: Cylinder001
+    3300002: GeoSphere001
+    3300004: LightPart
+    3300006: LightPart001
+    3300008: PlasmaRing
+    3300010: //RootNode
+    3300012: RoundBase
+    3300014: RoundBase001
+    3300016: Sides
+    4300000: Recycler_base
+    4300002: Sides
+    4300004: RoundBase001
+    4300006: LightPart001
+    4300008: RoundBase
+    4300010: LightPart
+    4300012: GeoSphere001
+    4300014: Cylinder001
+    4300016: PlasmaRing
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EmissiveLights
+    second: {fileID: 2100000, guid: cb2bfd71924dbfe40be4bbd66a5ce24b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PlasmaRing
+    second: {fileID: 2100000, guid: 38e2034ff560fa74799f9b7e8cf5aeb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SidePanels
+    second: {fileID: 2100000, guid: b1a32678b5d1dc945bddbbea08fbef22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SidePillars
+    second: {fileID: 2100000, guid: 8f64e450b218f304e8046e3abff71e4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TileRing
+    second: {fileID: 2100000, guid: 42358e7ed3a2d1340944fa3a2fc5c7ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WorkerRecycler
+    second: {fileID: 2100000, guid: 6fd099d339b4ae34692c8258e4f87531, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 0
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
