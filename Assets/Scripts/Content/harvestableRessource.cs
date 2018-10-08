@@ -82,8 +82,10 @@ public class harvestableRessource : MonoBehaviour, clickable {
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("clickable")) {
             if (obj.GetComponent<DrillPlatformBasic>() != null) {
                 if (!obj.GetComponent<DrillPlatformBasic>().isBusy()) {
-                    obj.GetComponent<DrillPlatformBasic>().setTarget(this.gameObject);
-                    return true;
+                    if (obj.GetComponent<DrillPlatformBasic>().setTarget(this.gameObject)) {
+                        return true;
+                    }
+                    return false;
                 }
                 
             }

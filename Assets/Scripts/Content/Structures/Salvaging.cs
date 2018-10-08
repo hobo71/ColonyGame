@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -123,7 +124,14 @@ public class Salvaging : MonoBehaviour {
 
     public static void salvageTriggered() {
         clearPopUps();
-        curTarget.GetComponent<Structure>().salvage();
+        try {
+            curTarget.GetComponent<Structure>().salvage();
+        } catch (NullReferenceException ex) {
+            if (curTarget.GetComponent("building_marker") != null) {
+                GameObject.Destroy(curTarget);
+            }
+        }
+        
     }
 
     public void SalvageDone() {

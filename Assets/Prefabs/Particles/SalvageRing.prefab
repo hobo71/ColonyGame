@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198454748883443268}
   - component: {fileID: 199022452721276870}
   - component: {fileID: 114821917454780670}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SalvageRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}

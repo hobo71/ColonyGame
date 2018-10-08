@@ -97,6 +97,7 @@ public class DrillPlatformBasic : DefaultStructure {
     }
 
     private void doStart(Transform target) {
+
         Notification.createNotification(this.gameObject, Notification.sprites.Working, "Starting", Color.green, true);
         this.busy = true;
 
@@ -294,8 +295,13 @@ public class DrillPlatformBasic : DefaultStructure {
         }
     }
 
-    public void setTarget(GameObject target) {
+    public bool setTarget(GameObject target) {
+        if (Vector3.Distance(this.transform.position, target.transform.position) > maxRange) {
+            return false;
+        }
+        
         doStart(target.transform);
+        return true;
     }
 
     public new SaveLoad.SerializationInfo getSerialize() {

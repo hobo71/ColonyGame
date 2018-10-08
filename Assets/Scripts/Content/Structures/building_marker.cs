@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo {
+public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickable {
 
     public GameObject buildTo = null;
     private Structure Info = null;
@@ -276,6 +276,29 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo {
         this.GetComponent<MeshCollider>().sharedMesh = buildTo.GetComponent<MeshFilter>().sharedMesh;
         fixScale();
 
+    }
+
+    public void handleClick() {
+        if (Salvaging.isActive()) {
+            Salvaging.createNotification(this.gameObject);
+            return;
+        }
+    }
+
+    public void handleLongClick() {
+        //do nothing
+    }
+
+    public void handleOption(string option) {
+        //do notghing
+    }
+
+    public void displayInfo() {
+        //TODO
+    }
+
+    public PopUpCanvas.popUpOption[] getOptions() {
+        return null;
     }
 
     [System.Serializable]

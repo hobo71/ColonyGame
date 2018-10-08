@@ -21,9 +21,11 @@ public class Building : MonoBehaviour {
     public GameObject buildingMarker;
 
     private GameObject currentlyBuilding = null;
-    
     private bool onUI = false;
     private GameObject holoPlacement = null;
+
+    private static float deviceWidth = 0;
+    private static float deviceHeight = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -42,9 +44,13 @@ public class Building : MonoBehaviour {
         }
 
         Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Application.platform != RuntimePlatform.Android) {
+            handleEdgeMove(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        }
 
         if (Input.touchCount > 0) {
             raycast = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            handleEdgeMove(new Vector2(Input.GetTouch(0).position.x, Input.GetTouch(0).position.y));
         }
 
         int layerMask = LayerMask.GetMask("PlacementMask");
@@ -53,7 +59,7 @@ public class Building : MonoBehaviour {
 
         Vector3 origPos = holoPlacement.transform.position;
         Vector3 early = raycastHit.point;
-        //early.y -= 1.0f;;
+        //early.y -= 1.0f;
         holoPlacement.transform.position = early;
 
 
@@ -189,6 +195,7 @@ public class Building : MonoBehaviour {
     public void buildNow() {
         Debug.Log("creating beacon...");
         Vector3 finalPos = holoPlacement.transform.position;
+        finalPos.y -= 1.0f;
         Quaternion rotation = holoPlacement.transform.rotation;
         stopBuildingMode();
         
@@ -203,5 +210,25 @@ public class Building : MonoBehaviour {
 
     public void onGui (bool state) {
         this.onUI = state;
+    }
+
+    private void handleEdgeMove(Vector2 pos) {
+
+        if (deviceHeight == 0) deviceHeight = Screen.height;
+        if (deviceWidth == 0) deviceWidth = Screen.width;
+
+        Vector3 move = Vector3.zero;
+
+        //left
+        if (pos.x / deviceWidth < 0.15f) move.x -= 0.05f;
+        if (pos.x / deviceWidth > 0.85f) move.x += 0.05f;
+        if (pos.y / deviceHeight < 0.15) move.y -= 0.05f;
+        if (pos.y / deviceHeight > 0.85f) move.y += 0.05f;
+
+        move = GameObject.Find("Main Camera").transform.rotation * move;
+        move.y = 0;
+
+        GameObject.Find("Main Camera").transform.localPosition += move;
+
     }
 }
