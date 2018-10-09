@@ -260,3 +260,7 @@ __pycache__/
 *.pyc
 
 Library/
+Temp/
+*.sln
+*.csproj
+*.vscode
