@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114256205674906232}
   m_Layer: 8
   m_Name: Dome_Basic
-  m_TagString: clickable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,8 +280,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31763a7fffffdf84a9eebcdeb49972e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownResource: []
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
+  built: 0
+  busy: 0
   counter: 0
   storedEnergy: 0
+  salvaging: 0
   cloneBut: {fileID: 21300000, guid: a4143a106dfc29b4ab16dc13d36a6687, type: 3}
   toClone: {fileID: 1171672578602282, guid: 6aaff07906d5a1148ae35bfd29036062, type: 2}

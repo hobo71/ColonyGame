@@ -226,6 +226,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     private void deliveryFromReached() {
 
         if (!deliverFrom.GetComponent<inventory>().canTake(delivery)) {
+            print("unable to take from target inventory (too few ressources?)");
             return;
         }
 
@@ -283,7 +284,13 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
 
     public void deliverTo(GameObject takeFrom, GameObject bringTo, HPHandler.ressourceStack stack) {
         
+        print(this.name + " is delivering to: " + bringTo);
+
         lastTarget = null;
+
+        if (stack.getAmount() > this.GetComponent<inventory>().maxSize) {
+            stack.setAmount(this.GetComponent<inventory>().maxSize);
+        }
 
         if (this.GetComponent<inventory>().maxSize - this.GetComponent<inventory>().getAmount() < stack.getAmount()) {
             Debug.Log("mover is idle and not enough inv space to deliver, emptying now (inv:)" + this.GetComponent<inventory>());

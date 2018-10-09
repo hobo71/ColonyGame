@@ -94,7 +94,7 @@ public class harvestableRessource : MonoBehaviour, clickable {
     }
 
     //if notIdle is set to true it'll only return workers that are idle
-    public static  Transform GetClosestMover (GameObject[] movers, bool onlyIdle, Transform self) {
+    public static Transform GetClosestMover (GameObject[] movers, bool onlyIdle, Transform self) {
 
         Transform bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;

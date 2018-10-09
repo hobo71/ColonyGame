@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114086748423947230}
   m_Layer: 8
   m_Name: Solar_Array
-  m_TagString: clickable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,9 +262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d329b8c4ce5ec845b01e35c6e4d317b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownResource: []
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
+  built: 0
+  busy: 0
   counter: 0
   storedEnergy: 0
+  salvaging: 0
   generating: 1
   generateAmount: 10
 --- !u!114 &114352453740561142

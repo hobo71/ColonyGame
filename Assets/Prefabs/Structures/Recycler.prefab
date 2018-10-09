@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 64950571343807642}
   m_Layer: 8
   m_Name: Recycler
-  m_TagString: clickable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,7 +879,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa97543e13dd7d7489fc998aacff8001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownResource: []
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
+  built: 0
+  busy: 0
   counter: 516
   storedEnergy: 500
+  salvaging: 0
   salvageBut: {fileID: 21300000, guid: bc5b8020c5647c5429114feed966fdc4, type: 3}

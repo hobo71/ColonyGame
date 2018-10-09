@@ -38,7 +38,7 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
             item.setAmount(0);
         }
         
-        Debug.Log("transfering all inventory to: " + target + " from" + this.gameObject);
+        Debug.Log("transfering all inventory to: " + target.gameObject + " from " + this.gameObject);
     }
 
     public void transferAllSafe(inventory target) {
