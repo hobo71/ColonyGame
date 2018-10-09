@@ -111,6 +111,19 @@ public class Scene_Controller : MonoBehaviour {
         preview.setPrice(HPHandler.ressourceStack.getFloats(DrillPlatformBasic.getPrice()));
     }
 
+    //ScrapBurner
+    public void buildingFClicked() {
+        handleAny();
+        Debug.Log("Clicked on building F");
+
+        InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
+        preview.show();
+        preview.setTitle("Scrap Burner", "scrapburner");
+        preview.setDesc("The Scrap Burner can, as you thought, burn scrap! By doing so, it generates large amounts of energy, and it burns through scrap rather fast.");
+        preview.setPrice("Price: " + HPHandler.ressourceStack.getNice(ScrapBurner.getPrice()));
+        preview.setPrice(HPHandler.ressourceStack.getFloats(ScrapBurner.getPrice()));
+    }
+
 
     public void salvageClicked() {
         Debug.Log("Clicked Salvage");

@@ -17,6 +17,8 @@ public class Building : MonoBehaviour {
     public GameObject dome_basicReal;
     public GameObject drillBasicPlacement;
     public GameObject drillBasicReal;
+    public GameObject scrapBurnerReal;
+    public GameObject scrapBurnerPlacement;
     public GameObject buildButton;
     public GameObject buildingMarker;
 
@@ -182,6 +184,9 @@ public class Building : MonoBehaviour {
         } else if (name.Equals("drillPlatformBasic")) {
             holoPlacement = GameObject.Instantiate(drillBasicPlacement, startPos, drillBasicPlacement.transform.rotation);
             currentlyBuilding = drillBasicReal;
+        } else if (name.Equals("scrapburner")) {
+            holoPlacement = GameObject.Instantiate(scrapBurnerPlacement, startPos, scrapBurnerPlacement.transform.rotation);
+            currentlyBuilding = scrapBurnerReal;
         }
 
         Debug.Log("placing holo for " + name + " at" + startPos + " hitinfo: " + raycastHit);

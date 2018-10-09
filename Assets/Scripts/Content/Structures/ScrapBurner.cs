@@ -7,13 +7,18 @@ public class ScrapBurner : DefaultStructure {
     public Sprite stopBut;
     public Sprite startBut;
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public static HPHandler.ressourceStack[] getPrice() {
         HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
 
         cost[0] = new HPHandler.ressourceStack(100, HPHandler.ressources.Wood);
         cost[1] = new HPHandler.ressourceStack(250, HPHandler.ressources.Stone);
-        cost[1] = new HPHandler.ressourceStack(20, HPHandler.ressources.Scrap);
+        //TODO
+        //cost[2] = new HPHandler.ressourceStack(20, HPHandler.ressources.Scrap);
         return cost;
+    }
+
+    public override HPHandler.ressourceStack[] getCost() {
+        return getPrice();
     }
 
     public override int getMaxEnergy() {
