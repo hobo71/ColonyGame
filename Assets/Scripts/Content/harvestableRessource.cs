@@ -24,6 +24,10 @@ public class harvestableRessource : MonoBehaviour, clickable {
 
     }
 
+    void onDestroy() {
+        print("Destroying harvestable ressource: " + this.name);
+    }
+
     public PopUpCanvas.popUpOption[] getOptions() {
          PopUpCanvas.popUpOption[] options;
 

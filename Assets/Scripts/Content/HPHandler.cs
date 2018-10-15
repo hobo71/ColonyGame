@@ -84,7 +84,13 @@ public class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
 	// Update is called once per frame
 	void Update () {
 		if (this.HP <= 0) {
-            Debug.Log("destroying object: " + this.transform.gameObject.name);
+
+            float size = this.gameObject.GetComponent<Collider>().bounds.size.magnitude;
+            Debug.Log("destroying object: " + this.transform.gameObject.name + " size:" + size);
+            var effect = GameObject.Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().destroyParticle, this.transform.position, this.transform.rotation);
+            size = 0.2f + size * 0.1f;
+            effect.transform.localScale = new Vector3(size, size, size);
+
             Destroy(this.transform.gameObject);
         }
 	}

@@ -220,7 +220,12 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
 
         stop();
 
-        deliverTarget.GetComponent<building_marker>().deliveryArrived(delivery);
+        try {
+            deliverTarget.GetComponent<building_marker>().deliveryArrived(delivery);
+        } catch (NullReferenceException ex) {
+            print("delivery target doesnt have building_marker component!");
+        }
+        
     }
 
     private void deliveryFromReached() {

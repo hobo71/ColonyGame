@@ -19,6 +19,7 @@ public class Scene_Controller : MonoBehaviour {
     public GameObject resourcesMenu;
     public GameObject pickupBox;
     public GameObject harvestParticle;
+    public GameObject destroyParticle;
     
     void Awake() {
         pipeMiddle = PipeMiddle;
