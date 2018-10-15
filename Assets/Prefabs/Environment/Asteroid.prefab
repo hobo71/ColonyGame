@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114468873834495866}
   - component: {fileID: 114826743763721224}
   - component: {fileID: 114824275259546028}
-  - component: {fileID: 136763055297051744}
   - component: {fileID: 64676683265229072}
   m_Layer: 8
   m_Name: Asteroid
@@ -166,16 +165,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
---- !u!136 &136763055297051744
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1030394014087632}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 86.125084
-  m_Height: 178.3949
-  m_Direction: 1
-  m_Center: {x: 0.000048897276, y: -2.7717044, z: -1.7589384}
