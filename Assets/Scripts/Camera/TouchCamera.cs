@@ -7,8 +7,8 @@ public class TouchCamera : MonoBehaviour {
 	private static readonly float ZoomSpeedMouse = 4.0f;
     public static readonly float zoomAngleModifier = 3f;
 
-	public static readonly float[] BoundsX = new float[]{-10f, 50f};
-	public static readonly float[] BoundsZ = new float[]{-18f, 10f};
+	public static readonly float[] BoundsX = new float[]{-450f, 400f};
+	public static readonly float[] BoundsZ = new float[]{-410f, 400f};
 	public static readonly float[] ZoomBounds = new float[]{7f, 60f};
 
 	private Camera cam;
@@ -48,6 +48,8 @@ public class TouchCamera : MonoBehaviour {
 		} else {
 			HandleMouse();
 		}
+
+		ClampToBounds();
 	}
 
 	void HandleTouch() {
@@ -124,6 +126,17 @@ public class TouchCamera : MonoBehaviour {
 		Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
 		Vector3 move = new Vector3(offset.x * PanSpeed * 0.9f, 0, offset.y * PanSpeed * 1.1f);
 
+		var ray = new Ray(this.transform.position, this.transform.forward);
+		bool didHit = Physics.Raycast(ray, 5f);
+		if (didHit) {
+			float moveAm = -move.magnitude;
+			Vector3 moveby = new Vector3(0, 0, moveAm);
+        	moveby *= transform.position.y * 0.2f;
+
+			transform.Translate(moveby, Space.Self);
+        	curHeight = this.transform.position.y;
+		}
+
         move = transform.rotation * move;
         move.y = 0;
         move *= transform.position.y * 0.2f;
@@ -140,6 +153,10 @@ public class TouchCamera : MonoBehaviour {
 
         Vector3 moveby = new Vector3(0, 0, offset * speed);
         moveby *= transform.position.y * 0.2f;
+
+		var ray = new Ray(this.transform.position, this.transform.forward);
+		bool didHit = Physics.Raycast(ray, 5f);
+		if (didHit && moveby.z > 0) return;
 
         transform.Translate(moveby, Space.Self);
         curHeight = this.transform.position.y;
