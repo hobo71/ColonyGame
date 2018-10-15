@@ -21,13 +21,13 @@ GameObject:
   - component: {fileID: 4970525969660380}
   - component: {fileID: 33114747869409712}
   - component: {fileID: 23850041048075612}
-  - component: {fileID: 65236192478487572}
   - component: {fileID: 114147908243865642}
   - component: {fileID: 114695297450908530}
   - component: {fileID: 114468873834495866}
   - component: {fileID: 114826743763721224}
   - component: {fileID: 114824275259546028}
   - component: {fileID: 136763055297051744}
+  - component: {fileID: 64676683265229072}
   m_Layer: 8
   m_Name: Asteroid
   m_TagString: clickable
@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030394014087632}
   m_LocalRotation: {x: 0.21765317, y: 0.3380401, z: 0.65845484, w: 0.6362337}
-  m_LocalPosition: {x: -27.596432, y: 23.136782, z: 20.08611}
+  m_LocalPosition: {x: -35.991722, y: 7.5287437, z: 148.30101}
   m_LocalScale: {x: 0.048764907, y: 0.0487649, z: 0.048764884}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,6 +61,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: c6d890b9a5554f24fa9bebba8c7112fb, type: 2}
   m_StaticBatchInfo:
@@ -89,8 +90,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1030394014087632}
   m_Mesh: {fileID: 4300000, guid: 8df16fff9cc8fdc4097fee6573ba8431, type: 3}
---- !u!65 &65236192478487572
-BoxCollider:
+--- !u!64 &64676683265229072
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -98,9 +99,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 182.37413, y: 174.0802, z: 183.93823}
-  m_Center: {x: 0.000015258789, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: -1
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 8df16fff9cc8fdc4097fee6573ba8431, type: 3}
 --- !u!114 &114147908243865642
 MonoBehaviour:
   m_ObjectHideFlags: 1
