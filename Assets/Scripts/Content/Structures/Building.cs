@@ -25,24 +25,47 @@ public class Building : MonoBehaviour {
     private GameObject currentlyBuilding = null;
     private bool onUI = false;
     private GameObject holoPlacement = null;
+    public GameObject rotationbar;
+    private Quaternion initialRotation = Quaternion.identity;
+    private int barWidth;
+    private int barHeight;
 
     private static float deviceWidth = 0;
     private static float deviceHeight = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start() {
+        barWidth = (int) rotationbar.GetComponent<RectTransform>().sizeDelta.x * 2;
+        barHeight = (int) rotationbar.GetComponent<RectTransform>().sizeDelta.y;
+    }
+
+    // Update is called once per frame
+    void Update() {
 
         /*if ((((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Ended)) || Input.GetMouseButtonUp(0)) && clickDetector.overlayClicked) {
             clickDetector.overlayClicked = false;
         }*/
-        
-		if (!buildingMode || Camera.main.GetComponent<TouchCamera>().zoomActive/* || onUI*/) {
+
+        if (!buildingMode || Camera.main.GetComponent<TouchCamera>().zoomActive/* || onUI*/) {
             return;
+        }
+
+        //check if on slider
+
+        var inputX = Input.mousePosition.x;
+        var inputY = Input.mousePosition.y;
+        if (Input.touchSupported) {
+            inputX = Input.GetTouch(0).position.x;
+            inputY = Input.GetTouch(0).position.y;
+        }
+
+        print("inputX=" + inputX + " inputY=" + inputY + " barPos=" + rotationbar.transform.position + " barWidth=" + barWidth);
+
+        var grow = 15;
+        if (inputX >= rotationbar.transform.position.x - grow && inputX < rotationbar.transform.position.x + barWidth + grow) {    //x matching
+            if (inputY >= rotationbar.transform.position.y - barHeight * 2 - grow && inputY < rotationbar.transform.position.y + grow)
+                return;
+
         }
 
         Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -93,7 +116,7 @@ public class Building : MonoBehaviour {
             Array.Resize(ref renderers, renderers.Length);
             renderers[renderers.Length - 1] = holoPlacement.GetComponent<MeshRenderer>();
         }
-        
+
         foreach (MeshRenderer renderer in renderers) {
             for (int i = 0; i < renderer.materials.Length; i++) {
                 if (canBuild) {
@@ -110,11 +133,12 @@ public class Building : MonoBehaviour {
 
 
         buildButton.SetActive(canBuild);
-        
-	}
+
+    }
 
     private void startbuildingMode() {
         buildingMode = true;
+        rotationbar.SetActive(true);
         clickDetector.clearPopUps();
         GameObject.Find("Terrain").GetComponent<Scene_Controller>().buildButton.SetActive(true);
 
@@ -145,6 +169,7 @@ public class Building : MonoBehaviour {
     private void stopBuildingMode() {
         Debug.Log("stopping building mode");
         buildingMode = false;
+        rotationbar.SetActive(false);
 
         GameObject.Destroy(holoPlacement);
         holoPlacement = null;
@@ -158,7 +183,7 @@ public class Building : MonoBehaviour {
         if (!buildingMode) {
             startbuildingMode();
         }
-        
+
         GameObject.Destroy(holoPlacement);
         holoPlacement = null;
         RaycastHit raycastHit;
@@ -189,8 +214,16 @@ public class Building : MonoBehaviour {
             currentlyBuilding = scrapBurnerReal;
         }
 
+        initialRotation = holoPlacement.transform.rotation;
+
         Debug.Log("placing holo for " + name + " at" + startPos + " hitinfo: " + raycastHit);
-        
+
+    }
+
+    public void rotateChanged(float value) {
+        var rot = initialRotation * Quaternion.Euler(Vector3.forward * (value - 0.5f) * 360);
+        holoPlacement.transform.rotation = rot;
+
     }
 
     public void closeClicked() {
@@ -203,7 +236,7 @@ public class Building : MonoBehaviour {
         finalPos.y -= 1.0f;
         Quaternion rotation = holoPlacement.transform.rotation;
         stopBuildingMode();
-        
+
         //Quaternion rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         GameObject beacon = GameObject.Instantiate(buildingMarker, finalPos, rotation);
 
@@ -213,7 +246,7 @@ public class Building : MonoBehaviour {
         beacon.GetComponent<building_marker>().buildTo = currentlyBuilding;
     }
 
-    public void onGui (bool state) {
+    public void onGui(bool state) {
         this.onUI = state;
     }
 

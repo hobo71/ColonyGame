@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class TouchCamera : MonoBehaviour {
 
@@ -82,11 +83,9 @@ public class TouchCamera : MonoBehaviour {
                     // distance between the previous positions.
                     float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
                     float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
-
-                    float angle = Vector3.SignedAngle(lastZoomPositions[1] - lastZoomPositions[0], newPositions[1] - newPositions[0], Vector3.Cross(lastZoomPositions[1] - lastZoomPositions[0], newPositions[1] - newPositions[0]));
                     float offset = newDistance - oldDistance;
 
-                    ZoomCamera(offset, ZoomSpeedTouch, angle);
+                    ZoomCamera(offset, ZoomSpeedTouch);
 
                     lastZoomPositions = newPositions;
                 }
@@ -98,6 +97,12 @@ public class TouchCamera : MonoBehaviour {
                 break;
         }
     }
+
+    public static float GetAngleDegree(Vector2 target) {
+    var n = 270 - (Math.Atan2(0 - target.y, 0 - target.x)) * 180 / Math.PI;
+    return (float) n;
+}
+
 
     void HandleMouse() {
         // On mouse down, capture it's position.
@@ -115,7 +120,7 @@ public class TouchCamera : MonoBehaviour {
         // Check for scrolling to zoom the camera
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         zoomActive = true;
-        ZoomCamera(scroll, ZoomSpeedMouse, 0);
+        ZoomCamera(scroll, ZoomSpeedMouse);
         zoomActive = false;
     }
 
@@ -148,7 +153,7 @@ public class TouchCamera : MonoBehaviour {
         lastPanPosition = newPanPosition;
     }
 
-    void ZoomCamera(float offset, float speed, float angle) {
+    void ZoomCamera(float offset, float speed) {
         if (!zoomActive || offset == 0 || (offset > 0 && transform.position.y < ZoomBounds[0]) || (offset < 0 && transform.position.y > ZoomBounds[1])) {
             return;
         }
@@ -162,7 +167,7 @@ public class TouchCamera : MonoBehaviour {
 
         transform.Translate(moveby, Space.Self);
         curHeight = this.transform.position.y;
-        transform.Rotate(new Vector3(0f, 1f, 0f), angle, Space.World);
+        //transform.Rotate(new Vector3(0f, 1f, 0f), angle, Space.World);
         //transform.Rotate(new Vector3(1,0,0), - offset * speed * zoomAngleModifier);
     }
 
