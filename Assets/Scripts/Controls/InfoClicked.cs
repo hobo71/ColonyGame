@@ -6,14 +6,14 @@ using UnityEngine;
 public class InfoClicked : MonoBehaviour {
 
     public static GameObject script;
-    private static String actName = "";
+    public static BuildingManager.structureData currentData;
 
     public GameObject ClickableInfo;
     public GameObject uiCanvas;
     public GameObject menuButton;
     public GameObject buildingMenu;
 
-    private float[] prices;
+    private List<HPHandler.ressourceStack> cost;
 
     public static InfoClicked getInstance() {
         return script.GetComponent<InfoClicked>();
@@ -28,8 +28,10 @@ public class InfoClicked : MonoBehaviour {
         close();
 	}
 
-    public void setPrice(float[] prices) {
-        this.prices = prices;
+    public void setPrice(List<HPHandler.ressourceStack> cost) {
+        this.cost = cost;
+        displayPrice(BuildingManager.getNiceString(cost));
+
     }
 
     void FixedUpdate() {
@@ -41,10 +43,13 @@ public class InfoClicked : MonoBehaviour {
             return;
         }
 
-        if (prices[0] <= ResourceHandler.getAmoumt(HPHandler.ressources.Wood) && prices[1] <= ResourceHandler.getAmoumt(HPHandler.ressources.Stone)) {
+        foreach (var elem in currentData.cost) {
+            
             setBuildable(true);
-        } else {
-            setBuildable(false);
+            if (elem.getAmount() > ResourceHandler.getAmoumt(elem.getRessource())) {
+                setBuildable(false);
+                break;
+            }
         }
     }
 
@@ -59,16 +64,15 @@ public class InfoClicked : MonoBehaviour {
         this.transform.parent.Find("DoBuild").GetComponent<UnityEngine.UI.Button>().interactable = buildable;
     }
 
-    public void setTitle(string text, string actName) {
+    public void setTitle(string text) {
         transform.parent.Find("Title").GetComponent<UnityEngine.UI.Text>().text = text;
-        InfoClicked.actName = actName;
     }
 
     public void setDesc(string desc) {
         transform.parent.Find("Description").GetComponent<UnityEngine.UI.Text>().text = desc;
     }
 
-    public void setPrice(string price) {
+    private void displayPrice(string price) {
         transform.parent.Find("Cost").GetComponent<UnityEngine.UI.Text>().text = price;
     }
 
@@ -86,13 +90,17 @@ public class InfoClicked : MonoBehaviour {
         GameObject.Find("Terrain").GetComponent<Building>().closeClicked();
     }
 
+    public void setData(BuildingManager.structureData data) {
+        currentData = data;
+    }
+
     public void handleBuild() {
         
         Debug.Log("Clicked build button on preview");
         clickDetector.overlayClicked = true;
         ClickableInfo.SetActive(false);
         
-        GameObject.Find("Terrain").GetComponent<Building>().buildClicked(actName);
+        GameObject.Find("Terrain").GetComponent<Building>().buildClicked(currentData);
 
     }
 }

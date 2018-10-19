@@ -275,7 +275,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
         InfoClicked controller = InfoClicked.getInstance();
         controller.show();
         
-        controller.setTitle(this.gameObject.name, "Title");
+        controller.setTitle(this.gameObject.name);
         controller.setDesc(getDesc());
     }
 

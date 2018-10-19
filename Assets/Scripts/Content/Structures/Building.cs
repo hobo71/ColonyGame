@@ -179,7 +179,7 @@ public class Building : MonoBehaviour {
         Time.timeScale = 1.0f;
     }
 
-    public void buildClicked(string name) {
+    public void buildClicked(BuildingManager.structureData data) {
         if (!buildingMode) {
             startbuildingMode();
         }
@@ -192,27 +192,8 @@ public class Building : MonoBehaviour {
         Vector3 startPos = raycastHit.point;
         startPos.y -= 1.0f;
 
-        //Quaternion rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
-
-        if (name.Equals("base")) {
-            holoPlacement = GameObject.Instantiate(baseBuilding, startPos, baseBuilding.transform.rotation);
-            currentlyBuilding = baseBuildingReal;
-        } else if (name.Equals("solarpanel")) {
-            holoPlacement = GameObject.Instantiate(solarpanel, startPos, solarpanel.transform.rotation);
-            currentlyBuilding = solarpanelReal;
-        } else if (name.Equals("dome_basic")) {
-            holoPlacement = GameObject.Instantiate(dome_basic, startPos, dome_basic.transform.rotation);
-            currentlyBuilding = dome_basicReal;
-        } else if (name.Equals("recycler")) {
-            holoPlacement = GameObject.Instantiate(recycler, startPos, dome_basic.transform.rotation);
-            currentlyBuilding = recyclerReal;
-        } else if (name.Equals("drillPlatformBasic")) {
-            holoPlacement = GameObject.Instantiate(drillBasicPlacement, startPos, drillBasicPlacement.transform.rotation);
-            currentlyBuilding = drillBasicReal;
-        } else if (name.Equals("scrapburner")) {
-            holoPlacement = GameObject.Instantiate(scrapBurnerPlacement, startPos, scrapBurnerPlacement.transform.rotation);
-            currentlyBuilding = scrapBurnerReal;
-        }
+        holoPlacement = GameObject.Instantiate(data.placement, startPos, data.placement.transform.rotation);
+        currentlyBuilding = data.prefab;
 
         initialRotation = holoPlacement.transform.rotation;
 
@@ -235,7 +216,8 @@ public class Building : MonoBehaviour {
         Vector3 finalPos = holoPlacement.transform.position;
         finalPos.y -= 1.0f;
         Quaternion rotation = holoPlacement.transform.rotation;
-        stopBuildingMode();
+        if (buildingMode)
+            stopBuildingMode();
 
         //Quaternion rotation = Quaternion.Euler(-90.0f, 0.0f, 0.0f);
         GameObject beacon = GameObject.Instantiate(buildingMarker, finalPos, rotation);

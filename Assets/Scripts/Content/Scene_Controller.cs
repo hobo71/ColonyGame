@@ -20,12 +20,20 @@ public class Scene_Controller : MonoBehaviour {
     public GameObject pickupBox;
     public GameObject harvestParticle;
     public GameObject destroyParticle;
+
+    private static Scene_Controller instance;
     
     void Awake() {
         pipeMiddle = PipeMiddle;
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 300;
+        instance = this;
     }
+
+    public static Scene_Controller getInstance() {
+        return instance;
+    }
+
 	// Use this for initialization
 	void Start () {
         pipeMiddle = PipeMiddle;
@@ -53,11 +61,9 @@ public class Scene_Controller : MonoBehaviour {
 
         InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
         preview.show();
-        preview.setTitle("Test Building", "base");
+        preview.setTitle("Test Building");
         preview.setDesc("Just some random building to test the system");
         float[] price = new float[]{100f, 50f, 0.0f, 0.0f};
-        preview.setPrice("Cost: 100 Wood, 50 Stone");
-        preview.setPrice(price);
 
         //GameObject.Find("Terrain").GetComponent<Building>().buildClicked("base");
         //buildButton.SetActive(true);
@@ -69,10 +75,8 @@ public class Scene_Controller : MonoBehaviour {
 
         InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
         preview.show();
-        preview.setTitle("Solar Panel", "solarpanel");
+        preview.setTitle("Solar Panel");
         preview.setDesc("A solar panel to generate energy");
-        preview.setPrice("Price: " + HPHandler.ressourceStack.getNice(Solar_Panel.getPrice()));
-        preview.setPrice(HPHandler.ressourceStack.getFloats(Solar_Panel.getPrice()));
     }
 
     public void buildingCClicked() {
@@ -81,10 +85,8 @@ public class Scene_Controller : MonoBehaviour {
 
         InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
         preview.show();
-        preview.setTitle("Basic Dome", "dome_basic");
+        preview.setTitle("Basic Dome");
         preview.setDesc("A small, very basic Dome that can store some energy");
-        preview.setPrice("Price: " + HPHandler.ressourceStack.getNice(Dome_Basic.getPrice()));
-        preview.setPrice(HPHandler.ressourceStack.getFloats(Dome_Basic.getPrice()));
     }
 
     public void buildingDClicked() {
@@ -93,10 +95,8 @@ public class Scene_Controller : MonoBehaviour {
 
         InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
         preview.show();
-        preview.setTitle("Worker Salvager", "recycler");
+        preview.setTitle("Worker Salvager");
         preview.setDesc("A way to get rid of workers you do not need anymore. Generates a small amount of scrap for each worker");
-        preview.setPrice("Price: " + HPHandler.ressourceStack.getNice(WorkerRecycler.getPrice()));
-        preview.setPrice(HPHandler.ressourceStack.getFloats(WorkerRecycler.getPrice()));
     }
 
     //DrillPlatformBasic
@@ -106,10 +106,8 @@ public class Scene_Controller : MonoBehaviour {
 
         InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
         preview.show();
-        preview.setTitle("Basic Drill Platform", "drillPlatformBasic");
+        preview.setTitle("Basic Drill Platform");
         preview.setDesc("A basic Drill dhat can automatically harvest nearby stones, ores and minerals (can also be focused by selected harvestable things)");
-        preview.setPrice("Price: " + HPHandler.ressourceStack.getNice(DrillPlatformBasic.getPrice()));
-        preview.setPrice(HPHandler.ressourceStack.getFloats(DrillPlatformBasic.getPrice()));
     }
 
     //ScrapBurner
@@ -119,10 +117,8 @@ public class Scene_Controller : MonoBehaviour {
 
         InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
         preview.show();
-        preview.setTitle("Scrap Burner", "scrapburner");
+        preview.setTitle("Scrap Burner");
         preview.setDesc("The Scrap Burner can, as you thought, burn scrap! By doing so, it generates large amounts of energy, and it burns through scrap rather fast.");
-        preview.setPrice("Price: " + HPHandler.ressourceStack.getNice(ScrapBurner.getPrice()));
-        preview.setPrice(HPHandler.ressourceStack.getFloats(ScrapBurner.getPrice()));
     }
 
 

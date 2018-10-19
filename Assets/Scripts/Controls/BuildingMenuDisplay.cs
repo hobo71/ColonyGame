@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,11 @@ public class BuildingMenuDisplay : MonoBehaviour {
 		float height = Screen.height * 0.66f - 75;
 		print("height: " + height);
 
-		int count = 21;
+		
+		//building data
+		var buildings = GameObject.Find("Terrain").GetComponent<BuildingManager>().getBuildings().Values.ToList();
+
+		int count = buildings.Count;
 		int elemsPerSide = (int) ((height / 40) + 1) * 2;
 		int sides = (int) (count / elemsPerSide) + 1;
 		this.sides = sides - 1;
@@ -29,6 +34,7 @@ public class BuildingMenuDisplay : MonoBehaviour {
 
 		buttons = new GameObject[sides, elemsPerSide];
 		int tCount = 0;
+
 
 		//create sides
 		for (int j = 0; j < sides; j++) {
@@ -40,7 +46,11 @@ public class BuildingMenuDisplay : MonoBehaviour {
 
 				var obj = GameObject.Instantiate(itemPrefab, this.transform);
 				obj.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(5.6f, - (40f + 5f) * (i) - 30, 0);
-				obj.GetComponent<Image>().color = new Color(1f - (1f / count * tCount), 1f - (1f / count * tCount * 2), 1f);
+				//obj.GetComponent<Image>().color = new Color(1f - (1f / count * tCount), 1f - (1f / count * tCount * 2), 1f);
+				obj.GetComponent<Image>().sprite = buildings[tCount].icon;
+				
+				int elem = tCount;
+				obj.GetComponent<Button>().onClick.AddListener(() => buildingClicked(buildings[elem]));
 				buttons[j, i] = obj;
 
 				if (j != 0) obj.SetActive(false);
@@ -51,7 +61,11 @@ public class BuildingMenuDisplay : MonoBehaviour {
 
 				obj = GameObject.Instantiate(itemPrefab, this.transform);
 				obj.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(5.6f + 45f, - (40f + 5f) * (i) - 30, 0);
-				obj.GetComponent<Image>().color = new Color(1f, 1f - (1f / count * tCount), 1f - (1f / count * tCount * 2));
+				//obj.GetComponent<Image>().color = new Color(1f, 1f - (1f / count * tCount), 1f - (1f / count * tCount * 2));
+				obj.GetComponent<Image>().sprite = buildings[tCount].icon;
+				
+				int elemB = tCount;
+				obj.GetComponent<Button>().onClick.AddListener(() => buildingClicked(buildings[elemB]));
 				buttons[j, (int) (elemsPerSide / 2f) + i] = obj;
 				
 				if (j != 0) obj.SetActive(false);
@@ -60,6 +74,18 @@ public class BuildingMenuDisplay : MonoBehaviour {
 		}
 
 		handleLimit();
+	}
+
+	private void buildingClicked(BuildingManager.structureData data) {
+
+		print("clicked building icon ! " + data.name);
+
+		InfoClicked preview = Scene_Controller.getInstance().buildPreview.GetComponent<InfoClicked>();
+        preview.show();
+        preview.setTitle(data.name);
+        preview.setDesc(data.description);
+		preview.setPrice(data.cost);
+		preview.setData(data);
 	}
 
 	public void nextSide() {

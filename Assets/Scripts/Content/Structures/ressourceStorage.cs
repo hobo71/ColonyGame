@@ -12,7 +12,7 @@ public class ressourceStorage : MonoBehaviour, clickable {
         InfoClicked controller = InfoClicked.getInstance();
         controller.show();
 
-        controller.setTitle(this.gameObject.name, "Title");
+        controller.setTitle(this.gameObject.name);
         controller.setDesc(getDesc());
     }
 
