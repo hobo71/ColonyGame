@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InfoClicked : MonoBehaviour {
 
-    private static GameObject script;
+    public static GameObject script;
     private static String actName = "";
 
     public GameObject ClickableInfo;
@@ -22,7 +22,7 @@ public class InfoClicked : MonoBehaviour {
     void Start () {
 	    ClickableInfo = uiCanvas;
         if (this.gameObject.transform.parent.name.Equals("ClickableInfo")) {
-             script = this.gameObject;
+            script = this.gameObject;
         }
 
         close();
