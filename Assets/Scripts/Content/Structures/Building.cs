@@ -61,7 +61,7 @@ public class Building : MonoBehaviour {
 
         print("inputX=" + inputX + " inputY=" + inputY + " barPos=" + rotationbar.transform.position + " barWidth=" + barWidth);
 
-        var grow = 15;
+        var grow = Screen.height * 0.05f;
         if (inputX >= rotationbar.transform.position.x - grow && inputX < rotationbar.transform.position.x + barWidth + grow) {    //x matching
             if (inputY >= rotationbar.transform.position.y - barHeight * 2 - grow && inputY < rotationbar.transform.position.y + grow)
                 return;

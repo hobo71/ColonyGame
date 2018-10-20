@@ -40,7 +40,6 @@ public class BuildingMenuDisplay : MonoBehaviour {
 		for (int j = 0; j < sides; j++) {
 			//individual side, creating left and right in each iteration
 			for (int i = 0; i < height / 40; i++) {
-				print("creating button for: TODO" + " tcount=" + tCount + " count=" + count);
 
 				if (tCount >= count) continue;
 
@@ -77,6 +76,8 @@ public class BuildingMenuDisplay : MonoBehaviour {
 	}
 
 	private void buildingClicked(BuildingManager.structureData data) {
+        
+        clickDetector.overlayClicked = true;
 
 		print("clicked building icon ! " + data.name);
 
@@ -89,6 +90,7 @@ public class BuildingMenuDisplay : MonoBehaviour {
 	}
 
 	public void nextSide() {
+        clickDetector.overlayClicked = true;
 		curSide++;
 		if (curSide > sides) curSide--;
 
@@ -97,6 +99,7 @@ public class BuildingMenuDisplay : MonoBehaviour {
 	}
 
 	public void previousSide() {
+        clickDetector.overlayClicked = true;
 		curSide--;
 		if (curSide < 0) curSide++;
 

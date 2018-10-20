@@ -13,8 +13,6 @@ public class InfoClicked : MonoBehaviour {
     public GameObject menuButton;
     public GameObject buildingMenu;
 
-    private List<HPHandler.ressourceStack> cost;
-
     public static InfoClicked getInstance() {
         return script.GetComponent<InfoClicked>();
     }
@@ -29,7 +27,6 @@ public class InfoClicked : MonoBehaviour {
 	}
 
     public void setPrice(List<HPHandler.ressourceStack> cost) {
-        this.cost = cost;
         displayPrice(BuildingManager.getNiceString(cost));
 
     }
@@ -88,6 +85,7 @@ public class InfoClicked : MonoBehaviour {
         ClickableInfo.SetActive(true);
         menuButton.SetActive(false);
         GameObject.Find("Terrain").GetComponent<Building>().closeClicked();
+
     }
 
     public void setData(BuildingManager.structureData data) {

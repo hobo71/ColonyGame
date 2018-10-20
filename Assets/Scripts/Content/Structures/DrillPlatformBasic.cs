@@ -309,14 +309,13 @@ public class DrillPlatformBasic : DefaultStructure {
     }
 
     public new SaveLoad.SerializationInfo getSerialize() {
-        return new serializationData(storedEnergy, built, busy, salvaging, ownResource, curTarget);
+        return new serializationData(storedEnergy, busy, salvaging, ownResource, curTarget);
     }
 
     public new void handleDeserialization(SaveLoad.SerializationInfo info) {
         serializationData data = (serializationData)info;
         this.storedEnergy = data.storedEnergy;
         this.busy = data.busy;
-        this.built = data.built;
         this.ownResource = data.ownResource;
         this.salvaging = data.salvaging;
         this.curTarget = data.target;
@@ -340,9 +339,8 @@ public class DrillPlatformBasic : DefaultStructure {
         public bool salvaging;
         public HPHandler.ressourceStack[] ownResource;
 
-        public serializationData(float storedEnergy, bool built, bool busy, bool salvaging, HPHandler.ressourceStack[] ownResource, Transform target) {
+        public serializationData(float storedEnergy, bool busy, bool salvaging, HPHandler.ressourceStack[] ownResource, Transform target) {
             this.storedEnergy = storedEnergy;
-            this.built = built;
             this.busy = busy;
             this.ownResource = ownResource;
             this.salvaging = salvaging;

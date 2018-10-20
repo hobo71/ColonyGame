@@ -250,6 +250,10 @@ public class SaveLoad : MonoBehaviour {
         }
 
         print("level was loaded");
+
+        //Destroy testing objects
+        GameObject.Destroy(GameObject.Find("TestingObjects"));
+
         Load();
     }
 

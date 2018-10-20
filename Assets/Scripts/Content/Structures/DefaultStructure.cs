@@ -10,8 +10,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
     public List<EnergyContainer> network = null;
 
     public Sprite infoBut;
-
-    public bool built = false;
+    
     EnergyContainer recievedFromLast = null;
     List<GameObject> pipeObjects = new List<GameObject>();
     public bool busy = false;
@@ -314,14 +313,13 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
     }
 
     public SaveLoad.SerializationInfo getSerialize() {
-        return new serializationData(storedEnergy, built, busy, salvaging, ownResource);
+        return new serializationData(storedEnergy, busy, salvaging, ownResource);
     }
 
     public void handleDeserialization(SaveLoad.SerializationInfo info) {
         serializationData data = (serializationData) info;
         this.storedEnergy = data.storedEnergy;
         this.busy = data.busy;
-        this.built = data.built;
         this.ownResource = data.ownResource;
         this.salvaging = data.salvaging;
 
@@ -357,14 +355,12 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
     [System.Serializable]
     public class serializationData : SaveLoad.SerializationInfo {
         public float storedEnergy;
-        public bool built;
         public bool busy;
         public bool salvaging;
         public HPHandler.ressourceStack[] ownResource;
 
-        public serializationData(float storedEnergy, bool built, bool busy, bool salvaging, HPHandler.ressourceStack[] ownResource) {
+        public serializationData(float storedEnergy, bool busy, bool salvaging, HPHandler.ressourceStack[] ownResource) {
             this.storedEnergy = storedEnergy;
-            this.built = built;
             this.busy = busy;
             this.ownResource = ownResource;
             this.salvaging = salvaging;

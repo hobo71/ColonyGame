@@ -9,7 +9,6 @@ using UnityEngine;
 public class Scene_Controller : MonoBehaviour {
 
     public GameObject buildingMenu;
-    public GameObject openBuildingMenu;
     public GameObject buildButton;
     public GameObject buildPreview;
     public GameObject PipeMiddle;
@@ -55,73 +54,6 @@ public class Scene_Controller : MonoBehaviour {
         showMenu(true);
     }
 
-    public void buildingAClicked() {
-        handleAny();
-        Debug.Log("Clicked on building A");
-
-        InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
-        preview.show();
-        preview.setTitle("Test Building");
-        preview.setDesc("Just some random building to test the system");
-        float[] price = new float[]{100f, 50f, 0.0f, 0.0f};
-
-        //GameObject.Find("Terrain").GetComponent<Building>().buildClicked("base");
-        //buildButton.SetActive(true);
-    }
-
-    public void buildingBClicked() {
-        handleAny();
-        Debug.Log("Clicked on building B");
-
-        InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
-        preview.show();
-        preview.setTitle("Solar Panel");
-        preview.setDesc("A solar panel to generate energy");
-    }
-
-    public void buildingCClicked() {
-        handleAny();
-        Debug.Log("Clicked on building C");
-
-        InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
-        preview.show();
-        preview.setTitle("Basic Dome");
-        preview.setDesc("A small, very basic Dome that can store some energy");
-    }
-
-    public void buildingDClicked() {
-        handleAny();
-        Debug.Log("Clicked on building D");
-
-        InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
-        preview.show();
-        preview.setTitle("Worker Salvager");
-        preview.setDesc("A way to get rid of workers you do not need anymore. Generates a small amount of scrap for each worker");
-    }
-
-    //DrillPlatformBasic
-    public void buildingEClicked() {
-        handleAny();
-        Debug.Log("Clicked on building E");
-
-        InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
-        preview.show();
-        preview.setTitle("Basic Drill Platform");
-        preview.setDesc("A basic Drill dhat can automatically harvest nearby stones, ores and minerals (can also be focused by selected harvestable things)");
-    }
-
-    //ScrapBurner
-    public void buildingFClicked() {
-        handleAny();
-        Debug.Log("Clicked on building F");
-
-        InfoClicked preview = buildPreview.GetComponent<InfoClicked>();
-        preview.show();
-        preview.setTitle("Scrap Burner");
-        preview.setDesc("The Scrap Burner can, as you thought, burn scrap! By doing so, it generates large amounts of energy, and it burns through scrap rather fast.");
-    }
-
-
     public void salvageClicked() {
         Debug.Log("Clicked Salvage");
         handleAny();
@@ -149,13 +81,14 @@ public class Scene_Controller : MonoBehaviour {
 
     public void restoreDefaultUI() {
         hideAllUI();
+        menuBut.SetActive(false);
         menuBut.SetActive(true);
         resourcesMenu.SetActive(true);
     }
 
     private void showMenu(bool visible) {
         buildingMenu.SetActive(visible);
-        openBuildingMenu.SetActive(!visible);
+        menuBut.SetActive(!visible);
     }
 
     public void buildNow() {
