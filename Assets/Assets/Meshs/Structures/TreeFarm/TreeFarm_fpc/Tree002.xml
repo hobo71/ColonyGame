@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Autodesk_Cache_File>
+  <cacheType Type="OneFile" Format="mcc"/>
+  <time Range="0-40000"/>
+  <cacheTimePerFrame TimePerFrame="200"/>
+  <cacheVersion Version="2.0"/>
+  <Channels>
+    <channel0 ChannelName="Tree002" ChannelType="DoubleVectorArray" ChannelInterpretation="Points" SamplingType="Regular" SamplingRate="200" StartTime="0" EndTime="40000"/>
+  </Channels>
+</Autodesk_Cache_File>
