@@ -610,7 +610,6 @@ GameObject:
   - component: {fileID: 4512793832817874}
   - component: {fileID: 33650234633644040}
   - component: {fileID: 23686896673049722}
-  - component: {fileID: 64629031319333568}
   m_Layer: 8
   m_Name: TreeFarm_Placement
   m_TagString: Untagged
@@ -1447,18 +1446,4 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1785596120150180}
-  m_Mesh: {fileID: 4300000, guid: f036e23e42165eb438e5714e248a8cb7, type: 3}
---- !u!64 &64629031319333568
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1785596120150180}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_SkinWidth: 0.1
   m_Mesh: {fileID: 4300000, guid: f036e23e42165eb438e5714e248a8cb7, type: 3}

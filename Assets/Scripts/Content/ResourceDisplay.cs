@@ -28,10 +28,16 @@ public class ResourceDisplay : MonoBehaviour {
 		icons.Add("wood", sprites[0]);
 		icons.Add("stone", sprites[1]);
 		icons.Add("scrap", sprites[2]);
+		icons.Add("trees", sprites[3]);
+		icons.Add("iron", sprites[4]);
+		icons.Add("oreiron", sprites[5]);
 
 		active.Add("wood", true);
 		active.Add("stone", true);
 		active.Add("scrap", false);
+		active.Add("trees", false);
+		active.Add("iron", false);
+		active.Add("oreiron", false);
 
         int curCount = 0;;
         int cPosX = -20;

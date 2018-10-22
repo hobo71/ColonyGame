@@ -129,7 +129,7 @@ public class TreeFarm : DefaultStructure {
             this.GetComponent<Animator>().SetBool("working", true);
             this.addEnergy(-getEnergyDrainRate(), this);
             //TODO add new ressource (Tree parts)
-            this.GetComponent<inventory>().add(new HPHandler.ressourceStack(1, HPHandler.ressources.Wood));
+            this.GetComponent<inventory>().add(new HPHandler.ressourceStack(1, HPHandler.ressources.Trees));
         }
     }
 

@@ -255,6 +255,11 @@ MonoBehaviour:
     type: 2}
   ScrapRecyclerPlacement: {fileID: 1612613993038742, guid: 8cfe1c700f9ff91458454799b1f753f6,
     type: 2}
+  TreeFarmPreFab: {fileID: 1145236006207446, guid: 7cfc5f9be3654c44cbc1bfc79a5a95ad,
+    type: 2}
+  TreeFarmPlacement: {fileID: 1785596120150180, guid: 23b547ff9a2ad934c9a5efbd21c9237c,
+    type: 2}
+  TreeFarmImage: {fileID: 21300000, guid: 9fb31872bf7b3cc40b60e6499f364019, type: 3}
 --- !u!114 &114851170104750700
 MonoBehaviour:
   m_ObjectHideFlags: 1
