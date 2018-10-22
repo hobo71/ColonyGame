@@ -1,0 +1,238 @@
+fileFormatVersion: 2
+guid: 7cb64c366367c2a4b97360619bfe3069
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: AttachedBox
+    100002: CenterBox
+    100004: ElementPlacer
+    100006: LightHolders
+    100008: MetalTubes
+    100010: PaddingsHull
+    100012: ProcessingLights
+    100014: RedLightOuter
+    100016: RedLLight
+    100018: Spindle001
+    100020: Torus Knot001
+    100022: Tube002
+    100024: Tube003
+    100026: Tube004
+    100028: Tube005
+    100030: Tube006
+    100032: Tube007
+    100034: TubeAlarm
+    100036: WoodPieceFalling
+    100038: WoodPieceFalling001
+    100040: //RootNode
+    400000: AttachedBox
+    400002: CenterBox
+    400004: ElementPlacer
+    400006: LightHolders
+    400008: MetalTubes
+    400010: PaddingsHull
+    400012: ProcessingLights
+    400014: RedLightOuter
+    400016: RedLLight
+    400018: Spindle001
+    400020: Torus Knot001
+    400022: Tube002
+    400024: Tube003
+    400026: Tube004
+    400028: Tube005
+    400030: Tube006
+    400032: Tube007
+    400034: TubeAlarm
+    400036: WoodPieceFalling
+    400038: WoodPieceFalling001
+    400040: //RootNode
+    2100000: ToBasePlastic
+    2100002: BluePlastic
+    2100004: BlackPlastic
+    2100006: ToYellowLight
+    2100008: ToMetal
+    2100010: RedLight
+    2100012: No Name
+    2100014: ToWood
+    2300000: AttachedBox
+    2300002: CenterBox
+    2300004: ElementPlacer
+    2300006: LightHolders
+    2300008: MetalTubes
+    2300010: PaddingsHull
+    2300012: ProcessingLights
+    2300014: RedLightOuter
+    2300016: RedLLight
+    2300018: Spindle001
+    2300020: Torus Knot001
+    2300022: Tube002
+    2300024: Tube003
+    2300026: Tube004
+    2300028: Tube005
+    2300030: Tube006
+    2300032: Tube007
+    2300034: TubeAlarm
+    2300036: WoodPieceFalling
+    2300038: WoodPieceFalling001
+    3300000: AttachedBox
+    3300002: CenterBox
+    3300004: ElementPlacer
+    3300006: LightHolders
+    3300008: MetalTubes
+    3300010: PaddingsHull
+    3300012: ProcessingLights
+    3300014: RedLightOuter
+    3300016: RedLLight
+    3300018: Spindle001
+    3300020: Torus Knot001
+    3300022: Tube002
+    3300024: Tube003
+    3300026: Tube004
+    3300028: Tube005
+    3300030: Tube006
+    3300032: Tube007
+    3300034: TubeAlarm
+    3300036: WoodPieceFalling
+    3300038: WoodPieceFalling001
+    4300000: Spindle001
+    4300002: CenterBox
+    4300004: AttachedBox
+    4300006: ElementPlacer
+    4300008: ProcessingLights
+    4300010: LightHolders
+    4300012: Torus Knot001
+    4300014: MetalTubes
+    4300016: Tube002
+    4300018: Tube003
+    4300020: Tube004
+    4300022: Tube005
+    4300024: Tube006
+    4300026: Tube007
+    4300028: PaddingsHull
+    4300030: RedLightOuter
+    4300032: TubeAlarm
+    4300034: RedLLight
+    4300036: WoodPieceFalling
+    4300038: WoodPieceFalling001
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlackPlastic
+    second: {fileID: 2100000, guid: 3f2ee229447df3140802b9eb2d11acdb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BluePlastic
+    second: {fileID: 2100000, guid: 78a20e5e0cc3c2b4ca8586d29030588e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 3817442b5ad9bb048a9c25753bac22f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedLight
+    second: {fileID: 2100000, guid: 569a441172a8cae48989601a8464d47c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToBasePlastic
+    second: {fileID: 2100000, guid: 982b56c2fef9aec49a6448ba411a423c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToMetal
+    second: {fileID: 2100000, guid: 05ae18b0c0d4b9943a65c5604c6a310b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToWood
+    second: {fileID: 2100000, guid: 49e217dcefa831b4f86513af97b6b074, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ToYellowLight
+    second: {fileID: 2100000, guid: cb2bfd71924dbfe40be4bbd66a5ce24b, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

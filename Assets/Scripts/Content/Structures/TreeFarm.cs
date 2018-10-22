@@ -88,9 +88,7 @@ public class TreeFarm : DefaultStructure {
         if (this.busy && this.getCurEnergy() > 3)
             Notification.createNotification(this.gameObject, Notification.sprites.Working, "Working...", Color.green, true);
         if (!this.busy && this.getCurEnergy() > 100) {
-            this.busy = true;
-            Notification.createNotification(this.gameObject, Notification.sprites.Starting, "Starting", Color.green, true);
-
+            doStart();
         } else if (!this.busy && this.getCurEnergy() <= 100)
             Notification.createNotification(this.gameObject, Notification.sprites.Energy_Low, "Not enough Energy", Color.red, false);
 
@@ -105,12 +103,10 @@ public class TreeFarm : DefaultStructure {
     private void doStart() {
         Notification.createNotification(this.gameObject, Notification.sprites.Working, "Starting", Color.green, true);
         this.busy = true;
-
-        Debug.Log("starting Tree farm");
-        //TODO deliver to nearby wood reprocessor
-        //DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Stone);
+        
+        
+        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Trees);
     }
-
     public virtual int getEnergyDrainRate() {
         return 10;
     }

@@ -169,6 +169,7 @@
      <Compile Include="Assets\Scripts\Nav\movementController.cs" />
      <Compile Include="Assets\Scripts\Nav\NavMeshSourceTag.cs" />
      <Compile Include="Assets\Scripts\Other\SaveLoad.cs" />
+     <Compile Include="Assets\WoodReprocessor.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\Assets\Imported\JMO Assets\Cartoon FX\Shaders\CFX3 Multiply Color.shader" />
      <None Include="Assets\Assets\Meshs\Structures\TreeFarm\TreeFarm_fpc\GlassSphereWood.xml" />

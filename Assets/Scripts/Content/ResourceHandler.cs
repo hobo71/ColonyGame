@@ -38,7 +38,7 @@ public class ResourceHandler : MonoBehaviour {
 
         //totalWood = curWood;
         //totalStone = curStone;
-        //totalRessources = curRessources;
+        totalRessources = curRessources;
     }
 
     void reloadInvs() {
