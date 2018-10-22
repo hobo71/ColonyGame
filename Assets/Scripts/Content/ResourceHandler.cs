@@ -13,7 +13,6 @@ public class ResourceHandler : MonoBehaviour {
 	void Start () {
         instance = this;
 		InvokeRepeating("reloadInvs", 1.0f, 5.0f);
-        print("totalRessources size: " + totalRessources.Length + " origin: " + System.Enum.GetValues(typeof(HPHandler.ressources)).Length);
 	}
 	
 	// Update is called once per frame
@@ -56,8 +55,6 @@ public class ResourceHandler : MonoBehaviour {
     public override string ToString() {
         string content = "";
 
-        print("ressources count: " + System.Enum.GetValues(typeof(HPHandler.ressources)).Length + " totalRessources size: " + totalRessources.Length);
-
         int i = 0;
         foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
             content += res.ToString() + ": " + totalRessources[i] + ", ";
@@ -71,7 +68,6 @@ public class ResourceHandler : MonoBehaviour {
     }
 
     public static float getAmoumt(HPHandler.ressources res) {
-        print("data: " + ResourceHandler.getInstance().ToString());
         int i = 0;
         foreach (HPHandler.ressources cur in System.Enum.GetValues(typeof(HPHandler.ressources))) {
             if (res.Equals(cur)) {
