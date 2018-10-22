@@ -141,7 +141,6 @@ public class ScrapBurner : DefaultStructure {
     void FixedUpdate() {
 
         base.FixedUpdate();
-
         
         if (counter % 5 == 0) {
             handleConnections();

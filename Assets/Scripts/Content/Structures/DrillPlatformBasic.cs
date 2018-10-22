@@ -323,7 +323,7 @@ public class DrillPlatformBasic : DefaultStructure {
         if (salvaging) {
             Debug.Log("got salvaging info, creating particles....");
             //TODO, this gets called before terrain scripts are loaded
-            //GameObject.Instantiate(ParticleHelper.getInstance().salvageParticles, this.gameObject.transform);
+            GameObject.Instantiate(ParticleHelper.getInstance().salvageParticles, this.gameObject.transform);
         }
 
         //reloadConnections();

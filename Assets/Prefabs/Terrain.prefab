@@ -30,9 +30,11 @@ GameObject:
   - component: {fileID: 114275281598718272}
   - component: {fileID: 114864953588521034}
   - component: {fileID: 114327368430173308}
-  - component: {fileID: 33267364442513926}
-  - component: {fileID: 23507439630519808}
   - component: {fileID: 64438711554580022}
+  - component: {fileID: 33814357621566656}
+  - component: {fileID: 23373740312629806}
+  - component: {fileID: 64232263579310652}
+  - component: {fileID: 114768567439674454}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -53,7 +55,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!23 &23507439630519808
+--- !u!23 &23373740312629806
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,12 +90,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33267364442513926
+--- !u!33 &33814357621566656
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1021583654082426}
+  m_Mesh: {fileID: 4300000, guid: 089e2f9fecdd34e4aaf76dfe504c8810, type: 3}
+--- !u!64 &64232263579310652
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021583654082426}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 089e2f9fecdd34e4aaf76dfe504c8810, type: 3}
 --- !u!64 &64438711554580022
 MeshCollider:
@@ -200,7 +216,45 @@ MonoBehaviour:
   - {fileID: 1440413979454490, guid: 38fd6bf52b7f25640a3a4eb62c4e12c2, type: 2}
   - {fileID: 1781476399089538, guid: 546c31131d823324bafd3da3a6dad042, type: 2}
   - {fileID: 1392237083750072, guid: 7be017af60b2f7449baec0fc4bdeedf9, type: 2}
+  - {fileID: 1145236006207446, guid: 7cfc5f9be3654c44cbc1bfc79a5a95ad, type: 2}
   loadingIcon: {fileID: 0}
+--- !u!114 &114768567439674454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021583654082426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557aef9db9f3a7b43b35e55a89162751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DomeBasicImage: {fileID: 21300000, guid: 60a52d46f80c32d4ea6d6d1323afcdb1, type: 3}
+  DomeBasicPrefab: {fileID: 1599564795678000, guid: 88626ffe5cb41bf45ae9cffe9284e877,
+    type: 2}
+  DomeBasicPlacement: {fileID: 1180821680415134, guid: 630c846f886494e44b1545fc82bc66fd,
+    type: 2}
+  SolarPanelImage: {fileID: 21300000, guid: 2d1829c03675b414ea71b6f3d3d08f1f, type: 3}
+  SolarPanelPrefab: {fileID: 1972664782141374, guid: de30e566f50dc4d4fa801b340bf36503,
+    type: 2}
+  SolarPanelPlacement: {fileID: 1180821680415134, guid: 5e07d8643d2a13144a55f88fe3621fa9,
+    type: 2}
+  WorkerRecyclerImage: {fileID: 21300000, guid: 5b1ed0907311fb34c8a35de1b99242be,
+    type: 3}
+  WorkerRecyclerPrefab: {fileID: 1781476399089538, guid: 546c31131d823324bafd3da3a6dad042,
+    type: 2}
+  WorkerRecyclerPlacement: {fileID: 1612613993038742, guid: 8cfe1c700f9ff91458454799b1f753f6,
+    type: 2}
+  DrillBasicImage: {fileID: 21300000, guid: b6adf1cf14f6d464194562461987edf1, type: 3}
+  DrillBasicPrefab: {fileID: 1440413979454490, guid: 38fd6bf52b7f25640a3a4eb62c4e12c2,
+    type: 2}
+  DrillBasicPlacement: {fileID: 1332034386919498, guid: 037b525c8fdb9f247ae3b45c06ec8489,
+    type: 2}
+  ScrapRecyclerImage: {fileID: 21300000, guid: 256b83ee144264e47a7802a519a26b46, type: 3}
+  ScrapRecyclerPrefab: {fileID: 1781476399089538, guid: 546c31131d823324bafd3da3a6dad042,
+    type: 2}
+  ScrapRecyclerPlacement: {fileID: 1612613993038742, guid: 8cfe1c700f9ff91458454799b1f753f6,
+    type: 2}
 --- !u!114 &114851170104750700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -254,9 +308,14 @@ MonoBehaviour:
     type: 2}
   drillBasicReal: {fileID: 1440413979454490, guid: 38fd6bf52b7f25640a3a4eb62c4e12c2,
     type: 2}
+  scrapBurnerReal: {fileID: 1160765061977890, guid: 1f1bb702eb7fd2349a9466164f2412d1,
+    type: 2}
+  scrapBurnerPlacement: {fileID: 1354053175560502, guid: 5a3ef11c3bc288e4282526bc83b5f158,
+    type: 2}
   buildButton: {fileID: 0}
   buildingMarker: {fileID: 1286957680390746, guid: 96de756039c7eb943a3ece1c5a2d9595,
     type: 2}
+  rotationbar: {fileID: 0}
 --- !u!114 &114983336872673258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,7 +328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingMenu: {fileID: 0}
-  openBuildingMenu: {fileID: 0}
   buildButton: {fileID: 0}
   buildPreview: {fileID: 0}
   PipeMiddle: {fileID: 1941905819046420, guid: 056a2f9cb0956d348a7e1d6f70f5892f, type: 2}
@@ -277,6 +335,8 @@ MonoBehaviour:
   resourcesMenu: {fileID: 0}
   pickupBox: {fileID: 1392237083750072, guid: 7be017af60b2f7449baec0fc4bdeedf9, type: 2}
   harvestParticle: {fileID: 1971936036072054, guid: 9a38bb468e8f8a44fbe9a2b14da663b4,
+    type: 2}
+  destroyParticle: {fileID: 1862001631056534, guid: d841cbec0b8c9a94ebdbc48eb105c0b7,
     type: 2}
 --- !u!154 &154319012358944396
 TerrainCollider:
