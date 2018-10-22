@@ -138,6 +138,9 @@ public class ScrapBurner : DefaultStructure {
         return "The Scrap Burner can, as you thought, burn scrap! By doing so, it generates large amounts of energy, and it burns through scrap rather fast." + base.getDesc();
     }
 
+    private float energyPerSecond = 30f;
+    private float scrapPerSecond = 5f;
+
     void FixedUpdate() {
 
         base.FixedUpdate();
@@ -148,9 +151,9 @@ public class ScrapBurner : DefaultStructure {
 
         if (this.isBusy()) {
             //check if it has scrap, if true then recycle INFO: 1 Scrap = 3 Energy
-            if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Scrap) >= 1 && counter % 3 == 0) {
-                this.addEnergy(3, this);
-                this.GetComponent<inventory>().remove(new HPHandler.ressourceStack(1, HPHandler.ressources.Scrap));
+            if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Scrap) >= 1) {
+                this.addEnergy(energyPerSecond * Time.deltaTime, this);
+                this.GetComponent<inventory>().remove(new HPHandler.ressourceStack(scrapPerSecond * Time.deltaTime, HPHandler.ressources.Scrap));
             }
 
             if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Scrap) >= 1) {

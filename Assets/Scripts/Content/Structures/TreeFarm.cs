@@ -112,9 +112,14 @@ public class TreeFarm : DefaultStructure {
     }
 
     public virtual int getEnergyDrainRate() {
-        return 1;
+        return 10;
+    }
+
+    private float treesPerSecond() {
+        return 4f;
     }
     
+    float timePassed = 0f;
     public override void FixedUpdate() {
         base.FixedUpdate();
         
@@ -126,13 +131,12 @@ public class TreeFarm : DefaultStructure {
         }
 
         if (this.getCurEnergy() > 3 && this.busy) {
+            this.addEnergy(-getEnergyDrainRate() * Time.deltaTime, this);
             this.GetComponent<Animator>().SetBool("working", true);
-            this.addEnergy(-getEnergyDrainRate(), this);
-            //TODO add new ressource (Tree parts)
-            this.GetComponent<inventory>().add(new HPHandler.ressourceStack(1, HPHandler.ressources.Trees));
+            
+            this.GetComponent<inventory>().add(new HPHandler.ressourceStack(treesPerSecond() * Time.deltaTime, HPHandler.ressources.Trees));
         }
     }
-
     public new SaveLoad.SerializationInfo getSerialize() {
         return new serializationData(storedEnergy, busy, salvaging, ownResource);
     }

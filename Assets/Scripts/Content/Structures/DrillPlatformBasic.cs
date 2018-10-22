@@ -172,7 +172,7 @@ public class DrillPlatformBasic : DefaultStructure {
     }
 
     public virtual int getEnergyDrainRate() {
-        return 2;
+        return 60;
     }
 
     public virtual float getHarvestRate() {
@@ -226,7 +226,7 @@ public class DrillPlatformBasic : DefaultStructure {
         }
 
         if (this.getCurEnergy() > 3 && this.busy) {
-            this.addEnergy(-this.getEnergyDrainRate(), this);
+            this.addEnergy(-this.getEnergyDrainRate() * Time.deltaTime, this);
             if (curTarget != null && curTarget.GetComponent<HPHandler>().HP > 0) {
                 if (rotated) {
                     handleHarvest(curTarget);

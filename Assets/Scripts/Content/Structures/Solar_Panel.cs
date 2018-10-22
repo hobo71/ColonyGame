@@ -6,7 +6,7 @@ using UnityEngine;
 public class Solar_Panel : DefaultStructure {
     
     public bool generating = true;
-    public float generateAmount = 10;
+    public float generateAmount = 10;   //per second
 
     public static HPHandler.ressourceStack[] getPrice() {
         HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
