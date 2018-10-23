@@ -116,6 +116,10 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
         return this.getAmount() / this.maxSize;
     }
 
+    public float getFillPercent(HPHandler.ressources kind) {
+        return this.getAmount(kind) / this.maxSize;
+    }
+
     public static float getMaxTransfer(GameObject from, GameObject to, HPHandler.ressources type) {
 
         inventory fromInv = from.GetComponent<inventory>();

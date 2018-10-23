@@ -103,8 +103,7 @@ public class TreeFarm : DefaultStructure {
     private void doStart() {
         Notification.createNotification(this.gameObject, Notification.sprites.Working, "Starting", Color.green, true);
         this.busy = true;
-        
-        
+                
         DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Trees);
     }
     public virtual int getEnergyDrainRate() {
@@ -143,6 +142,9 @@ public class TreeFarm : DefaultStructure {
         this.busy = data.busy;
         this.ownResource = data.ownResource;
         this.salvaging = data.salvaging;
+        if (this.busy) {
+            DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Trees);
+        }
 
         if (salvaging) {
             GameObject.Instantiate(ParticleHelper.getInstance().salvageParticles, this.gameObject.transform);

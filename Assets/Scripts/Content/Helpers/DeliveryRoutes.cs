@@ -48,7 +48,7 @@ public class DeliveryRoutes : MonoBehaviour {
             checkDestroyed(route);
 
             route.updateWorkers();
-            if (route.getOrigin().GetComponent<inventory>().getFillPercent() > 0.4f) {
+            if (route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) > 0.4f) {
                 if (route.getWorkerCount() < 1) {
                     GameObject worker = getIdleMover(route);
                     if (worker != null) {
@@ -56,9 +56,27 @@ public class DeliveryRoutes : MonoBehaviour {
                         workers.Add(worker);
                     }
                 }
-            } else if (route.getWorkerCount() >= 1 && route.getOrigin().GetComponent<inventory>().getFillPercent() < 0.05f) {
+            }
+
+            if (route.getWorkerCount() >= 1 && route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) < 0.05f) {
                 route.reduceWorkerCount();
-            } else if (route.getOrigin().GetComponent<inventory>().getFillPercent() > 0.7f && route.getWorkerCount() >= 1) {
+            }
+
+            if (route.getWorkerCount() >= 2 && route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) < 0.6f) {
+                route.reduceWorkerCount();
+            }
+            
+            if (route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) > 0.7f && route.getWorkerCount() >= 1) {
+                if (route.getWorkerCount() <= 3) {
+                    GameObject worker = getIdleMover(route);
+                    if (worker != null) {
+                        route.addWorker(worker);
+                        workers.Add(worker);
+                    }
+                }
+            }
+
+            if (route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) > 0.85f && route.getWorkerCount() >= 1) {
                 GameObject worker = getIdleMover(route);
                 if (worker != null) {
                     route.addWorker(worker);
@@ -120,6 +138,7 @@ public class DeliveryRoutes : MonoBehaviour {
 
         public void reduceWorkerCount() {
             workers[0].GetComponent<ActionController>().stopDeliveryRoute();
+            workers.RemoveAt(0);
         }
         
         public GameObject getOrigin() {

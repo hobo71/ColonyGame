@@ -33,7 +33,7 @@ public class RessourceHelper : MonoBehaviour {
 
         foreach (var obj in results) {
             //check if res has kind, if true then order worker to deliver it and stop
-            if (obj.GetComponent<inventory>().getAmount(kind) > 0) {
+            if (obj.GetComponent<inventory>().getAmount(kind) > 1) {
                 var stack = new HPHandler.ressourceStack(obj.GetComponent<inventory>().getAmount(kind), kind);
                 mover.GetComponent<ActionController>().deliverTo(obj, to, stack);
                 print("handled delivery request successfully");

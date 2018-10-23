@@ -129,7 +129,9 @@ public class WoodReprocessor : DefaultStructure {
 
             if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Trees) >= 1 && this.getCurEnergy() > 3) {
                 this.GetComponent<Animator>().SetBool("working", true);
-                this.transform.Find("CFX3_Fire_Shield").GetComponent<ParticleSystem>().Play();
+                if (!this.transform.Find("CFX3_Fire_Shield").GetComponent<ParticleSystem>().isPlaying)
+                    this.transform.Find("CFX3_Fire_Shield").GetComponent<ParticleSystem>().Play();
+                
             } else {
                 this.GetComponent<Animator>().SetBool("working", false);
                 this.transform.Find("CFX3_Fire_Shield").GetComponent<ParticleSystem>().Stop();
