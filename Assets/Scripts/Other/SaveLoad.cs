@@ -35,9 +35,15 @@ public class SaveLoad : MonoBehaviour {
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
 
         foreach (GameObject obj in allObjects) {
-            if (obj.layer == 10) {
+            try {
+                if (obj.layer == 10) {
+                    continue;
+                }
+            } catch (Exception ex) {
+                print ("object probably has been destroyed");
                 continue;
             }
+            
             yield return new WaitForSeconds(0.01f);
             try {
                 string prefabName = obj.name;
@@ -66,6 +72,7 @@ public class SaveLoad : MonoBehaviour {
             } catch (Exception ex) {
                 print("Error while saving thing: " + ex);
             }
+            
         }
 
         foreach(System.Object obj in toSave) {
