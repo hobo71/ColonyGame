@@ -2,16 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ClickOptions : MonoBehaviour {
     
     public GameObject Canvas;
     public GameObject template;
+    public static GameObject inventoryBar;
+    public static GameObject energyBar;
+    public GameObject assignEnergyBar;
+    public GameObject assignInventoryBar;
+
+    private GameObject curBarInv = null;
+    private GameObject curBarEnergy = null;
 
     public static List<GameObject> PopUps = new List<GameObject>();
     public static bool UIOpen = false;
 
     private static float creationTime = 0;
+
+    void FixedUpdate() {
+        if (curBarInv != null) {
+            var inv = this.GetComponent<inventory>();
+            curBarInv.transform.GetChild(0).GetComponent<Image>().fillAmount = inv.getFillPercent();
+        }
+
+        if (curBarEnergy != null) {
+            var energy = this.GetComponent<EnergyContainer>();
+            curBarEnergy.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) energy.getCurEnergy() / energy.getMaxEnergy();
+
+        }
+    }
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake() {
+        if (assignInventoryBar != null) {
+            inventoryBar = assignInventoryBar;
+        }
+        
+        if (assignEnergyBar != null) {
+            energyBar = assignEnergyBar;
+        }
+    }
     
     public void Create() {
         Debug.Log("Creating Click options for: " + this.name);
@@ -57,6 +91,23 @@ public class ClickOptions : MonoBehaviour {
             }
 
             count++;
+        }
+        
+        var energy = this.GetComponent<EnergyContainer>();
+        if (energy != null) {
+            var obj =  GameObject.Instantiate(energyBar, parent.transform);
+            obj.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) energy.getCurEnergy() / energy.getMaxEnergy();
+            curBarEnergy = obj;
+        }
+        
+        var inv = this.GetComponent<inventory>();
+        if (inv != null) {
+            var obj =  GameObject.Instantiate(inventoryBar, parent.transform);
+            obj.transform.GetChild(0).GetComponent<Image>().fillAmount = inv.getFillPercent();
+            if (energy == null) {
+                obj.transform.localPosition = energyBar.transform.localPosition;
+            }
+            curBarInv = obj;
         }
     }
 

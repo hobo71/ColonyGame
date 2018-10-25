@@ -5721,6 +5721,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
+  assignEnergyBar: {fileID: 0}
+  assignInventoryBar: {fileID: 0}
 --- !u!114 &1325645801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7346,6 +7348,18 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.100022785
       objectReference: {fileID: 0}
+    - target: {fileID: 114690782605872610, guid: 2117dbd0888ccdd4f881ed4f9cd2abd9,
+        type: 2}
+      propertyPath: assignEnergyBar
+      value: 
+      objectReference: {fileID: 1923059133938526, guid: 7fc85b7590a393240b379368e4cfb278,
+        type: 2}
+    - target: {fileID: 114690782605872610, guid: 2117dbd0888ccdd4f881ed4f9cd2abd9,
+        type: 2}
+      propertyPath: assignInventoryBar
+      value: 
+      objectReference: {fileID: 1356850374054606, guid: 6f711be74491f89489289bffc3996f5a,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2117dbd0888ccdd4f881ed4f9cd2abd9, type: 2}
   m_IsPrefabParent: 0
