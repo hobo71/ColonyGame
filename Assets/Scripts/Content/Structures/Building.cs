@@ -7,18 +7,7 @@ using UnityEngine.AI;
 public class Building : MonoBehaviour {
 
     public static bool buildingMode = false;
-    public GameObject baseBuilding;
-    public GameObject baseBuildingReal;
-    public GameObject solarpanel;
-    public GameObject solarpanelReal;
-    public GameObject recycler;
-    public GameObject recyclerReal;
-    public GameObject dome_basic;
-    public GameObject dome_basicReal;
-    public GameObject drillBasicPlacement;
-    public GameObject drillBasicReal;
-    public GameObject scrapBurnerReal;
-    public GameObject scrapBurnerPlacement;
+
     public GameObject buildButton;
     public GameObject buildingMarker;
 
@@ -84,6 +73,8 @@ public class Building : MonoBehaviour {
 
         Vector3 origPos = holoPlacement.transform.position;
         Vector3 early = raycastHit.point;
+        if (holoPlacement.name.Contains("WoodReprocessor"))
+            early.y -= 2.5f;
         //early.y -= 1.0f;
         holoPlacement.transform.position = early;
 

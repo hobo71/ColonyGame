@@ -26,6 +26,9 @@ public class BuildingManager : MonoBehaviour {
 	public GameObject TreeFarmPreFab;
 	public GameObject TreeFarmPlacement;
 	public Sprite TreeFarmImage;
+	public GameObject WoodReprocessorPrefab;
+	public GameObject WoodReprocessorPlacement;
+	public Sprite WoodReprocessorImage;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +42,7 @@ public class BuildingManager : MonoBehaviour {
 		availBuildings.Add("DrillBasic", new structureData(DrillBasicPrefab, DrillBasicPlacement, DrillBasicImage, "A Drill Platform can automatically harvest nearby stones (80m range), but required a high amount of energy", "Basic Drill Platform", new List<HPHandler.ressourceStack> {new HPHandler.ressourceStack(250, HPHandler.ressources.Stone), new HPHandler.ressourceStack(50, HPHandler.ressources.Wood)}));
 		availBuildings.Add("ScrapRecycler", new structureData(ScrapRecyclerPrefab, ScrapRecyclerPlacement, ScrapRecyclerImage, "Use this building to get a use of all that unnecessary scrap! It burns the scrap and generates medium amounts of energy", "Scrap Recycler", new List<HPHandler.ressourceStack> {new HPHandler.ressourceStack(200, HPHandler.ressources.Stone), new HPHandler.ressourceStack(100, HPHandler.ressources.Wood), new HPHandler.ressourceStack(100, HPHandler.ressources.Scrap)}));
 		availBuildings.Add("TreeFarm", new structureData(TreeFarmPreFab, TreeFarmPlacement, TreeFarmImage, "A Dome that is used to grow trees, which can be reprocessed to wood using a wood reprocessor", "Tree Farm", TreeFarm.getPrice().ToList()));
+		availBuildings.Add("WoodReprocessor", new structureData(WoodReprocessorPrefab, WoodReprocessorPlacement, WoodReprocessorImage, "Used to make Wood out of Trees.", "Wood Reprocessor", WoodReprocessor.getPrice().ToList()));
 		
 	}
 
