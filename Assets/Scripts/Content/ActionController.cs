@@ -194,7 +194,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         if (target.gameObject.name.Contains("Recycler")) {
             Debug.Log("reached recycling platform, destroying self now");
             if (target.GetComponent<WorkerRecycler>().hasEnoughEnergy()) {
-                target.GetComponent<WorkerRecycler>().workerArrived();
+                target.GetComponent<WorkerRecycler>().workerArrived(this.gameObject);
                 Destroy(this.gameObject);
             }
             return;

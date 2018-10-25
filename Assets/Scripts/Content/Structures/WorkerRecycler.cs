@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WorkerRecycler : DefaultStructure {
     public Sprite salvageBut;
+    public GameObject destroyAnim;
 
     public static HPHandler.ressourceStack[] getPrice() {
         HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
@@ -87,10 +88,14 @@ public class WorkerRecycler : DefaultStructure {
 
     }
 
-    public void workerArrived() {
+    public void workerArrived(GameObject workerArrived) {
         Debug.Log("got recycled worker!");
         this.storedEnergy -= 500;
-        //TODO generate scrap in inventory to get picked up at some point
+        
+        var effect = GameObject.Instantiate(destroyAnim, workerArrived.transform.position, workerArrived.transform.rotation);
+        
+        var pickup = Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().pickupBox, workerArrived.transform.position, Quaternion.identity);
+        pickup.GetComponent<inventory>().add(new HPHandler.ressourceStack(50, HPHandler.ressources.Scrap));
     }
 
     public bool hasEnoughEnergy() {

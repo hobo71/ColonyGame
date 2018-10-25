@@ -856,6 +856,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
+  assignEnergyBar: {fileID: 0}
+  assignInventoryBar: {fileID: 0}
 --- !u!114 &114663901997271894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -881,9 +883,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownResource: []
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
-  built: 0
   busy: 0
   counter: 516
   storedEnergy: 500
   salvaging: 0
   salvageBut: {fileID: 21300000, guid: bc5b8020c5647c5429114feed966fdc4, type: 3}
+  destroyAnim: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 2}
