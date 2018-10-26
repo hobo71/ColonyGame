@@ -31,13 +31,21 @@ public class ResourceDisplay : MonoBehaviour {
 		icons.Add("trees", sprites[3]);
 		icons.Add("iron", sprites[4]);
 		icons.Add("oreiron", sprites[5]);
+		icons.Add("gold", sprites[6]);
+		icons.Add("oregold", sprites[7]);
+		icons.Add("iridium", sprites[8]);
+		icons.Add("oreiridium", sprites[9]);
 
 		active.Add("wood", true);
 		active.Add("stone", true);
 		active.Add("scrap", false);
 		active.Add("trees", false);
-		active.Add("iron", false);
+		active.Add("iron", true);
 		active.Add("oreiron", false);
+		active.Add("gold", false);
+		active.Add("oregold", false);
+		active.Add("iridium", false);
+		active.Add("oreiridium", false);
 
         int curCount = 0;;
         int cPosX = -20;

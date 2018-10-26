@@ -18,7 +18,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     private GameObject lastTarget = null;
     private GameObject deliverTarget = null;
     private GameObject deliverFrom = null;
-    private DeliveryRoutes.routeSolotype route = null;
+    private DeliveryRoutes.route route = null;
     private bool stopDelivering = false;
 
     public enum State {Idle, Walking, Attacking, ConstructionDelivering, RouteDelivering};
@@ -166,9 +166,14 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
 
             } else if (target.gameObject.Equals(route.getOrigin())) {
                 //arrived at source to take ressources
-                float transferAmount = inventory.getMaxTransfer(route.getOrigin(), this.gameObject, route.getType());
-                Debug.Log("transfer Amount:" + transferAmount);
-                route.getOrigin().GetComponent<inventory>().transferTo(this.GetComponent<inventory>(), route.getType(), transferAmount);
+                if (route is DeliveryRoutes.routeSolotype) {     //solotype
+                    float transferAmount = inventory.getMaxTransfer(route.getOrigin(), this.gameObject, ((DeliveryRoutes.routeSolotype) route).getType());
+                
+                    Debug.Log("transfer Amount:" + transferAmount);
+                    route.getOrigin().GetComponent<inventory>().transferTo(this.GetComponent<inventory>(), ((DeliveryRoutes.routeSolotype) route).getType(), transferAmount);
+                } else {    //allType
+                    route.getOrigin().GetComponent<inventory>().transferAllSafe(this.GetComponent<inventory>());
+                }
                 this.GetComponent<movementController>().setTarget(route.getTarget().transform);
                 
             }
@@ -418,7 +423,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         return myObject;
     }
 
-    public void setRoute(DeliveryRoutes.routeSolotype route) {
+    public void setRoute(DeliveryRoutes.route route) {
         Debug.Log("Got Route: " + route + " self: " + this.gameObject.name);
         this.setState(State.RouteDelivering);
         this.route = route;

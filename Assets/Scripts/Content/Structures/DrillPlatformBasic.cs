@@ -103,14 +103,14 @@ public class DrillPlatformBasic : DefaultStructure {
 
         curTarget = target;
         Debug.Log("setting harvest target to: " + curTarget);
-        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Stone);
+        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject);
     }
 
     private GameObject searchTarget() {
         GameObject[] clickables = GameObject.FindGameObjectsWithTag("clickable");
         List<GameObject> stones = new List<GameObject>();
         foreach (GameObject obj in clickables) {
-            if (obj.GetComponent<HPHandler>() != null && obj.GetComponent<HPHandler>().type == HPHandler.ressources.Stone) {
+            if (obj.GetComponent<HPHandler>() != null && (obj.GetComponent<HPHandler>().type == HPHandler.ressources.Stone || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreIron || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreGold || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreIridium)) {
                 stones.Add(obj);
             }
         }

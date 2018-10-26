@@ -7,12 +7,18 @@ using UnityEngine;
 public class DeliveryRoutes : MonoBehaviour {
 
     private static List<routeSolotype> routes = new List<routeSolotype>();
+    private static List<routeAllType> routesAllType = new List<routeAllType>();
     private static List<GameObject> workers = new List<GameObject>();
     private static int counter = 100;
 
     public static void addRoute(GameObject origin, GameObject target, HPHandler.ressources type) {
         routes.Add(new routeSolotype(origin, target, type));
         Debug.Log("created new route from " + origin.name + " to" + target.name + " with kind " + type);
+    }
+
+    public static void addRoute(GameObject origin, GameObject target) {
+        routesAllType.Add(new routeAllType(origin, target));
+        Debug.Log("created new route from " + origin.name + " to" + target.name + " with kind all");
     }
 
     public static bool deleteRoute(GameObject origin, GameObject target, HPHandler.ressources type) {
@@ -85,11 +91,57 @@ public class DeliveryRoutes : MonoBehaviour {
             }
             
         }
+
+        foreach(routeAllType route in routesAllType) {
+
+            checkDestroyed(route);
+
+            route.updateWorkers();
+            if (route.getOrigin().GetComponent<inventory>().getFillPercent() > 0.4f) {
+                if (route.getWorkerCount() < 1) {
+                    GameObject worker = getIdleMover(route);
+                    if (worker != null) {
+                        route.addWorker(worker);
+                        workers.Add(worker);
+                    }
+                }
+            }
+
+            if (route.getWorkerCount() >= 1 && route.getOrigin().GetComponent<inventory>().getFillPercent() < 0.05f) {
+                route.reduceWorkerCount();
+            }
+
+            if (route.getWorkerCount() >= 2 && route.getOrigin().GetComponent<inventory>().getFillPercent() < 0.6f) {
+                route.reduceWorkerCount();
+            }
+            
+            if (route.getOrigin().GetComponent<inventory>().getFillPercent() > 0.7f && route.getWorkerCount() >= 1) {
+                if (route.getWorkerCount() <= 3) {
+                    GameObject worker = getIdleMover(route);
+                    if (worker != null) {
+                        route.addWorker(worker);
+                        workers.Add(worker);
+                    }
+                }
+            }
+
+            if (route.getOrigin().GetComponent<inventory>().getFillPercent() > 0.85f && route.getWorkerCount() >= 1) {
+                GameObject worker = getIdleMover(route);
+                if (worker != null) {
+                    route.addWorker(worker);
+                    workers.Add(worker);
+                }
+            }
+            
+        }
 	}
 
-    private void checkDestroyed(routeSolotype route) {
+    private void checkDestroyed(route route) {
         if (route.getOrigin() == null || route.getTarget() == null) {
-            routes.Remove(route);
+            if (route is routeSolotype)
+                routes.Remove((routeSolotype) route);
+            else
+                routesAllType.Remove((routeAllType) route);
         }
     }
 
@@ -113,7 +165,7 @@ public class DeliveryRoutes : MonoBehaviour {
         return bestTarget;
     }
 
-    private GameObject getIdleMover(routeSolotype route) {
+    private GameObject getIdleMover(route route) {
         GameObject[] movers = GameObject.FindGameObjectsWithTag("mover");
         try {
             GameObject result = harvestableRessource.GetClosestMover(movers, true, route.getTarget().transform).gameObject;
@@ -123,7 +175,8 @@ public class DeliveryRoutes : MonoBehaviour {
         }
     }
 
-    public class routeSolotype {
+
+    public class routeSolotype : route {
 
         private GameObject origin;
         private GameObject target;
@@ -185,6 +238,75 @@ public class DeliveryRoutes : MonoBehaviour {
 
             workers = workers.Except(toRemove).ToList();
         }
+
+    }
+
+    public class routeAllType : route {
+
+        private GameObject origin;
+        private GameObject target;
+        private List<GameObject> workers = new List<GameObject>();
+
+        public routeAllType(GameObject origin, GameObject target) {
+            this.origin = origin;
+            this.target = target;
+        }
+
+        public void reduceWorkerCount() {
+            workers[0].GetComponent<ActionController>().stopDeliveryRoute();
+            workers.RemoveAt(0);
+        }
+        
+        public GameObject getOrigin() {
+            return origin;
+        }
+
+        public GameObject getTarget() {
+            return target;
+        }
+
+        public bool isSame(GameObject origin, GameObject target) {
+            if (origin == this.origin && target == this.target) {
+                return true;
+            }
+
+            return false;
+        }
+
+        public int getWorkerCount() {
+            return workers.Count;
+        }
+
+        public List<GameObject> getWorkers() {
+            return workers;
+        }
+
+        public void addWorker(GameObject worker) {
+            workers.Add(worker);
+            worker.GetComponent<ActionController>().setRoute(this);
+        }
+
+        public void updateWorkers() {
+            List<GameObject> toRemove = new List<GameObject>();
+
+            foreach(GameObject worker in workers) {
+                if (worker.GetComponent<ActionController>().getState() != ActionController.State.RouteDelivering) {
+                    toRemove.Add(worker);
+                }
+            }
+
+            workers = workers.Except(toRemove).ToList();
+        }
+    }
+
+    public interface route {
+        void reduceWorkerCount();
+        void updateWorkers();
+        void addWorker(GameObject worker);
+        List<GameObject> getWorkers();
+        int getWorkerCount();
+        GameObject getTarget();
+        GameObject getOrigin();
 
     }
 }

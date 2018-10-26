@@ -75,6 +75,7 @@
      <Compile Include="Assets\Assets\Imported\OutlineEffect\OutlineEffect.cs" />
      <Compile Include="Assets\Assets\Imported\QuickOutline\Scripts\Outline.cs" />
      <Compile Include="Assets\Assets\Imported\Simple UI\Samples\IconPreview.cs" />
+     <Compile Include="Assets\cheatItems.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />

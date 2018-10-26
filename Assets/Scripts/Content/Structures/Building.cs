@@ -210,6 +210,11 @@ public class Building : MonoBehaviour {
         Debug.Log("creating beacon...");
         Vector3 finalPos = holoPlacement.transform.position;
         finalPos.y -= 1.0f;
+
+        
+        if (holoPlacement.name.Contains("WoodReprocessor"))
+            finalPos.y += 2.5f;
+
         Quaternion rotation = holoPlacement.transform.rotation;
         if (buildingMode)
             stopBuildingMode();

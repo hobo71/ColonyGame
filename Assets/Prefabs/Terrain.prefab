@@ -220,6 +220,7 @@ MonoBehaviour:
   - {fileID: 1781476399089538, guid: 546c31131d823324bafd3da3a6dad042, type: 2}
   - {fileID: 1392237083750072, guid: 7be017af60b2f7449baec0fc4bdeedf9, type: 2}
   - {fileID: 1145236006207446, guid: 7cfc5f9be3654c44cbc1bfc79a5a95ad, type: 2}
+  - {fileID: 1221494705381954, guid: 21f8d92fd3985e04a86e4c86ac3eef4f, type: 2}
   loadingIcon: {fileID: 0}
 --- !u!114 &114768567439674454
 MonoBehaviour:
@@ -263,6 +264,12 @@ MonoBehaviour:
   TreeFarmPlacement: {fileID: 1785596120150180, guid: 23b547ff9a2ad934c9a5efbd21c9237c,
     type: 2}
   TreeFarmImage: {fileID: 21300000, guid: 9fb31872bf7b3cc40b60e6499f364019, type: 3}
+  WoodReprocessorPrefab: {fileID: 1221494705381954, guid: 21f8d92fd3985e04a86e4c86ac3eef4f,
+    type: 2}
+  WoodReprocessorPlacement: {fileID: 1219978346810714, guid: 04b7f1d24d76ca443ae867f7cfd2db76,
+    type: 2}
+  WoodReprocessorImage: {fileID: 21300000, guid: f1d0f45e03d8bf14a8f2d8a162760c44,
+    type: 3}
 --- !u!114 &114851170104750700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,27 +306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e462d5ceee6d34492c282ff6a57416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseBuilding: {fileID: 1959255773995846, guid: efe0b5656931970488fade3880cb76cd,
-    type: 2}
-  baseBuildingReal: {fileID: 1527724338465540, guid: f213f6c35af2cc24a816c01d2488e7b3,
-    type: 2}
-  solarpanel: {fileID: 1180821680415134, guid: 5e07d8643d2a13144a55f88fe3621fa9, type: 2}
-  solarpanelReal: {fileID: 1972664782141374, guid: de30e566f50dc4d4fa801b340bf36503,
-    type: 2}
-  recycler: {fileID: 1612613993038742, guid: 8cfe1c700f9ff91458454799b1f753f6, type: 2}
-  recyclerReal: {fileID: 1781476399089538, guid: 546c31131d823324bafd3da3a6dad042,
-    type: 2}
-  dome_basic: {fileID: 1180821680415134, guid: 630c846f886494e44b1545fc82bc66fd, type: 2}
-  dome_basicReal: {fileID: 1599564795678000, guid: 88626ffe5cb41bf45ae9cffe9284e877,
-    type: 2}
-  drillBasicPlacement: {fileID: 1332034386919498, guid: 037b525c8fdb9f247ae3b45c06ec8489,
-    type: 2}
-  drillBasicReal: {fileID: 1440413979454490, guid: 38fd6bf52b7f25640a3a4eb62c4e12c2,
-    type: 2}
-  scrapBurnerReal: {fileID: 1160765061977890, guid: 1f1bb702eb7fd2349a9466164f2412d1,
-    type: 2}
-  scrapBurnerPlacement: {fileID: 1354053175560502, guid: 5a3ef11c3bc288e4282526bc83b5f158,
-    type: 2}
   buildButton: {fileID: 0}
   buildingMarker: {fileID: 1286957680390746, guid: 96de756039c7eb943a3ece1c5a2d9595,
     type: 2}
