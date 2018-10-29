@@ -125,7 +125,7 @@ public class Building : MonoBehaviour {
 
         buildButton.SetActive(canBuild);
 
-        if (canBuild && Input.GetMouseButtonDown(0)) {
+        if (canBuild && Input.GetMouseButtonDown(0) && Application.platform != RuntimePlatform.Android) {
             buildNow();
         }
 

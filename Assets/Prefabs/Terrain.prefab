@@ -143,6 +143,10 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &114275281598718272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,9 +259,9 @@ MonoBehaviour:
   DrillBasicPlacement: {fileID: 1332034386919498, guid: 037b525c8fdb9f247ae3b45c06ec8489,
     type: 2}
   ScrapRecyclerImage: {fileID: 21300000, guid: 256b83ee144264e47a7802a519a26b46, type: 3}
-  ScrapRecyclerPrefab: {fileID: 1781476399089538, guid: 546c31131d823324bafd3da3a6dad042,
+  ScrapRecyclerPrefab: {fileID: 1160765061977890, guid: 1f1bb702eb7fd2349a9466164f2412d1,
     type: 2}
-  ScrapRecyclerPlacement: {fileID: 1612613993038742, guid: 8cfe1c700f9ff91458454799b1f753f6,
+  ScrapRecyclerPlacement: {fileID: 1354053175560502, guid: 5a3ef11c3bc288e4282526bc83b5f158,
     type: 2}
   TreeFarmPreFab: {fileID: 1145236006207446, guid: 7cfc5f9be3654c44cbc1bfc79a5a95ad,
     type: 2}
