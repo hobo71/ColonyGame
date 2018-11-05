@@ -8,6 +8,7 @@ public class cheatItems : MonoBehaviour {
 	void Start () {
 		this.GetComponent<inventory>().add(new HPHandler.ressourceStack(300, HPHandler.ressources.Wood));
 		this.GetComponent<inventory>().add(new HPHandler.ressourceStack(300, HPHandler.ressources.Stone));
+		this.GetComponent<inventory>().add(new HPHandler.ressourceStack(300, HPHandler.ressources.OreIron));
 	}
 	
 	// Update is called once per frame
