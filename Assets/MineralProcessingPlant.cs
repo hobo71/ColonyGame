@@ -68,6 +68,7 @@ public class MineralProcessingPlant : DefaultStructure {
                 Notification.createNotification(this.gameObject, Notification.sprites.Stopping, "Stopping", Color.red, false);
                 //this.GetComponent<Animator>().SetBool("working", false);
                 //this.transform.Find("CFX3_Fire_Shield").GetComponent<ParticleSystem>().Stop();
+                this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().Stop();
                 break;
             case "doStart":
                 Debug.Log("Clicked start button");
@@ -105,7 +106,7 @@ public class MineralProcessingPlant : DefaultStructure {
 	}
 
     public override string getDesc() {
-        return "Used to Process Iron and Gold ore. Results in Ingots" + base.getDesc();
+        return "Used to Process Iron and Gold ore. Results in Ingots" + base.getDesc() + " " + this.GetComponent<inventory>();
     }
 	
     private int OrePerSecond = 10;
@@ -116,6 +117,7 @@ public class MineralProcessingPlant : DefaultStructure {
         base.FixedUpdate();
 
         if (this.isBusy()) {
+            //ProcessingPlant_Anim
 			if (this.getCurEnergy() > 3) {
 
 				if (counter % 180 == 0) {
@@ -125,12 +127,17 @@ public class MineralProcessingPlant : DefaultStructure {
 
 				//select right ore
 				var ore = HPHandler.ressources.OreIron;
-				if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.OreIron) < 1) {
+				if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.OreIron) < 0.2f) {
 					ore = HPHandler.ressources.OreGold;
-					if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.OreGold) < 1) {
+					if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.OreGold) < 0.2f) {
+                        this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().Stop();
 						return;
 					}
 				}
+
+                
+                if (!this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().isPlaying)
+                    this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().Play();
 				
 				this.addEnergy(-energyPerSecond * Time.deltaTime, this);
 				this.GetComponent<inventory>().remove(new HPHandler.ressourceStack(OrePerSecond * Time.deltaTime, ore));
@@ -138,7 +145,9 @@ public class MineralProcessingPlant : DefaultStructure {
 				var ingot = ore.Equals(HPHandler.ressources.OreIron) ? HPHandler.ressources.Iron : HPHandler.ressources.Gold;
 				this.GetComponent<inventory>().add(new HPHandler.ressourceStack(IngotsPerSecond * Time.deltaTime, ingot));
 
-			}
+			} else {
+                this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().Stop();
+            }
 		}
         
     }

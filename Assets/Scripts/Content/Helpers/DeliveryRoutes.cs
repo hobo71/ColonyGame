@@ -54,7 +54,7 @@ public class DeliveryRoutes : MonoBehaviour {
             checkDestroyed(route);
 
             route.updateWorkers();
-            if (route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) > 0.4f) {
+            if (route.getOrigin().GetComponent<inventory>().getAmount(route.getType()) >= 20f) {
                 if (route.getWorkerCount() < 1) {
                     GameObject worker = getIdleMover(route);
                     if (worker != null) {
@@ -64,7 +64,7 @@ public class DeliveryRoutes : MonoBehaviour {
                 }
             }
 
-            if (route.getWorkerCount() >= 1 && route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) < 0.05f) {
+            if (route.getWorkerCount() >= 1 && route.getOrigin().GetComponent<inventory>().getFillPercent(route.getType()) <= 0.001f) {
                 route.reduceWorkerCount();
             }
 
@@ -97,7 +97,7 @@ public class DeliveryRoutes : MonoBehaviour {
             checkDestroyed(route);
 
             route.updateWorkers();
-            if (route.getOrigin().GetComponent<inventory>().getFillPercent() > 0.4f) {
+            if (route.getOrigin().GetComponent<inventory>().getAmount() >= 20f) {
                 if (route.getWorkerCount() < 1) {
                     GameObject worker = getIdleMover(route);
                     if (worker != null) {
@@ -107,7 +107,7 @@ public class DeliveryRoutes : MonoBehaviour {
                 }
             }
 
-            if (route.getWorkerCount() >= 1 && route.getOrigin().GetComponent<inventory>().getFillPercent() < 0.05f) {
+            if (route.getWorkerCount() >= 1 && route.getOrigin().GetComponent<inventory>().getFillPercent() <= 0.001f) {
                 route.reduceWorkerCount();
             }
 

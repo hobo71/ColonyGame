@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,7 +62,9 @@ public class ResourceDisplay : MonoBehaviour {
             icons.TryGetValue(res.ToString().ToLower(), out icon);
             displays[curCount].GetComponent<Image>().sprite = icon;
 
-            displays[curCount].transform.GetChild(0).GetComponent<Text>().text = ResourceHandler.getAmoumt(res).ToString();
+            var amount = (int) (Math.Round(ResourceHandler.getAmoumt(res)));
+
+            displays[curCount].transform.GetChild(0).GetComponent<Text>().text = amount.ToString();
             
             bool activated = false;
             if (!hasPrefs) {
@@ -98,7 +101,8 @@ public class ResourceDisplay : MonoBehaviour {
         
         int i = 0;
         foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
-            displays[i].transform.GetChild(0).GetComponent<Text>().text = ResourceHandler.getAmoumt(res).ToString();
+            var amount = (int) (Math.Round(ResourceHandler.getAmoumt(res)));
+            displays[i].transform.GetChild(0).GetComponent<Text>().text = amount.ToString();
             i++;
         }
 

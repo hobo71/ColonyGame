@@ -29,6 +29,9 @@ public class BuildingManager : MonoBehaviour {
 	public GameObject WoodReprocessorPrefab;
 	public GameObject WoodReprocessorPlacement;
 	public Sprite WoodReprocessorImage;
+	public GameObject OreProcessingPrefab;
+	public GameObject OreProcessingPlacement;
+	public Sprite OreProcessingImage;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +46,7 @@ public class BuildingManager : MonoBehaviour {
 		availBuildings.Add("ScrapRecycler", new structureData(ScrapRecyclerPrefab, ScrapRecyclerPlacement, ScrapRecyclerImage, "Use this building to get a use of all that unnecessary scrap! It burns the scrap and generates medium amounts of energy", "Scrap Recycler", new List<HPHandler.ressourceStack> {new HPHandler.ressourceStack(200, HPHandler.ressources.Stone), new HPHandler.ressourceStack(100, HPHandler.ressources.Wood), new HPHandler.ressourceStack(100, HPHandler.ressources.Scrap)}));
 		availBuildings.Add("TreeFarm", new structureData(TreeFarmPreFab, TreeFarmPlacement, TreeFarmImage, "A Dome that is used to grow trees, which can be reprocessed to wood using a wood reprocessor", "Tree Farm", TreeFarm.getPrice().ToList()));
 		availBuildings.Add("WoodReprocessor", new structureData(WoodReprocessorPrefab, WoodReprocessorPlacement, WoodReprocessorImage, "Used to make Wood out of Trees.", "Wood Reprocessor", WoodReprocessor.getPrice().ToList()));
+		availBuildings.Add("OreProcessingPlant", new structureData(OreProcessingPrefab, OreProcessingPlacement, OreProcessingImage, "The Mineral Processing Plant can be used to make gold and iron ingots out of the corresponding ores", "Ore Processing Plant", MineralProcessingPlant.getPrice().ToList()));
 		
 	}
 
