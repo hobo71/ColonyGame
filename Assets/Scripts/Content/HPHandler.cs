@@ -97,10 +97,14 @@ public class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
 	}
 
     public ressourceStack inflictDamage(float amount, ActionController attacker) {
-        this.HP -= amount;
         //Debug.Log("taking damage: " + amount + " hp: " + HP);
 
-        return getReturn(amount);
+        float multiplier = 1f;
+        if (this.GetComponent<harvestableRessource>() != null)
+            multiplier = this.GetComponent<harvestableRessource>().getHarvestMultiplier();
+
+        this.HP -= amount * multiplier;
+        return getReturn(amount * multiplier);
     }
 
     private ressourceStack getReturn(float amount) {

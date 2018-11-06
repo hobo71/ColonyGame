@@ -7,6 +7,7 @@ public class harvestableRessource : MonoBehaviour, clickable {
 
     public Sprite infoBut;
     public Sprite moveToBut;
+    public float harvestMultiplier = 1f;
     
     public void displayInfo() {
         InfoClicked controller = InfoClicked.getInstance();
@@ -18,9 +19,15 @@ public class harvestableRessource : MonoBehaviour, clickable {
 
     
     private string getDesc() {
+        var dispMult = "";
+        if (this.getHarvestMultiplier() != 1f) {
+            dispMult = Environment.NewLine + "Harvest Speed: " + this.getHarvestMultiplier().ToString();
+        }
         return "A naturally appearing ressource that can be harvested."
             +  Environment.NewLine
-            + "Kind: " + this.GetComponent<HPHandler>().niceText();
+            + "Kind: " + this.GetComponent<HPHandler>().niceText()
+            + dispMult;
+
 
     }
 
@@ -95,6 +102,10 @@ public class harvestableRessource : MonoBehaviour, clickable {
             }
         }
         return false;
+    }
+
+    public float getHarvestMultiplier() {
+        return harvestMultiplier;
     }
 
     //if notIdle is set to true it'll only return workers that are idle

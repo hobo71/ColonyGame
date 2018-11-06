@@ -166,9 +166,10 @@ public class DrillPlatformBasic : DefaultStructure {
     }
 
     private void handleHarvest(Transform harvesting) {
-        HPHandler.ressourceStack stack = new HPHandler.ressourceStack(this.getHarvestRate(), harvesting.GetComponent<HPHandler>().type);
+        var amount = this.getHarvestRate() * Time.deltaTime * harvesting.GetComponent<harvestableRessource>().getHarvestMultiplier();
+        HPHandler.ressourceStack stack = new HPHandler.ressourceStack(amount, harvesting.GetComponent<HPHandler>().type);
         this.GetComponent<inventory>().add(stack);
-        harvesting.GetComponent<HPHandler>().HP -= this.getHarvestRate();
+        harvesting.GetComponent<HPHandler>().HP -= amount;
     }
 
     public virtual int getEnergyDrainRate() {
@@ -176,7 +177,7 @@ public class DrillPlatformBasic : DefaultStructure {
     }
 
     public virtual float getHarvestRate() {
-        return 0.4f;
+        return 10f;
     }
 
     // Use this for initialization
