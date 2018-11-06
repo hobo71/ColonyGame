@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 603c988a35171d149b4579258d949701
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Barrels
+    100002: Barrels001
+    100004: //RootNode
+    100006: DrillLightRing
+    100008: DrillLightRing002
+    100010: DrillLightRing003
+    100012: MainDrill
+    100014: SideBox
+    100016: SideLight002
+    100018: SideLight003
+    100020: SideLight004
+    100022: SideLight005
+    100024: SideLight006
+    100026: SideLight007
+    100028: ThingsTop
+    100030: TopPlatform
+    400000: Barrels
+    400002: Barrels001
+    400004: //RootNode
+    400006: DrillLightRing
+    400008: DrillLightRing002
+    400010: DrillLightRing003
+    400012: MainDrill
+    400014: SideBox
+    400016: SideLight002
+    400018: SideLight003
+    400020: SideLight004
+    400022: SideLight005
+    400024: SideLight006
+    400026: SideLight007
+    400028: ThingsTop
+    400030: TopPlatform
+    2100000: Metal
+    2100002: Lights
+    2100004: RedPlastic
+    2100006: No Name
+    2300000: Barrels
+    2300002: Barrels001
+    2300004: DrillLightRing
+    2300006: DrillLightRing002
+    2300008: DrillLightRing003
+    2300010: MainDrill
+    2300012: SideBox
+    2300014: SideLight002
+    2300016: SideLight003
+    2300018: SideLight004
+    2300020: SideLight005
+    2300022: SideLight006
+    2300024: SideLight007
+    2300026: ThingsTop
+    2300028: TopPlatform
+    2300030: //RootNode
+    3300000: Barrels
+    3300002: Barrels001
+    3300004: DrillLightRing
+    3300006: DrillLightRing002
+    3300008: DrillLightRing003
+    3300010: MainDrill
+    3300012: SideBox
+    3300014: SideLight002
+    3300016: SideLight003
+    3300018: SideLight004
+    3300020: SideLight005
+    3300022: SideLight006
+    3300024: SideLight007
+    3300026: ThingsTop
+    3300028: TopPlatform
+    3300030: //RootNode
+    4300000: MainDrill
+    4300002: DrillLightRing002
+    4300004: DrillLightRing003
+    4300006: DrillLightRing
+    4300008: Barrels
+    4300010: SideLight003
+    4300012: SideLight002
+    4300014: SideLight004
+    4300016: SideBox
+    4300018: TopPlatform
+    4300020: Barrels001
+    4300022: SideLight007
+    4300024: SideLight006
+    4300026: SideLight005
+    4300028: ThingsTop
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 1
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

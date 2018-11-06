@@ -225,6 +225,7 @@ MonoBehaviour:
   - {fileID: 1392237083750072, guid: 7be017af60b2f7449baec0fc4bdeedf9, type: 2}
   - {fileID: 1145236006207446, guid: 7cfc5f9be3654c44cbc1bfc79a5a95ad, type: 2}
   - {fileID: 1221494705381954, guid: 21f8d92fd3985e04a86e4c86ac3eef4f, type: 2}
+  - {fileID: 1321977131715692, guid: e86ab24ac9464b14c8b27f3c7a97b325, type: 2}
   loadingIcon: {fileID: 0}
 --- !u!114 &114768567439674454
 MonoBehaviour:
@@ -274,6 +275,11 @@ MonoBehaviour:
     type: 2}
   WoodReprocessorImage: {fileID: 21300000, guid: f1d0f45e03d8bf14a8f2d8a162760c44,
     type: 3}
+  OreProcessingPrefab: {fileID: 1321977131715692, guid: e86ab24ac9464b14c8b27f3c7a97b325,
+    type: 2}
+  OreProcessingPlacement: {fileID: 1083955666969738, guid: da4b19857e6476e46880141d1047b515,
+    type: 2}
+  OreProcessingImage: {fileID: 21300000, guid: e00945c8c12617a4490d0b4a71e5b1c0, type: 3}
 --- !u!114 &114851170104750700
 MonoBehaviour:
   m_ObjectHideFlags: 1

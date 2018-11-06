@@ -76,6 +76,7 @@
      <Compile Include="Assets\Assets\Imported\QuickOutline\Scripts\Outline.cs" />
      <Compile Include="Assets\Assets\Imported\Simple UI\Samples\IconPreview.cs" />
      <Compile Include="Assets\cheatItems.cs" />
+     <Compile Include="Assets\DeepDrillPlatform.cs" />
      <Compile Include="Assets\MineralProcessingPlant.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
@@ -152,6 +153,7 @@
      <Compile Include="Assets\Scripts\Content\Structures\ScrapBurner.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\Solar_Panel.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\Structure.cs" />
+     <Compile Include="Assets\Scripts\Content\Structures\TogglableStructure.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\TreeFarm.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\WoodReprocessor.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\WorkerRecycler.cs" />
