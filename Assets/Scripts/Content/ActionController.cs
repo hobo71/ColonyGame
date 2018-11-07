@@ -361,6 +361,8 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             this.idleTimer = idleTimer;
             this.idleDeliveryTimer = idleDeliveryTimer;
             this.curState = curState;
+            if (curState == State.RouteDelivering)
+                this.curState = State.Idle;
             this.delivery = delivery;
             if (target != null) {
                 this.target = target.transform.position;
