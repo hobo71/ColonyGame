@@ -28,6 +28,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 	}
 
     private void fixScale() {
+        
         this.transform.localScale = this.buildTo.transform.localScale;
         Vector3 childScale = new Vector3(1, 1, 1);
 
@@ -36,6 +37,10 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         childScale.z = 1 / this.buildTo.transform.localScale.z;
 
         this.transform.GetChild(0).localScale = childScale;
+
+        if (buildTo.name.Contains("DeepDrillingPlatform")) {
+            this.transform.localScale = new Vector3(3f, 3f, 3f);
+        }
     }
 	
 	// Update is called once per frame

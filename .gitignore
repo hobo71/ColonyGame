@@ -264,3 +264,4 @@ Temp/
 *.sln
 *.csproj
 *.vscode
+dist/

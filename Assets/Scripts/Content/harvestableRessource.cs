@@ -35,7 +35,7 @@ public class harvestableRessource : MonoBehaviour, clickable {
         print("Destroying harvestable ressource: " + this.name);
     }
 
-    public PopUpCanvas.popUpOption[] getOptions() {
+    public virtual PopUpCanvas.popUpOption[] getOptions() {
          PopUpCanvas.popUpOption[] options;
 
          PopUpCanvas.popUpOption info = new  PopUpCanvas.popUpOption("Info", infoBut);
@@ -55,7 +55,7 @@ public class harvestableRessource : MonoBehaviour, clickable {
         this.GetComponent<ClickOptions>().Create();
     }
 
-    public void handleOption(string option) {
+    public virtual void handleOption(string option) {
         Debug.Log("handling option: " + option);
 
         switch (option) {

@@ -39,10 +39,10 @@ GameObject:
   - component: {fileID: 33405161950423270}
   - component: {fileID: 23457263058238302}
   - component: {fileID: 65895913197769908}
-  - component: {fileID: 114538233250321246}
   - component: {fileID: 114164490295660306}
   - component: {fileID: 114584042207446622}
   - component: {fileID: 114728471629547292}
+  - component: {fileID: 114464569449832702}
   m_Layer: 8
   m_Name: DeepMineralPatches01
   m_TagString: clickable
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 10000
   type: 5
---- !u!114 &114538233250321246
+--- !u!114 &114464569449832702
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -194,12 +194,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1192932660018134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e096658f30f4940aacc6687863d691, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bd07fb1f5300ee44a1264a3795f43e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
-  moveToBut: {fileID: 21300000, guid: fc49b64a6379307498225a29affeb514, type: 3}
+  moveToBut: {fileID: 21300000, guid: 0036304ca6d68334ba79fe76f6088696, type: 3}
   harvestMultiplier: 0.1
+  drillBut: {fileID: 21300000, guid: fbc70a584ef4548448d535789f42de10, type: 3}
+  markerPrefab: {fileID: 1286957680390746, guid: 96de756039c7eb943a3ece1c5a2d9595,
+    type: 2}
+  drillPrefab: {fileID: 1892078400946212, guid: 6f90d59e49edb2140be360064b05fb59,
+    type: 2}
+  activeDrill: {fileID: 0}
 --- !u!114 &114584042207446622
 MonoBehaviour:
   m_ObjectHideFlags: 1
