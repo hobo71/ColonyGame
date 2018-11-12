@@ -10,11 +10,14 @@ public class ClickOptions : MonoBehaviour {
     public GameObject template;
     public static GameObject inventoryBar;
     public static GameObject energyBar;
+    public static GameObject HPBar;
     public GameObject assignEnergyBar;
     public GameObject assignInventoryBar;
+    public GameObject assignHPBar;
 
     private GameObject curBarInv = null;
     private GameObject curBarEnergy = null;
+    private GameObject curBarHP = null;
 
     public static List<GameObject> PopUps = new List<GameObject>();
     public static bool UIOpen = false;
@@ -32,6 +35,12 @@ public class ClickOptions : MonoBehaviour {
             curBarEnergy.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) energy.getCurEnergy() / energy.getMaxEnergy();
 
         }
+        
+        if (curBarHP != null) {
+            var hp = this.GetComponent<HPHandler>();
+            curBarHP.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) hp.HP / hp.getInitialHP();
+
+        }
     }
 
     /// <summary>
@@ -44,6 +53,10 @@ public class ClickOptions : MonoBehaviour {
         
         if (assignEnergyBar != null) {
             energyBar = assignEnergyBar;
+        }
+
+        if (assignHPBar != null) {
+            HPBar = assignHPBar;
         }
     }
     
@@ -93,6 +106,13 @@ public class ClickOptions : MonoBehaviour {
             count++;
         }
         
+        var hp = this.GetComponent<HPHandler>();
+        if (hp != null) {
+            var obj =  GameObject.Instantiate(HPBar, parent.transform);
+            obj.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) hp.HP / hp.getInitialHP();
+            curBarHP = obj;
+        }
+
         var energy = this.GetComponent<EnergyContainer>();
         if (energy != null) {
             var obj =  GameObject.Instantiate(energyBar, parent.transform);
@@ -109,6 +129,7 @@ public class ClickOptions : MonoBehaviour {
             }
             curBarInv = obj;
         }
+
     }
 
     public static void clear() {

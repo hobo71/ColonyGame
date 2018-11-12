@@ -32,6 +32,7 @@ public class DeepDrillPlatform : TogglableStructure {
     public override void doStart() {
         base.doStart();
         startAnim();
+        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, ingot);
     }
 
     public override void doStop() {
