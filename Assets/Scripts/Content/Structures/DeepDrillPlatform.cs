@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DeepDrillPlatform : TogglableStructure {
 
-    public GameObject light;
+    public GameObject workLight;
 
     private HPHandler.ressources ingot = HPHandler.ressources.OreIron;
     private GameObject mineralPatch = null;
@@ -44,16 +44,17 @@ public class DeepDrillPlatform : TogglableStructure {
         this.GetComponent<Animator>().SetBool("working", true);
         if (!this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().isPlaying)
             this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().Play();
-        light.SetActive(true);
+        workLight.SetActive(true);
     }
 
     private void stopAnim() {
         this.GetComponent<Animator>().SetBool("working", false);
         this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().Stop();
-        light.SetActive(false);
+        workLight.SetActive(false);
     }
 
     public void setIngot(HPHandler.ressources ingot, GameObject patch) {
+        print("set ingot type: " + ingot + " on " + this.name);
         this.ingot = ingot;
         this.mineralPatch = patch;
     }
@@ -65,6 +66,7 @@ public class DeepDrillPlatform : TogglableStructure {
     public override void Start() {
         base.Start();
         var patches = GameObject.FindObjectsOfType<deepRessource>();
+        print("starting deepDrill script, #patches: " + patches.Length);
 
         GameObject res = null;
         var dist = float.MaxValue;
@@ -72,7 +74,7 @@ public class DeepDrillPlatform : TogglableStructure {
         foreach (var elem in patches) {
             var d = Vector3.Distance(elem.gameObject.transform.position, this.gameObject.transform.position);
             if (d < dist) {
-                d = dist;
+                dist = d;
                 res = elem.gameObject;
             }
         }
@@ -103,7 +105,7 @@ public class DeepDrillPlatform : TogglableStructure {
                     doStop();
                 }
             } else {
-                stopAnim();
+                doStop();
             }
         }
     }

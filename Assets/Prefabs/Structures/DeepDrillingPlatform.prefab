@@ -1486,7 +1486,7 @@ MonoBehaviour:
   salvaging: 0
   stopBut: {fileID: 21300000, guid: de4d9e794658fef438c0d2b1e4add552, type: 3}
   startBut: {fileID: 21300000, guid: 0036304ca6d68334ba79fe76f6088696, type: 3}
-  light: {fileID: 1897067748218772}
+  workLight: {fileID: 1897067748218772}
 --- !u!114 &114285877054011222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1502,6 +1502,7 @@ MonoBehaviour:
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
 --- !u!114 &114314831220946344
 MonoBehaviour:
   m_ObjectHideFlags: 1

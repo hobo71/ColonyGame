@@ -75,10 +75,6 @@
      <Compile Include="Assets\Assets\Imported\OutlineEffect\OutlineEffect.cs" />
      <Compile Include="Assets\Assets\Imported\QuickOutline\Scripts\Outline.cs" />
      <Compile Include="Assets\Assets\Imported\Simple UI\Samples\IconPreview.cs" />
-     <Compile Include="Assets\cheatItems.cs" />
-     <Compile Include="Assets\DeepDrillPlatform.cs" />
-     <Compile Include="Assets\deepRessource.cs" />
-     <Compile Include="Assets\MineralProcessingPlant.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -128,8 +124,10 @@
      <Compile Include="Assets\Scripts\Camera\Outline.cs" />
      <Compile Include="Assets\Scripts\Camera\TouchCamera.cs" />
      <Compile Include="Assets\Scripts\Content\ActionController.cs" />
+     <Compile Include="Assets\Scripts\Content\deepRessource.cs" />
      <Compile Include="Assets\Scripts\Content\harvestableRessource.cs" />
      <Compile Include="Assets\Scripts\Content\Helpers\BuildingManager.cs" />
+     <Compile Include="Assets\Scripts\Content\Helpers\cheatItems.cs" />
      <Compile Include="Assets\Scripts\Content\Helpers\DeliveryRoutes.cs" />
      <Compile Include="Assets\Scripts\Content\Helpers\FPSDisplay.cs" />
      <Compile Include="Assets\Scripts\Content\Helpers\ParticleHelper.cs" />
@@ -143,10 +141,12 @@
      <Compile Include="Assets\Scripts\Content\Scene_Controller.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\Building.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\building_marker.cs" />
+     <Compile Include="Assets\Scripts\Content\Structures\DeepDrillPlatform.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\DefaultStructure.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\Dome_Basic.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\DrillPlatformBasic.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\EnergyContainer.cs" />
+     <Compile Include="Assets\Scripts\Content\Structures\MineralProcessingPlant.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\Piping.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\PlanetBase.cs" />
      <Compile Include="Assets\Scripts\Content\Structures\ressourceStorage.cs" />
