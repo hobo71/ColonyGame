@@ -111,7 +111,8 @@ public class DrillPlatformBasic : DefaultStructure {
         List<GameObject> stones = new List<GameObject>();
         foreach (GameObject obj in clickables) {
             if (obj.GetComponent<HPHandler>() != null && (obj.GetComponent<HPHandler>().type == HPHandler.ressources.Stone || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreIron || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreGold || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreIridium)) {
-                stones.Add(obj);
+                if (obj.GetComponent<deepRessource>() == null)
+                    stones.Add(obj);
             }
         }
 

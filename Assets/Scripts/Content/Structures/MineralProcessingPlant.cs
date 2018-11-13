@@ -112,7 +112,7 @@ public class MineralProcessingPlant : DefaultStructure {
     private int OrePerSecond = 10;
     private int IngotsPerSecond = 5;
     private int energyPerSecond = 5;
-    void FixedUpdate() {
+    public override void FixedUpdate() {
 
         base.FixedUpdate();
 
@@ -120,7 +120,8 @@ public class MineralProcessingPlant : DefaultStructure {
             //ProcessingPlant_Anim
 			if (this.getCurEnergy() > 3) {
 
-				if (counter % 180 == 0) {
+                //request both ores
+				if (counter % 180 == 0 && !this.GetComponent<inventory>().isFull()) {
 					RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.OreIron);
 					RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.OreGold);
 				}

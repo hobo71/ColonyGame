@@ -112,12 +112,12 @@ public class WoodReprocessor : DefaultStructure {
     private int WoodPerSecond = 12;
     private int energyPerSecond = 5;
 
-    void FixedUpdate() {
+    public override void FixedUpdate() {
 
         base.FixedUpdate();
 
         if (this.isBusy()) {
-            if (counter % 180 == 0) {
+            if (counter % 180 == 0 && !this.GetComponent<inventory>().isFull()) {
                 RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.Trees);
             }
             //check if it has scrap, if true then recycle INFO: 1 Scrap = 3 Energy

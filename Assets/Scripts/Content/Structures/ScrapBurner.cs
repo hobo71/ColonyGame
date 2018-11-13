@@ -163,9 +163,8 @@ public class ScrapBurner : DefaultStructure {
                 this.GetComponent<Animator>().SetBool("working", false);
                 this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().Stop();
             }
-
             //send for moar scrap!!
-            if (counter % 60 == 0) {
+            if (counter % 60 == 0 && !this.GetComponent<inventory>().isFull()) {
                 RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.Scrap);
             }
         }

@@ -94,6 +94,11 @@ public class DeepDrillPlatform : TogglableStructure {
         base.FixedUpdate();
 
         if (this.isBusy()) {
+
+            if (this.GetComponent<inventory>().isFull()) {
+                doStop();
+            }
+
             if (this.getCurEnergy() >= 3) {
                 startAnim();
                 this.addEnergy(-EnergyPerSecond * Time.deltaTime, this);
