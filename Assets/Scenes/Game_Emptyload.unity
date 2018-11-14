@@ -6172,15 +6172,6 @@ Prefab:
       propertyPath: m_Name
       value: CyberSoldier (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 114909508134361832, guid: 6aaff07906d5a1148ae35bfd29036062,
-        type: 2}
-      propertyPath: AD
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1171672578602282, guid: 6aaff07906d5a1148ae35bfd29036062, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6aaff07906d5a1148ae35bfd29036062, type: 2}
   m_IsPrefabParent: 0
