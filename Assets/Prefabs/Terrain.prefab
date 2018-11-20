@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: 23373740312629806}
   - component: {fileID: 64232263579310652}
   - component: {fileID: 114768567439674454}
+  - component: {fileID: 114447725801184378}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -196,6 +197,22 @@ MonoBehaviour:
   assignText: {fileID: 1236951381839766, guid: 841c7ba68c6f6d34c8d13b3c6c07d20b, type: 2}
   assignImage: {fileID: 1373858447954990, guid: 60a33461d69f36d4681dd9b61f3c2efb,
     type: 2}
+--- !u!114 &114447725801184378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021583654082426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072b00763807fc0408fb8e72f3e3911d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConveyorBegin: {fileID: 1300327113913566, guid: b082fea1f946ea74689553f2c3dd0f9d,
+    type: 2}
+  ConveyorPipe: {fileID: 1138068360173932, guid: 90c37aa94dc25a249b85e495b6c01a06,
+    type: 2}
+  cancelBut: {fileID: 0}
 --- !u!114 &114478374199230908
 MonoBehaviour:
   m_ObjectHideFlags: 1

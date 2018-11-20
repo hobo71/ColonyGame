@@ -19,6 +19,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
 
     public bool salvaging = false;
     private float salvageStartHP = 100f;
+    private bool fastReload = true;
 
     // Use this for initialization
     public virtual void Start () {
@@ -42,6 +43,11 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
         counter++;
         if (counter >= 5000) {
             counter = 0;
+            reloadConnections();
+        }
+
+        if (counter >= 30 && fastReload) {
+            fastReload = false;
             reloadConnections();
         }
 

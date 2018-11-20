@@ -70,7 +70,7 @@ public class Scene_Controller : MonoBehaviour {
 
     public void hideAllUI () {
 
-        string[] hideable = {"BuildingMenu_Background", "MenuButton", "BuildNow", "RessourceDisplayLarge", "Resources", "BuildingPreview"};
+        string[] hideable = {"BuildingMenu_Background", "MenuButton", "BuildNow", "RessourceDisplayLarge", "Resources", "BuildingPreview", "BuildingMenu"};
 
         foreach (string elem in hideable) {
             try {
@@ -102,6 +102,11 @@ public class Scene_Controller : MonoBehaviour {
 
         print("saving...");
         this.GetComponent<SaveLoad>().save(saveName);
+    }
+
+    public void onPipingPressed() {
+        handleAny();
+        ConveyorHandler.getInstance().onConveyorButtonClicked();
     }
 
 }

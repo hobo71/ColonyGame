@@ -15,6 +15,8 @@ public class clickDetector : MonoBehaviour {
     private static List<Outline> outlines = new List<Outline>();
     private static readonly float hightlightMaxTime = 0.8f;
 
+    private Action<GameObject> nextAction = null;
+
     // Update is called once per frame
     void Update() {
 
@@ -74,10 +76,14 @@ public class clickDetector : MonoBehaviour {
         if (outlines.Count > 0) {
             List<Outline> toRemove = new List<Outline>();
             foreach (Outline outline in outlines) {
+                try {
                 outline.OutlineWidth -= 0.1f;
                 if (outline.OutlineWidth < 0.1f) {
                     GameObject.Destroy(outline);
                     //outlines.Remove(outline);
+                    toRemove.Add(outline);
+                }
+                } catch (NullReferenceException ex) {
                     toRemove.Add(outline);
                 }
             }
@@ -101,12 +107,19 @@ public class clickDetector : MonoBehaviour {
             clickable target = (clickable)raycastHit.transform.gameObject.GetComponent(typeof(clickable));
             
             createHighlight(raycastHit.transform.gameObject);
+
+            if (nextAction != null) {
+                var call = nextAction;
+                nextAction = null;
+                call.Invoke(raycastHit.transform.gameObject);
+                return;
+            }
+
             if (pressTime > 0.2f) {
                 target.handleLongClick();
             } else {
                 target.handleClick();
             }
-            //}
         }
 
     }
@@ -132,5 +145,14 @@ public class clickDetector : MonoBehaviour {
 
     public static void clearPopUps() {
         ClickOptions.clear();
+    }
+
+    public void setNextClickAction(Action<GameObject> onClick) {
+        print("next click has been overridden");
+        this.nextAction = onClick;
+    }
+
+    public void resetNextClick() {
+        this.nextAction = null;
     }
 }
