@@ -3292,6 +3292,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114447725801184378, guid: edd802b8b5e39a4469cb094e1974b624,
+        type: 2}
+      propertyPath: cancelBut
+      value: 
+      objectReference: {fileID: 1543028549}
     - target: {fileID: 114478374199230908, guid: edd802b8b5e39a4469cb094e1974b624,
         type: 2}
       propertyPath: loadingIcon
@@ -3674,27 +3679,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 450, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &878655723 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1021583654082426, guid: edd802b8b5e39a4469cb094e1974b624,
+--- !u!114 &878655738 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114447725801184378, guid: edd802b8b5e39a4469cb094e1974b624,
     type: 2}
   m_PrefabInternal: {fileID: 752473501}
---- !u!114 &878655738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 878655723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 072b00763807fc0408fb8e72f3e3911d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConveyorBegin: {fileID: 1300327113913566, guid: b082fea1f946ea74689553f2c3dd0f9d,
-    type: 2}
-  ConveyorPipe: {fileID: 1138068360173932, guid: 90c37aa94dc25a249b85e495b6c01a06,
-    type: 2}
-  cancelBut: {fileID: 1543028549}
 --- !u!1 &893389624
 GameObject:
   m_ObjectHideFlags: 0
@@ -6911,7 +6901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1543028550
 RectTransform:
   m_ObjectHideFlags: 0

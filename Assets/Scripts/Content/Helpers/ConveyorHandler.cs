@@ -115,6 +115,17 @@ public class ConveyorHandler : MonoBehaviour {
 
     }
 
+	public void cancel() {
+		GameObject.Destroy(start);
+		startObj = null;
+		endObj = null;
+		Time.timeScale = 1f;
+		Scene_Controller.getInstance().restoreDefaultUI();
+		Scene_Controller.getInstance().handleAny();
+		cancelBut.SetActive(true);
+		GameObject.Find("Main Camera").GetComponent<clickDetector>().resetNextClick();
+	}
+
 	public class conveyorConnection {
 		public GameObject from;
 		public GameObject to;
@@ -125,16 +136,5 @@ public class ConveyorHandler : MonoBehaviour {
 			this.to = to;
 			this.createdObjs = stuff;
 		}
-	}
-
-	public void cancel() {
-		GameObject.Destroy(start);
-		startObj = null;
-		endObj = null;
-		Time.timeScale = 1f;
-		Scene_Controller.getInstance().restoreDefaultUI();
-		Scene_Controller.getInstance().handleAny();
-		cancelBut.SetActive(true);
-		GameObject.Find("Main Camera").GetComponent<clickDetector>().resetNextClick();
 	}
 }

@@ -21,7 +21,10 @@ GameObject:
   - component: {fileID: 4005596057480206}
   - component: {fileID: 33698491830753744}
   - component: {fileID: 23808158373779702}
-  m_Layer: 0
+  - component: {fileID: 114988997438265222}
+  - component: {fileID: 65730623210658372}
+  - component: {fileID: 114972352563675126}
+  m_Layer: 8
   m_Name: ConveyorPipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,3 +87,45 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138068360173932}
   m_Mesh: {fileID: 4300000, guid: 313036c4face41643878a3a8570c7c82, type: 3}
+--- !u!65 &65730623210658372
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138068360173932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 0.9510566, z: 1.0000002}
+  m_Center: {x: 0.00000002715562, y: 0.000000059604645, z: 0.50000006}
+--- !u!114 &114972352563675126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138068360173932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb13f90576ba4df4395f165b942f666f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
+  template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
+  assignEnergyBar: {fileID: 0}
+  assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
+--- !u!114 &114988997438265222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138068360173932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01e7ac392329294eb6fd06612fc9122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
+  stopBut: {fileID: 21300000, guid: 0036304ca6d68334ba79fe76f6088696, type: 3}
+  startBut: {fileID: 21300000, guid: de4d9e794658fef438c0d2b1e4add552, type: 3}
