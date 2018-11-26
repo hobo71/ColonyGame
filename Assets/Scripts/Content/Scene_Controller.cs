@@ -19,6 +19,7 @@ public class Scene_Controller : MonoBehaviour {
     public GameObject pickupBox;
     public GameObject harvestParticle;
     public GameObject destroyParticle;
+    public GameObject conveyorConfigurator;
 
     private static Scene_Controller instance;
     

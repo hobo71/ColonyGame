@@ -7,6 +7,7 @@ public class pipeHandler : MonoBehaviour, clickable {
     public Sprite infoBut;
     public Sprite stopBut;
     public Sprite startBut;
+    private ConveyorHandler.conveyorConnection data;
 
 	private bool active = false;
 
@@ -70,11 +71,23 @@ public class pipeHandler : MonoBehaviour, clickable {
 	}
 
 	private void doConf() {
+        Scene_Controller.getInstance().conveyorConfigurator.SetActive(true);
+        Scene_Controller.getInstance().conveyorConfigurator.GetComponent<ConveyorConfigurator>().setInstance(this);
+        clickDetector.menusOpened++;
 		//TODO
 	}
 
     // Update is called once per frame
     void FixedUpdate() {
 
+    }
+
+    public void setData(ConveyorHandler.conveyorConnection data)  {
+        this.data = data;
+        print("connection got data: " + data.from + " -> " + data.to);
+    }
+
+    public ConveyorHandler.conveyorConnection getData() {
+        return data;
     }
 }

@@ -9,6 +9,10 @@ public class clickDetector : MonoBehaviour {
     public static bool overlayClicked = false;
     public GameObject ClickableInfo;
 
+    //new int, used to display the number of active overlays/menus, click detection is only happening when this equals 0.
+    //increment when opening a menu, decrement when closing
+    public static int menusOpened = 0;
+
     //private static GameObject highlight = null;
     private static float highlightTime = 0.0f;
     //private static cakeslice.OutlineEffect outlineEffect = null;
@@ -20,7 +24,7 @@ public class clickDetector : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (Building.buildingMode || ClickableInfo.activeSelf || ResourceDisplay.menuOpened) {
+        if (Building.buildingMode || ClickableInfo.activeSelf || ResourceDisplay.menuOpened || menusOpened > 0) {
             return;
         }
 

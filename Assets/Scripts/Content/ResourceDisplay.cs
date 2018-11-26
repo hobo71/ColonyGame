@@ -21,6 +21,10 @@ public class ResourceDisplay : MonoBehaviour {
     private static ResourceDisplay instance;
     private int activeElemsCount = 0;
 
+    //used for ressource type selectors
+    public static Action<List<HPHandler.ressources>> closeCallback = null;
+    public static List<HPHandler.ressources> callbackList = new List<HPHandler.ressources>();
+
 	// Use this for initialization
 	void Start () {
 
@@ -164,6 +168,17 @@ public class ResourceDisplay : MonoBehaviour {
 
         int cPosX = -20;
         int i = 0;
+
+        //if callback is defined, do not edit current ressource displays
+        if (closeCallback != null) {
+            print("closed ressource display, using callback!");
+            closeCallback.Invoke(callbackList);
+            closeCallback = null;
+            callbackList.Clear();
+            return;
+        }
+
+        //set current display values again
         foreach(HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
             displays[i].transform.localPosition = new Vector3(cPosX, -10, 0);
             
@@ -205,11 +220,21 @@ public class ResourceDisplay : MonoBehaviour {
             if (res.ToString().Equals(name)) {
                 if (!activated) {
                     displaysExt[curCount].transform.GetChild(0).GetComponent<Image>().color = colorOn;
-                    displays[curCount].SetActive(false);
+                    if  (closeCallback == null) {
+                        displays[curCount].SetActive(false);
+                    } else {
+                        callbackList.Add(res);
+                    }
+                    
                     activeElemsCount--;
                 } else {
                     displaysExt[curCount].transform.GetChild(0).GetComponent<Image>().color = colorOff;
-                    displays[curCount].SetActive(true);
+                    if  (closeCallback == null) {
+                        displays[curCount].SetActive(true);
+                    } else {
+                        callbackList.Remove(res);
+                    }
+                    
                     activeElemsCount++;
                     
                 }
