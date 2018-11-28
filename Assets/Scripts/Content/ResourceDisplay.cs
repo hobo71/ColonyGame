@@ -58,6 +58,7 @@ public class ResourceDisplay : MonoBehaviour {
 
         bool hasPrefs = PlayerPrefs.GetInt("hasPrefsDisplay") == 1;
 
+        //create elements
         foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
             displays[curCount] = GameObject.Instantiate(resIconPrefab, this.gameObject.transform);
             displays[curCount].transform.localPosition = new Vector3(cPosX, cPosY, 0);
@@ -90,6 +91,14 @@ public class ResourceDisplay : MonoBehaviour {
         }
 
 	}
+
+    public static void openListSelect(List<HPHandler.ressources> elems, Action<List<HPHandler.ressources>> elem) {
+        print("opening list select!");
+        callbackList = elems;
+        closeCallback = elem;
+        instance.menuClicked();
+        //TODO set current actives to list
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -115,6 +124,16 @@ public class ResourceDisplay : MonoBehaviour {
     public void menuClicked() {
         menuOpened = true;
         Debug.Log("clicked ressource menu");
+
+        if (closeCallback != null) {
+            setToList(callbackList);
+        } else {
+            foreach(HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+                var activated = PlayerPrefs.GetInt(res.ToString()) == 0;
+                active[res.ToString().ToLower()] = activated;
+            }
+        }
+
         this.gameObject.SetActive(false);
         longDisplay.SetActive(true);
         Time.timeScale = 0.1f;
@@ -201,6 +220,21 @@ public class ResourceDisplay : MonoBehaviour {
         instance.toggleThing(name);
 
     }
+
+    private void setToList(List<HPHandler.ressources> list) {
+		var listcont = "";
+		foreach (var part in list) {
+			listcont += part.ToString() + "; ";
+		}
+		print("setting to list: " + listcont);
+        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+            if (list.Contains(res)) {
+                active[res.ToString().ToLower()] = true;
+            } else {
+                active[res.ToString().ToLower()] = false;
+            }
+        }
+    }
     
     private void toggleThing(string name) {
         instance.active[name.ToLower()] = !instance.active[name.ToLower()];
@@ -219,20 +253,22 @@ public class ResourceDisplay : MonoBehaviour {
         foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
             if (res.ToString().Equals(name)) {
                 if (!activated) {
+                    //deselecting elem
                     displaysExt[curCount].transform.GetChild(0).GetComponent<Image>().color = colorOn;
                     if  (closeCallback == null) {
                         displays[curCount].SetActive(false);
                     } else {
-                        callbackList.Add(res);
+                        callbackList.Remove(res);
                     }
                     
                     activeElemsCount--;
                 } else {
+                    //selecting elem
                     displaysExt[curCount].transform.GetChild(0).GetComponent<Image>().color = colorOff;
                     if  (closeCallback == null) {
                         displays[curCount].SetActive(true);
                     } else {
-                        callbackList.Remove(res);
+                        callbackList.Add(res);
                     }
                     
                     activeElemsCount++;

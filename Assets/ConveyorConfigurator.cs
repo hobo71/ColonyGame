@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//script on UI elements, active is the gameobject that opened it
 public class ConveyorConfigurator : MonoBehaviour {
 
 	private pipeHandler active = null;
@@ -31,13 +32,26 @@ public class ConveyorConfigurator : MonoBehaviour {
 		data.drainAllRight = drainallRight.GetComponent<Toggle>().isOn;
 		data.drainLeft = drainLeft.GetComponent<Toggle>().isOn;
 		data.drainRight = drainRight.GetComponent<Toggle>().isOn;
+	}
 
-		//TODO set ressource types
+	private void selectionDone(List<HPHandler.ressources> selected) {
+		var listcont = "";
+		foreach (var part in selected) {
+			listcont += part.ToString() + "; ";
+		}
+		print("ressource select done, got list: " + listcont);
+		this.gameObject.SetActive(true);
+		active.getData().drainingLeft = selected;
 	}
 
 	public void setInstance(pipeHandler handler) {
 		this.active = handler;
 		this.titleLeft.GetComponent<Text>().text = active.getData().from.gameObject.name;
 		this.titleRight.GetComponent<Text>().text = active.getData().to.gameObject.name;
+	}
+
+	public void confLeftClicked() {
+		ResourceDisplay.openListSelect(active.getData().drainingLeft, selectionDone);
+		this.gameObject.SetActive(false);
 	}
 }
