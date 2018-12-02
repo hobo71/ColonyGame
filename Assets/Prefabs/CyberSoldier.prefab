@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   APS: 2
-  AD: 50
+  AD: 10
   range: 1.5
   curState: 0
 --- !u!137 &137531292352094462
@@ -1408,7 +1408,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 5
+  m_Speed: 1.5
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 1080
@@ -1418,7 +1418,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0.1
-  m_WalkableMask: 5
+  m_WalkableMask: 13
   m_ObstacleAvoidanceType: 2
 --- !u!208 &208254511931027362
 NavMeshObstacle:
