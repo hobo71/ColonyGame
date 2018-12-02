@@ -124,8 +124,10 @@ public class Salvaging : MonoBehaviour {
 
     public static void salvageTriggered() {
         clearPopUps();
+        print("salvaging: " + curTarget);
         try {
             curTarget.GetComponent<Structure>().salvage();
+            
         } catch (NullReferenceException ex) {
             if (curTarget.GetComponent("building_marker") != null) {
                 GameObject.Destroy(curTarget);

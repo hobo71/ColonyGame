@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConveyorHandler : MonoBehaviour {
+public class ConveyorCreator : MonoBehaviour {
 
     public GameObject ConveyorBegin;
     public GameObject ConveyorPipe;
     public GameObject cancelBut;
 
-    private static ConveyorHandler instance;
+    private static ConveyorCreator instance;
     private GameObject startObj = null;
     private GameObject endObj = null;
     private Outline start = null;
@@ -27,7 +27,7 @@ public class ConveyorHandler : MonoBehaviour {
 
     }
 
-    public static ConveyorHandler getInstance() {
+    public static ConveyorCreator getInstance() {
         return instance;
     }
 
@@ -41,7 +41,7 @@ public class ConveyorHandler : MonoBehaviour {
 
     private void onBuildingClick(GameObject target) {
         print("got next click on: " + target);
-        if (target.GetComponent<DefaultStructure>() == null) {
+        if (target.GetComponent<inventory>() == null || target.CompareTag("mover")) {
             Notification.createNotification(target, Notification.sprites.Stopping, "Invalid", Color.red, false);
             GameObject.Find("Main Camera").GetComponent<clickDetector>().setNextClickAction(onBuildingClick);
             return;
@@ -59,7 +59,7 @@ public class ConveyorHandler : MonoBehaviour {
 
     private void onEndBuildingClick(GameObject target) {
         print("got End click on: " + target);
-        if (target.GetComponent<DefaultStructure>() == null) {
+        if (target.GetComponent<inventory>() == null || target.CompareTag("mover")) {
             Notification.createNotification(target, Notification.sprites.Stopping, "Invalid", Color.red, false);
             GameObject.Find("Main Camera").GetComponent<clickDetector>().setNextClickAction(onEndBuildingClick);
             return;
@@ -95,11 +95,18 @@ public class ConveyorHandler : MonoBehaviour {
             }
         }
 
-        Debug.Log("found closest Points between: from " + fromPoint.gameObject.name + " to " + toPoint.gameObject.name + " spawnAt=" + fromPoint);
+        Debug.Log("found closest Points between: from " + fromPoint.gameObject.name + " to " + toPoint.gameObject.name + " spawnAt=" + fromPoint + " dist=" + minDist);
+
+        if (minDist > 40) {
+            print("too far apart");
+            Notification.createNotification(target, Notification.sprites.Stopping, "Too far away", Color.red, false);
+            GameObject.Find("Main Camera").GetComponent<clickDetector>().setNextClickAction(onEndBuildingClick);
+            return;
+        }
 
         var stuff = new List<GameObject>();
         var bBox = GameObject.Instantiate(ConveyorBegin, fromPoint.position + new Vector3(0, -1, 0), ConveyorBegin.transform.rotation);
-        var eBox = GameObject.Instantiate(ConveyorBegin, toPoint.position + new Vector3(0, -1, 0), ConveyorBegin.transform.rotation, bBox.transform);
+        var eBox = GameObject.Instantiate(ConveyorBegin, toPoint.position + new Vector3(0, -1, 0), ConveyorBegin.transform.rotation);
         stuff.Add(bBox);
         stuff.Add(eBox);
 
@@ -126,7 +133,8 @@ public class ConveyorHandler : MonoBehaviour {
         cancelBut.SetActive(false);
         GameObject.Find("Main Camera").GetComponent<clickDetector>().resetNextClick();
     }
-
+    
+    [System.Serializable]
     public class conveyorConnection {
         public GameObject from;
         public GameObject to;
@@ -142,6 +150,19 @@ public class ConveyorHandler : MonoBehaviour {
             this.from = from;
             this.to = to;
             this.createdObjs = stuff;
+        }
+
+        public override string ToString() {
+            return this.GetHashCode() + " from=" + from.name + " to=" + to.name + " dLeft=" + listToString(drainingLeft) + "dbLeft=" + drainLeft + " dbaLeft=" + drainAllLeft;
+        }
+
+        private string listToString(List<HPHandler.ressources> list) {
+            var res = "";
+            foreach (var elem in list) {
+                res += elem + "; ";
+            }
+
+            return res;
         }
     }
 }

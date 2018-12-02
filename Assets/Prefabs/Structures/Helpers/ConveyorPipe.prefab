@@ -127,5 +127,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
-  stopBut: {fileID: 21300000, guid: 0036304ca6d68334ba79fe76f6088696, type: 3}
-  startBut: {fileID: 21300000, guid: de4d9e794658fef438c0d2b1e4add552, type: 3}
+  data:
+    from: {fileID: 0}
+    to: {fileID: 0}
+    createdObjs: []
+    drainingLeft: 
+    drainingRight: 
+    drainAllLeft: 0
+    drainAllRight: 0
+    drainLeft: 0
+    drainRight: 0
+  ConveyorBegin: {fileID: 1300327113913566, guid: b082fea1f946ea74689553f2c3dd0f9d,
+    type: 2}

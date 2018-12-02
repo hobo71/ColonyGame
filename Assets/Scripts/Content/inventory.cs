@@ -38,7 +38,7 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
             item.setAmount(0);
         }
         
-        Debug.Log("transfering all inventory to: " + target.gameObject + " from " + this.gameObject);
+        //Debug.Log("transfering all inventory to: " + target.gameObject + " from " + this.gameObject);
     }
 
     public void transferAllSafe(inventory target) {
@@ -46,11 +46,11 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
             transfer(target, new HPHandler.ressourceStack(getMaxTransfer(this.gameObject, target.gameObject, item.getRessource()), item.getRessource()));
         }
         
-        Debug.Log("transfering all inventory to: " + target + " from" + this.gameObject);
+        //Debug.Log("transfering all inventory to: " + target + " from" + this.gameObject);
     }
 
     public void transferTo(inventory target, HPHandler.ressources type, float amount) {
-        Debug.Log("Transferring from " + this.gameObject.name + " to " + target.gameObject.name + " type: " + type + ":" + amount);
+        //Debug.Log("Transferring from " + this.gameObject.name + " to " + target.gameObject.name + " type: " + type + ":" + amount);
         transfer(target, new HPHandler.ressourceStack(amount, type));
     }
 

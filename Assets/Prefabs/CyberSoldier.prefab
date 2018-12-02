@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 114848116037640874}
   - component: {fileID: 114909508134361832}
   - component: {fileID: 114102042064091212}
+  - component: {fileID: 208254511931027362}
   m_Layer: 0
   m_Name: CyberSoldier
   m_TagString: mover
@@ -961,7 +962,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171672578602282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -779.9103, y: -123.0459, z: 126.52428}
+  m_LocalPosition: {x: -766.962, y: -122.96138, z: 126.67706}
   m_LocalScale: {x: 1.1431926, y: 0.8421018, z: 1.1431934}
   m_Children:
   - {fileID: 4877429083052478}
@@ -1419,3 +1420,18 @@ NavMeshAgent:
   m_BaseOffset: 0.1
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 2
+--- !u!208 &208254511931027362
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171672578602282}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.29, y: 0.91, z: 0.22}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.95, z: 0}
+  m_TimeToStationary: 0.2

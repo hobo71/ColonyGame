@@ -107,7 +107,7 @@ public class Scene_Controller : MonoBehaviour {
 
     public void onPipingPressed() {
         handleAny();
-        ConveyorHandler.getInstance().onConveyorButtonClicked();
+        ConveyorCreator.getInstance().onConveyorButtonClicked();
     }
 
 }

@@ -96,6 +96,7 @@ public class SaveLoad : MonoBehaviour {
         public SerializableQuaternion rotation;
         public SerializableVector3 scale;
         public string prefabName;
+        public string originalName;
         public List<SerializationInfo> info = new List<SerializationInfo>();
 
         public GameObjectInfo(GameObject obj) {
@@ -103,6 +104,7 @@ public class SaveLoad : MonoBehaviour {
             this.rotation = obj.transform.rotation;
             this.scale = obj.transform.localScale;
             this.prefabName = obj.name;
+            this.originalName = obj.name;
             
             prefabName = prefabName.Replace("Clone", "");
             prefabName = prefabName.Replace(" ", "");
@@ -308,6 +310,7 @@ public class SaveLoad : MonoBehaviour {
             
             print("creating " + info.prefabName);
             GameObject spawned = GameObject.Instantiate(prefab, info.position, info.rotation);
+            spawned.name = info.originalName;
             spawned.transform.localScale = info.scale;
             /*for (int i = 0; i < info.info.Count; i++) {
                 //spawned.GetComponents<SerializableInfo>()[i].handleDeserialization(info.info[i]);
@@ -316,6 +319,8 @@ public class SaveLoad : MonoBehaviour {
             spawns.Add(spawned);
 
         }
+
+        print("all objects spawned, initing scripts...");
 
         for(int j = 0; j < spawns.Count; j++) {
             GameObjectInfo info = (GameObjectInfo) list[j];

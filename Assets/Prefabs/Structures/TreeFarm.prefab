@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4627414257005052}
   m_Layer: 0
   m_Name: ConnectionBegin (1)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4339255376831192}
   m_Layer: 0
   m_Name: ConnectionBegin (2)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4184038042013702}
   m_Layer: 0
   m_Name: ConnectionBegin (3)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 4863703332395678}
   m_Layer: 0
   m_Name: ConnectionBegin (6)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 4069197675901166}
   m_Layer: 0
   m_Name: ConnectionBegin (7)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 4113956674376574}
   m_Layer: 0
   m_Name: ConnectionBegin (4)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 4271577737979328}
   m_Layer: 0
   m_Name: ConnectionBegin
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 4338546322120680}
   m_Layer: 0
   m_Name: ConnectionBegin (5)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1290,6 +1290,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
+  assignEnergyBar: {fileID: 0}
+  assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
 --- !u!114 &114817760611640676
 MonoBehaviour:
   m_ObjectHideFlags: 1

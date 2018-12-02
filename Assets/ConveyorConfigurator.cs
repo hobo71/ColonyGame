@@ -35,23 +35,32 @@ public class ConveyorConfigurator : MonoBehaviour {
 	}
 
 	private void selectionDone(List<HPHandler.ressources> selected) {
-		var listcont = "";
-		foreach (var part in selected) {
-			listcont += part.ToString() + "; ";
-		}
-		print("ressource select done, got list: " + listcont);
+		print("ressource select done, got list: ");
 		this.gameObject.SetActive(true);
-		active.getData().drainingLeft = selected;
+		//active.drainingLeft.Add(HPHandler.ressources.Iridium);
+        //print("active= " + active.GetHashCode() + active.getData());
 	}
 
 	public void setInstance(pipeHandler handler) {
 		this.active = handler;
 		this.titleLeft.GetComponent<Text>().text = active.getData().from.gameObject.name;
 		this.titleRight.GetComponent<Text>().text = active.getData().to.gameObject.name;
+        var data = active.getData();
+		drainAllLeft.GetComponent<Toggle>().isOn = data.drainAllLeft;
+		drainallRight.GetComponent<Toggle>().isOn = data.drainAllRight;
+		drainLeft.GetComponent<Toggle>().isOn = data.drainLeft;
+		drainRight.GetComponent<Toggle>().isOn = data.drainRight;
 	}
 
 	public void confLeftClicked() {
-		ResourceDisplay.openListSelect(active.getData().drainingLeft, selectionDone);
+        print("active= " + active.GetHashCode() + active.getData());
+		ResourceDisplay.openListSelect(active.getData().drainingLeft, selectionDone, active.getData().from.GetComponent<inventory>());
+		this.gameObject.SetActive(false);
+	}
+
+	public void confRightClicked() {
+        print("active= " + active.GetHashCode() + active.getData());
+		ResourceDisplay.openListSelect(active.getData().drainingRight, selectionDone, active.getData().to.GetComponent<inventory>());
 		this.gameObject.SetActive(false);
 	}
 }

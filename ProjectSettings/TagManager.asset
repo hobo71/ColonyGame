@@ -8,6 +8,8 @@ TagManager:
   - mover
   - popUp
   - dropBase
+  - FxTemporaire
+  - connectionPoint
   layers:
   - Default
   - TransparentFX

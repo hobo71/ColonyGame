@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 4008648543209786}
   m_Layer: 0
   m_Name: ConnectionBegin (5)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 4366157270399322}
   m_Layer: 0
   m_Name: ConnectionBegin (9)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 4086546390605850}
   m_Layer: 0
   m_Name: ConnectionBegin (6)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 4048457347903784}
   m_Layer: 0
   m_Name: ConnectionBegin (4)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 4809592724999516}
   m_Layer: 0
   m_Name: ConnectionBegin (8)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 4232904248622218}
   m_Layer: 0
   m_Name: ConnectionBegin (7)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1953,6 +1953,7 @@ MonoBehaviour:
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
 --- !u!114 &114513385463000264
 MonoBehaviour:
   m_ObjectHideFlags: 1

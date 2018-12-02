@@ -88,7 +88,7 @@ public class Building : MonoBehaviour {
             foreach (Transform sample in samples) {
                 if (!sample.gameObject.name.Contains("GameObject")) continue;   //all markers are named gameobject (x)
                 int lMask = LayerMask.GetMask("PlacementMask");
-                bool isValid = Physics.Raycast(sample.position + Vector3.up * 1.5f, Vector3.down, 2.3f, lMask);
+                bool isValid = Physics.Raycast(sample.position + Vector3.up * 2f, Vector3.down, 4f, lMask);
                 //bool isValid = NavMesh.SamplePosition(sample.transform.position, out hit, 0.5f, NavMesh.AllAreas);
                 if (!isValid) {
                     canBuild = false;

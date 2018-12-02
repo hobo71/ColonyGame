@@ -23,7 +23,8 @@ public class ResourceDisplay : MonoBehaviour {
 
     //used for ressource type selectors
     public static Action<List<HPHandler.ressources>> closeCallback = null;
-    public static List<HPHandler.ressources> callbackList = new List<HPHandler.ressources>();
+    public static List<HPHandler.ressources> callbackList = null;
+    public static inventory callbackInv = null;
 
 	// Use this for initialization
 	void Start () {
@@ -92,9 +93,10 @@ public class ResourceDisplay : MonoBehaviour {
 
 	}
 
-    public static void openListSelect(List<HPHandler.ressources> elems, Action<List<HPHandler.ressources>> elem) {
+    public static void openListSelect(List<HPHandler.ressources> elems, Action<List<HPHandler.ressources>> elem, inventory inv) {
         print("opening list select!");
         callbackList = elems;
+        callbackInv = inv;
         closeCallback = elem;
         instance.menuClicked();
         //TODO set current actives to list
@@ -127,6 +129,7 @@ public class ResourceDisplay : MonoBehaviour {
 
         if (closeCallback != null) {
             setToList(callbackList);
+            //setToInv(callbackInv);
         } else {
             foreach(HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
                 var activated = PlayerPrefs.GetInt(res.ToString()) == 0;
@@ -151,7 +154,8 @@ public class ResourceDisplay : MonoBehaviour {
             icons.TryGetValue(res.ToString().ToLower(), out icon);
             displaysExt[curCount].transform.GetChild(3).GetComponent<Image>().sprite = icon;
 
-            displaysExt[curCount].transform.GetChild(1).GetComponent<Text>().text = ResourceHandler.getAmoumt(res).ToString();
+            if (closeCallback == null)
+                displaysExt[curCount].transform.GetChild(1).GetComponent<Text>().text = ResourceHandler.getAmoumt(res).ToString();
             displaysExt[curCount].transform.GetChild(2).GetComponent<Text>().text = res.ToString();
             
             bool activated = false;
@@ -170,6 +174,11 @@ public class ResourceDisplay : MonoBehaviour {
                 cPosY -= 40;
             }
 
+        }
+
+        
+        if (closeCallback != null) {
+            setToInv(callbackInv);
         }
 
     }
@@ -193,7 +202,7 @@ public class ResourceDisplay : MonoBehaviour {
             print("closed ressource display, using callback!");
             closeCallback.Invoke(callbackList);
             closeCallback = null;
-            callbackList.Clear();
+            callbackList = null;
             return;
         }
 
@@ -233,6 +242,17 @@ public class ResourceDisplay : MonoBehaviour {
             } else {
                 active[res.ToString().ToLower()] = false;
             }
+        }
+    }
+
+    private void setToInv(inventory inv) {
+        
+		print("setting to inv: " + inv);
+        int curCount = 0;
+        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+            var amount = inv.getAmount(res);
+            displaysExt[curCount].transform.GetChild(1).GetComponent<Text>().text = amount.ToString();
+            curCount++;
         }
     }
     

@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 4290494279110684}
   m_Layer: 0
   m_Name: ConnectionBegin (3)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4967344110685070}
   m_Layer: 0
   m_Name: ConnectionBegin (2)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4224164439962370}
   m_Layer: 0
   m_Name: ConnectionBegin (4)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 4466989567053864}
   m_Layer: 0
   m_Name: ConnectionBegin (1)
-  m_TagString: Untagged
+  m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -947,6 +947,7 @@ MonoBehaviour:
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
 --- !u!114 &114400780364755974
 MonoBehaviour:
   m_ObjectHideFlags: 1
