@@ -52,7 +52,7 @@ public class Solar_Panel : DefaultStructure {
         }
 
         if (generating && this.getCurEnergy() < this.getMaxEnergy()) {
-            this.storedEnergy += Time.deltaTime * generateAmount;
+            this.storedEnergy += Time.deltaTime * generateAmount * SunLightRotation.getIntensity();
             if (this.storedEnergy > this.getMaxEnergy()) {
                 this.storedEnergy = this.getMaxEnergy();
             }

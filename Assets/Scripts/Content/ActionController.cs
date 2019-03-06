@@ -34,6 +34,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         if (curState == State.ConstructionDelivering && (this.GetComponent<movementController>().agent.isStopped)) {
             this.stop();
             this.setState(State.Idle);
+            this.GetComponent<movementController>().moveRand();
         }
 
         if (curState == State.ConstructionDelivering && this.GetComponent<movementController>().agent.velocity.magnitude <= 0.1f) {
@@ -55,7 +56,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         if (curState == State.Idle && this.GetComponent<inventory>().getAmount() > 0) {
             idleDeliveryTimer++;
             if (idleDeliveryTimer > 30) {
-                Debug.Log("Inventory of " + transform.gameObject.name + " is full, going to return point");
+                Debug.Log("Inventory of " + transform.gameObject.name + " is not empty, whilst being idle, going to return point");
                 goToBase();
                 target = null;
             }
@@ -77,7 +78,9 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
 
         if (timer >= 1f / (float)APS) {
             if (!inRange()) {
-                stop();
+                //stop();
+                this.GetComponent<movementController>().moveTo(target.transform.position);
+                return;
             }
             timer = 0f;
             attack();
@@ -254,6 +257,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         GetComponent<inventory>().transferAll(target.GetComponent<inventory>());
         if (lastTarget == null) {
             stop();
+            this.GetComponent<movementController>().moveRand();
             return;
         }
         GetComponent<movementController>().setTarget(lastTarget.transform);
@@ -285,6 +289,19 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
 
         HPHandler.ressourceStack gain = target.GetComponent<HPHandler>().inflictDamage(AD, this);
         GetComponent<inventory>().add(gain);
+
+        var origin = new Vector3(this.transform.position.x, this.transform.position.y + 1.5f, this.transform.position.z);
+        // Ray ray = new Ray(origin, target.transform.position - origin);
+        // var hitinfo = new RaycastHit();
+        // target.GetComponent<Collider>().Raycast(ray, out hitinfo, 3);
+        // Debug.Log("Got harvest hit position: " + hitinfo.point);
+
+        var rb = target.GetComponent<Rigidbody>();
+        var res = target.transform.position - origin;
+        //var pos = hitinfo.point;
+        if (rb != null) {
+            rb.AddForce(res * 100, ForceMode.Impulse);
+        }
 
         lastTarget = target;
 

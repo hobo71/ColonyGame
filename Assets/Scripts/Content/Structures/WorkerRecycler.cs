@@ -7,12 +7,23 @@ public class WorkerRecycler : DefaultStructure {
     public Sprite salvageBut;
     public GameObject destroyAnim;
 
+    private int lightChange = -1;
+
     public static HPHandler.ressourceStack[] getPrice() {
         HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
 
         cost[0] = new HPHandler.ressourceStack(50, HPHandler.ressources.Wood);
         cost[1] = new HPHandler.ressourceStack(10, HPHandler.ressources.Stone);
         return cost;
+    }
+
+    public override void FixedUpdate() {
+        base.FixedUpdate();
+        lightChange--;
+        if (lightChange == 0) {
+            var light = this.transform.Find("Point Light").GetComponent<Light>();
+            light.color = Color.white;
+        }
     }
 
     public override HPHandler.ressourceStack[] getCost() {
@@ -93,7 +104,11 @@ public class WorkerRecycler : DefaultStructure {
         this.storedEnergy -= 500;
         
         var effect = GameObject.Instantiate(destroyAnim, workerArrived.transform.position, workerArrived.transform.rotation);
-        
+
+        var light = this.transform.Find("Point Light").GetComponent<Light>();
+        light.color = Color.magenta;
+        lightChange = 25;
+
         var pickup = Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().pickupBox, workerArrived.transform.position, Quaternion.identity);
         pickup.GetComponent<inventory>().add(new HPHandler.ressourceStack(50, HPHandler.ressources.Scrap));
     }
