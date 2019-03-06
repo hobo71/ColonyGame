@@ -21,15 +21,15 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     private DeliveryRoutes.route route = null;
     private bool stopDelivering = false;
 
-    public enum State {Idle, Walking, Attacking, ConstructionDelivering, RouteDelivering};
+    public enum State { Idle, Walking, Attacking, ConstructionDelivering, RouteDelivering };
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Use this for initialization
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate() {
 
         if (curState == State.ConstructionDelivering && (this.GetComponent<movementController>().agent.isStopped)) {
             this.stop();
@@ -40,6 +40,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             idleTimer++;
             if (idleTimer > 20) {
                 stop();
+                this.GetComponent<movementController>().moveRand();
                 this.curState = State.Idle;
                 clearDelivery();
             }
@@ -72,16 +73,16 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             return;
         }
 
-		timer += Time.deltaTime;
+        timer += Time.deltaTime;
 
-        if (timer >= 1f / (float) APS) {
+        if (timer >= 1f / (float)APS) {
             if (!inRange()) {
                 stop();
             }
             timer = 0f;
             attack();
         }
-	}
+    }
 
     private bool isAttackTarget(GameObject obj) {
         if (obj.GetComponent<HPHandler>() == null) return false;
@@ -95,7 +96,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     }
 
     private bool inRange(Transform transform) {
-        
+
         Vector3 closestPoint = transform.gameObject.GetComponent<Collider>().ClosestPoint(this.transform.position);
         return Vector3.Distance(closestPoint, this.transform.position) < range;
     }
@@ -127,7 +128,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         if (target.GetComponent<HPHandler>().HP >= AD) {
             GetComponent<Animator>().SetTrigger("attack");
         }
-        
+
     }
 
     private void goToBase() {
@@ -158,6 +159,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
                 if (stopDelivering) {
                     this.stopDelivering = false;
                     this.setState(State.Idle);
+                    this.GetComponent<movementController>().moveRand();
                     return;
                 }
 
@@ -167,15 +169,15 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             } else if (target.gameObject.Equals(route.getOrigin())) {
                 //arrived at source to take ressources
                 if (route is DeliveryRoutes.routeSolotype) {     //solotype
-                    float transferAmount = inventory.getMaxTransfer(route.getOrigin(), this.gameObject, ((DeliveryRoutes.routeSolotype) route).getType());
-                
+                    float transferAmount = inventory.getMaxTransfer(route.getOrigin(), this.gameObject, ((DeliveryRoutes.routeSolotype)route).getType());
+
                     Debug.Log("transfer Amount:" + transferAmount);
-                    route.getOrigin().GetComponent<inventory>().transferTo(this.GetComponent<inventory>(), ((DeliveryRoutes.routeSolotype) route).getType(), transferAmount);
+                    route.getOrigin().GetComponent<inventory>().transferTo(this.GetComponent<inventory>(), ((DeliveryRoutes.routeSolotype)route).getType(), transferAmount);
                 } else {    //allType
                     route.getOrigin().GetComponent<inventory>().transferAllSafe(this.GetComponent<inventory>());
                 }
                 this.GetComponent<movementController>().setTarget(route.getTarget().transform);
-                
+
             }
 
             return;
@@ -222,6 +224,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     private void deliverTargetReached() {
         this.GetComponent<inventory>().transferAll(deliverTarget.GetComponent<inventory>());
         this.curState = State.Idle;
+        this.GetComponent<movementController>().moveRand();
 
         stop();
 
@@ -230,7 +233,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         } catch (NullReferenceException ex) {
             print("delivery target doesnt have building_marker component!");
         }
-        
+
     }
 
     private void deliveryFromReached() {
@@ -273,7 +276,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     }
 
     public void Hit() {
-        
+
         if (target == null || target.GetComponent<HPHandler>().HP <= 0) {
             lastTarget = null;
             stop();
@@ -293,7 +296,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     }
 
     public void deliverTo(GameObject takeFrom, GameObject bringTo, HPHandler.ressourceStack stack) {
-        
+
         print(this.name + " is delivering to: " + bringTo);
 
         lastTarget = null;
@@ -332,7 +335,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     }
 
     public void handleDeserialization(SaveLoad.SerializationInfo info) {
-        serializationData data = (serializationData) info;
+        serializationData data = (serializationData)info;
         print("deserilazing Action controller...");
         this.idleTimer = data.idleTimer;
         this.idleDeliveryTimer = data.idleDeliveryTimer;
@@ -347,7 +350,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
 
     [System.Serializable]
     class serializationData : SaveLoad.SerializationInfo {
-        
+
         public int idleTimer;
         public int idleDeliveryTimer;
         public State curState;
@@ -386,7 +389,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             }
         }
 
-        
+
         public override string scriptTarget {
             get {
                 return "ActionController";
@@ -405,7 +408,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         }
 
         if (objs == null) {
-            objs = (GameObject[]) FindObjectsOfType(typeof(GameObject));
+            objs = (GameObject[])FindObjectsOfType(typeof(GameObject));
         }
 
         GameObject myObject = null;

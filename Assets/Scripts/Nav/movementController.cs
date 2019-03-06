@@ -37,10 +37,10 @@ public class movementController : MonoBehaviour, SaveLoad.SerializableInfo {
 
     public void moveRand() {
         Vector3 goTo = this.transform.forward * UnityEngine.Random.Range(1, 5) + this.transform.right * UnityEngine.Random.Range(-3f, 3f);
-        moveTo(goTo + this.transform.position);
+        moveTo(goTo + this.transform.position, false);
     }
 
-    public void moveTo(Vector3 target) {
+    public void moveTo(Vector3 target, bool displayTarget = true) {
 
         if (agent == null) {
             Start();
@@ -48,7 +48,9 @@ public class movementController : MonoBehaviour, SaveLoad.SerializableInfo {
         
         this.target = target;
         agent.SetDestination(this.target);
-        displayPath(this.target, "move");
+        if (displayTarget) {
+            displayPath(this.target, "move");
+        }
         agent.isStopped = false;
 
         GetComponent<ActionController>().stop();

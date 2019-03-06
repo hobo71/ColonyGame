@@ -44,7 +44,7 @@ public class TouchCamera : MonoBehaviour {
             return;
         }
 
-        if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer) {
+        if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer && !Input.mousePresent) {
             HandleTouch();
         } else {
             HandleMouse();

@@ -43,7 +43,7 @@ public class Building : MonoBehaviour {
 
         var inputX = Input.mousePosition.x;
         var inputY = Input.mousePosition.y;
-        if (Input.touchSupported) {
+        if (Input.touchSupported && !Input.mousePresent) {
             inputX = Input.GetTouch(0).position.x;
             inputY = Input.GetTouch(0).position.y;
         }
