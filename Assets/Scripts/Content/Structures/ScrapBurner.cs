@@ -7,6 +7,8 @@ public class ScrapBurner : DefaultStructure {
     public Sprite stopBut;
     public Sprite startBut;
 
+    private GameObject workLight = null;
+
     public static HPHandler.ressourceStack[] getPrice() {
         HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
 
@@ -105,6 +107,7 @@ public class ScrapBurner : DefaultStructure {
                 this.busy = false;
                 Notification.createNotification(this.gameObject, Notification.sprites.Stopping, "Stopping", Color.red, false);
                 this.GetComponent<Animator>().SetBool("working", false);
+                workLight.GetComponent<Light>().enabled = false;
                 this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().Stop();
                 break;
             case "doStart":
@@ -144,6 +147,10 @@ public class ScrapBurner : DefaultStructure {
     void FixedUpdate() {
 
         base.FixedUpdate();
+
+        if (workLight == null) {
+            workLight = this.transform.Find("DrillSparks").transform.Find("Point Light").gameObject;
+        }
         
         if (counter % 5 == 0) {
             handleConnections();
@@ -158,9 +165,11 @@ public class ScrapBurner : DefaultStructure {
 
             if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Scrap) >= 1) {
                 this.GetComponent<Animator>().SetBool("working", true);
+                workLight.GetComponent<Light>().enabled = true;
                 this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().Play();
             } else {
                 this.GetComponent<Animator>().SetBool("working", false);
+                workLight.GetComponent<Light>().enabled = false;
                 this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().Stop();
             }
             //send for moar scrap!!
