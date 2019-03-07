@@ -11,6 +11,8 @@ public class SaveLoad : MonoBehaviour {
     public List<GameObject> prefabs;
     public GameObject loadingIcon;
 
+    public static bool creatingNew = false;
+
     void Start() {
         InvokeRepeating("autoSave", 120, 120);
     }
@@ -20,13 +22,13 @@ public class SaveLoad : MonoBehaviour {
         save(Scene_Controller.saveName);
     }
 
-	public void save(string name) {
+    public void save(string name) {
 
         StartCoroutine(saveASync(name));
     }
 
     private IEnumerator saveASync(string name) {
-        
+
         loadingIcon.SetActive(true);
         float curTime = Time.realtimeSinceStartup;
         List<System.Object> toSave = new List<System.Object>();
@@ -40,10 +42,10 @@ public class SaveLoad : MonoBehaviour {
                     continue;
                 }
             } catch (Exception ex) {
-                print ("object probably has been destroyed");
+                print("object probably has been destroyed");
                 continue;
             }
-            
+
             yield return new WaitForSeconds(0.01f);
             try {
                 string prefabName = obj.name;
@@ -53,7 +55,7 @@ public class SaveLoad : MonoBehaviour {
                 prefabName = prefabName.Replace(")", "");
                 prefabName = Regex.Replace(prefabName, @"[\d-]", string.Empty);
                 print("searching for prefab: " + prefabName);
-            
+
                 GameObject prefabFound = null;
                 foreach (GameObject prefab in prefabs) {
                     if (prefab.name.Equals(prefabName)) {
@@ -72,15 +74,15 @@ public class SaveLoad : MonoBehaviour {
             } catch (Exception ex) {
                 print("Error while saving thing: " + ex);
             }
-            
+
         }
 
-        foreach(System.Object obj in toSave) {
+        foreach (System.Object obj in toSave) {
             print(obj);
         }
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create (Application.persistentDataPath + "/" + name);
+        FileStream file = File.Create(Application.persistentDataPath + "/" + name);
         bf.Serialize(file, toSave);
         file.Close();
         print("saving done..., saved To: " + Application.persistentDataPath);
@@ -105,7 +107,7 @@ public class SaveLoad : MonoBehaviour {
             this.scale = obj.transform.localScale;
             this.prefabName = obj.name;
             this.originalName = obj.name;
-            
+
             prefabName = prefabName.Replace("Clone", "");
             prefabName = prefabName.Replace(" ", "");
             prefabName = prefabName.Replace("(", "");
@@ -113,7 +115,7 @@ public class SaveLoad : MonoBehaviour {
             prefabName = Regex.Replace(prefabName, @"[\d-]", string.Empty);
             SerializableInfo[] data = obj.GetComponents<SerializableInfo>();
 
-            foreach(SerializableInfo elem in data) {
+            foreach (SerializableInfo elem in data) {
                 info.Add(elem.getSerialize());
             }
 
@@ -126,131 +128,123 @@ public class SaveLoad : MonoBehaviour {
     }
 
     [System.Serializable]
-     public struct SerializableVector3 {
-         /// <summary>
-         /// x component
-         /// </summary>
-         public float x;
-     
-         /// <summary>
-         /// y component
-         /// </summary>
-         public float y;
-     
-         /// <summary>
-         /// z component
-         /// </summary>
-         public float z;
-     
-         /// <summary>
-         /// Constructor
-         /// </summary>
-         /// <param name="rX"></param>
-         /// <param name="rY"></param>
-         /// <param name="rZ"></param>
-         public SerializableVector3(float rX, float rY, float rZ)
-         {
-             x = rX;
-             y = rY;
-             z = rZ;
-         }
-     
-         /// <summary>
-         /// Returns a string representation of the object
-         /// </summary>
-         /// <returns></returns>
-         public override string ToString()
-         {
-             return String.Format("[{0}, {1}, {2}]", x, y, z);
-         }
-     
-         /// <summary>
-         /// Automatic conversion from SerializableVector3 to Vector3
-         /// </summary>
-         /// <param name="rValue"></param>
-         /// <returns></returns>
-         public static implicit operator Vector3(SerializableVector3 rValue)
-         {
-             return new Vector3(rValue.x, rValue.y, rValue.z);
-         }
-     
-         /// <summary>
-         /// Automatic conversion from Vector3 to SerializableVector3
-         /// </summary>
-         /// <param name="rValue"></param>
-         /// <returns></returns>
-         public static implicit operator SerializableVector3(Vector3 rValue)
-         {
-             return new SerializableVector3(rValue.x, rValue.y, rValue.z);
-         }
-     }
+    public struct SerializableVector3 {
+        /// <summary>
+        /// x component
+        /// </summary>
+        public float x;
+
+        /// <summary>
+        /// y component
+        /// </summary>
+        public float y;
+
+        /// <summary>
+        /// z component
+        /// </summary>
+        public float z;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="rX"></param>
+        /// <param name="rY"></param>
+        /// <param name="rZ"></param>
+        public SerializableVector3(float rX, float rY, float rZ) {
+            x = rX;
+            y = rY;
+            z = rZ;
+        }
+
+        /// <summary>
+        /// Returns a string representation of the object
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() {
+            return String.Format("[{0}, {1}, {2}]", x, y, z);
+        }
+
+        /// <summary>
+        /// Automatic conversion from SerializableVector3 to Vector3
+        /// </summary>
+        /// <param name="rValue"></param>
+        /// <returns></returns>
+        public static implicit operator Vector3(SerializableVector3 rValue) {
+            return new Vector3(rValue.x, rValue.y, rValue.z);
+        }
+
+        /// <summary>
+        /// Automatic conversion from Vector3 to SerializableVector3
+        /// </summary>
+        /// <param name="rValue"></param>
+        /// <returns></returns>
+        public static implicit operator SerializableVector3(Vector3 rValue) {
+            return new SerializableVector3(rValue.x, rValue.y, rValue.z);
+        }
+    }
 
     [System.Serializable]
     public struct SerializableQuaternion {
-         /// <summary>
-         /// x component
-         /// </summary>
-         public float x;
-     
-         /// <summary>
-         /// y component
-         /// </summary>
-         public float y;
-     
-         /// <summary>
-         /// z component
-         /// </summary>
-         public float z;
-     
-         /// <summary>
-         /// w component
-         /// </summary>
-         public float w;
-     
-         /// <summary>
-         /// Constructor
-         /// </summary>
-         /// <param name="rX"></param>
-         /// <param name="rY"></param>
-         /// <param name="rZ"></param>
-         /// <param name="rW"></param>
-         public SerializableQuaternion(float rX, float rY, float rZ, float rW)
-         {
-             x = rX;
-             y = rY;
-             z = rZ;
-             w = rW;
-         }
-     
-         /// <summary>
-         /// Returns a string representation of the object
-         /// </summary>
-         /// <returns></returns>
-         public override string ToString()
-         {
-             return String.Format("[{0}, {1}, {2}, {3}]", x, y, z, w);
-         }
-     
-         /// <summary>
-         /// Automatic conversion from SerializableQuaternion to Quaternion
-         /// </summary>
-         /// <param name="rValue"></param>
-         /// <returns></returns>
-         public static implicit operator Quaternion(SerializableQuaternion rValue)
-         {
-             return new Quaternion(rValue.x, rValue.y, rValue.z, rValue.w);
-         }
-     
-         /// <summary>
-         /// Automatic conversion from Quaternion to SerializableQuaternion
-         /// </summary>
-         /// <param name="rValue"></param>
-         /// <returns></returns>
-         public static implicit operator SerializableQuaternion(Quaternion rValue)
-         {
-             return new SerializableQuaternion(rValue.x, rValue.y, rValue.z, rValue.w);
-         }
-     }
+        /// <summary>
+        /// x component
+        /// </summary>
+        public float x;
+
+        /// <summary>
+        /// y component
+        /// </summary>
+        public float y;
+
+        /// <summary>
+        /// z component
+        /// </summary>
+        public float z;
+
+        /// <summary>
+        /// w component
+        /// </summary>
+        public float w;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="rX"></param>
+        /// <param name="rY"></param>
+        /// <param name="rZ"></param>
+        /// <param name="rW"></param>
+        public SerializableQuaternion(float rX, float rY, float rZ, float rW) {
+            x = rX;
+            y = rY;
+            z = rZ;
+            w = rW;
+        }
+
+        /// <summary>
+        /// Returns a string representation of the object
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() {
+            return String.Format("[{0}, {1}, {2}, {3}]", x, y, z, w);
+        }
+
+        /// <summary>
+        /// Automatic conversion from SerializableQuaternion to Quaternion
+        /// </summary>
+        /// <param name="rValue"></param>
+        /// <returns></returns>
+        public static implicit operator Quaternion(SerializableQuaternion rValue) {
+            return new Quaternion(rValue.x, rValue.y, rValue.z, rValue.w);
+        }
+
+        /// <summary>
+        /// Automatic conversion from Quaternion to SerializableQuaternion
+        /// </summary>
+        /// <param name="rValue"></param>
+        /// <returns></returns>
+        public static implicit operator SerializableQuaternion(Quaternion rValue) {
+            return new SerializableQuaternion(rValue.x, rValue.y, rValue.z, rValue.w);
+        }
+    }
 
     void OnLevelWasLoaded(int level) {
 
@@ -269,17 +263,31 @@ public class SaveLoad : MonoBehaviour {
     public void Load() {
 
         print("loading last save");
-        
         List<System.Object> list = null;
 
-        if (File.Exists(Application.persistentDataPath + "/default")) {
+        //load "newGame" save
+        if (creatingNew) {
+            creatingNew = false;
+            print("found createNew flag, loading different save! Accessing: " + Application.dataPath + "/newGameSave");
+
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.streamingAssetsPath + "/newGameSave", FileMode.Open);
+            list = (List<System.Object>)bf.Deserialize(file);
+            file.Close();
+
+            print("loading done!");
+
+            //load last save
+        } else if (File.Exists(Application.persistentDataPath + "/default")) {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/default", FileMode.Open);
-            list = (List<System.Object>) bf.Deserialize(file);
+            list = (List<System.Object>)bf.Deserialize(file);
             file.Close();
 
             print("loading done!");
         }
+
+
 
         if (list == null) {
             print("Error, no save game found");
@@ -296,18 +304,18 @@ public class SaveLoad : MonoBehaviour {
 
         List<GameObject> spawns = new List<GameObject>();
 
-        foreach(System.Object obj in list) {
-            GameObjectInfo info = (GameObjectInfo) obj;
+        foreach (System.Object obj in list) {
+            GameObjectInfo info = (GameObjectInfo)obj;
 
             GameObject prefab = null;
 
-            foreach(GameObject elem in prefabs) {
+            foreach (GameObject elem in prefabs) {
                 if (elem.name.Equals(info.prefabName)) {
                     prefab = elem;
                     break;
                 }
             }
-            
+
             print("creating " + info.prefabName);
             GameObject spawned = GameObject.Instantiate(prefab, info.position, info.rotation);
             spawned.name = info.originalName;
@@ -322,12 +330,12 @@ public class SaveLoad : MonoBehaviour {
 
         print("all objects spawned, initing scripts...");
 
-        for(int j = 0; j < spawns.Count; j++) {
-            GameObjectInfo info = (GameObjectInfo) list[j];
+        for (int j = 0; j < spawns.Count; j++) {
+            GameObjectInfo info = (GameObjectInfo)list[j];
 
             for (int i = 0; i < info.info.Count; i++) {
                 //spawned.GetComponents<SerializableInfo>()[i].handleDeserialization(info.info[i]);
-                ((SerializableInfo) spawns[j].GetComponent(info.info[i].scriptTarget)).handleDeserialization(info.info[i]);
+                ((SerializableInfo)spawns[j].GetComponent(info.info[i].scriptTarget)).handleDeserialization(info.info[i]);
             }
 
         }
@@ -342,6 +350,6 @@ public class SaveLoad : MonoBehaviour {
 
     [System.Serializable]
     public abstract class SerializationInfo {
-        public abstract string scriptTarget {get;}
+        public abstract string scriptTarget { get; }
     }
 }

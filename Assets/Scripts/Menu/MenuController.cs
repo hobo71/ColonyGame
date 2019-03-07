@@ -132,11 +132,15 @@ public class MenuController : MonoBehaviour {
 
     private void createClicked() {
         Debug.Log("Creating new empty scene...");
-        SceneManager.LoadScene("MainGame");
+        SaveLoad.creatingNew = true;
+        
+        SceneManager.LoadScene("Game_Emptyload", LoadSceneMode.Single);
+        print("scene loaded " + SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene("MainGame");
     }
 
     private void newClicked() {
-        Debug.Log("New Scene creation now");
+        Debug.Log("New Scene creation menu");
         SceneManager.LoadScene("Menu_NewGame", LoadSceneMode.Single);
     }
 
