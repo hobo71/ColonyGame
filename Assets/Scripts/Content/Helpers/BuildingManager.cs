@@ -32,6 +32,10 @@ public class BuildingManager : MonoBehaviour {
 	public GameObject OreProcessingPrefab;
 	public GameObject OreProcessingPlacement;
 	public Sprite OreProcessingImage;
+	
+	public GameObject ReactorControllerPrefab;
+	public GameObject ReactorControllerPlacement;
+	public Sprite ReactorControllerImage;
 
 	// Use this for initialization
 	void Start () {
@@ -47,6 +51,7 @@ public class BuildingManager : MonoBehaviour {
 		availBuildings.Add("TreeFarm", new structureData(TreeFarmPreFab, TreeFarmPlacement, TreeFarmImage, "A Dome that is used to grow trees, which can be reprocessed to wood using a wood reprocessor", "Tree Farm", TreeFarm.getPrice().ToList()));
 		availBuildings.Add("WoodReprocessor", new structureData(WoodReprocessorPrefab, WoodReprocessorPlacement, WoodReprocessorImage, "Used to make Wood out of Trees.", "Wood Reprocessor", WoodReprocessor.getPrice().ToList()));
 		availBuildings.Add("OreProcessingPlant", new structureData(OreProcessingPrefab, OreProcessingPlacement, OreProcessingImage, "The Mineral Processing Plant can be used to make gold and iron ingots out of the corresponding ores", "Ore Processing Plant", MineralProcessingPlant.getPrice().ToList()));
+		availBuildings.Add("ReactorController", new structureData(ReactorControllerPrefab, ReactorControllerPlacement, ReactorControllerImage, "The Central control piece of the Nuclear Reactor. Uses uranium to turn water into steam", "ReactorController", ReactorController.getPrice().ToList()));
 		
 	}
 
