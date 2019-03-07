@@ -257,10 +257,10 @@ public class SaveLoad : MonoBehaviour {
         //Destroy testing objects
         GameObject.Destroy(GameObject.Find("TestingObjects"));
 
-        Load();
+        StartCoroutine(Load());
     }
 
-    public void Load() {
+    public IEnumerator Load() {
 
         print("loading last save");
         List<System.Object> list = null;
@@ -268,12 +268,20 @@ public class SaveLoad : MonoBehaviour {
         //load "newGame" save
         if (creatingNew) {
             creatingNew = false;
-            print("found createNew flag, loading different save! Accessing: " + Application.dataPath + "/newGameSave");
+            print("found createNew flag, loading different save! Accessing: " + Application.streamingAssetsPath + "/newGameSave");
+
+            var filePath = Application.streamingAssetsPath + "/newGameSave";
+            var www = new WWW(filePath);
+            yield return www;
+
+            if (!string.IsNullOrEmpty(www.error)) {
+                Debug.LogError("Can't read newGameSave");
+            }
 
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.streamingAssetsPath + "/newGameSave", FileMode.Open);
-            list = (List<System.Object>)bf.Deserialize(file);
-            file.Close();
+            var ms = new MemoryStream(www.bytes);
+            print("opened file");
+            list = (List<System.Object>)bf.Deserialize(ms);
 
             print("loading done!");
 
@@ -291,7 +299,7 @@ public class SaveLoad : MonoBehaviour {
 
         if (list == null) {
             print("Error, no save game found");
-            return;
+            yield break;
         }
 
         print("deserializing...");
