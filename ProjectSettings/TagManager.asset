@@ -10,6 +10,7 @@ TagManager:
   - dropBase
   - FxTemporaire
   - connectionPoint
+  - reactorPart
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,20 +76,24 @@ public class BuildingManager : MonoBehaviour {
 	}
 
 	public class structureData {
+		//type declaration
+		public delegate bool requirementcheck (GameObject holoPlacement, bool terrainCheck);
 		public GameObject prefab;
 		public GameObject placement;
 		public Sprite icon;
 		public string description;
 		public string name;
 		public List<HPHandler.ressourceStack> cost = new List<HPHandler.ressourceStack>();
+		public requirementcheck buildCheck;
 
-		public structureData(GameObject prefab, GameObject placement, Sprite icon, string description, string name, List<HPHandler.ressourceStack> costs) {
+		public structureData(GameObject prefab, GameObject placement, Sprite icon, string description, string name, List<HPHandler.ressourceStack> costs, requirementcheck checkFunc = null) {
 			this.prefab = prefab;
 			this.placement = placement;
 			this.icon = icon;
 			this.description = description;
 			this.name = name;
 			this.cost = costs;
+			this.buildCheck = checkFunc;
 		}
 
 

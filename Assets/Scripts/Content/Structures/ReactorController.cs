@@ -90,7 +90,8 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
                     new HPHandler.ressourceStack(250, HPHandler.ressources.Stone),
                     new HPHandler.ressourceStack(50, HPHandler.ressources.Wood),
                     new HPHandler.ressourceStack(20, HPHandler.ressources.Gold),
-                    new HPHandler.ressourceStack(200, HPHandler.ressources.Iron)});
+                    new HPHandler.ressourceStack(200, HPHandler.ressources.Iron)},
+                    isNearReactor);
                 GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
                 GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
                 break;
@@ -98,14 +99,16 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
                 data = new BuildingManager.structureData(boilerPrefab, boilerPlacement, null, "reactorboiler", "reactorboiler", new List<HPHandler.ressourceStack> {
                     new HPHandler.ressourceStack(200, HPHandler.ressources.Stone),
                     new HPHandler.ressourceStack(200, HPHandler.ressources.Wood),
-                    new HPHandler.ressourceStack(500, HPHandler.ressources.Iron)});
+                    new HPHandler.ressourceStack(500, HPHandler.ressources.Iron)},
+                    isNearReactor);
                 GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
                 GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
                 break;
             case "BuildWall":
                 data = new BuildingManager.structureData(wallPrefab, wallPlacement, null, "reactorwall", "reactorwall", new List<HPHandler.ressourceStack> {
                     new HPHandler.ressourceStack(100, HPHandler.ressources.Stone),
-                    new HPHandler.ressourceStack(50, HPHandler.ressources.Iron)});
+                    new HPHandler.ressourceStack(50, HPHandler.ressources.Iron)},
+                    isNearReactor);
                 GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
                 GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
                 break;
@@ -113,6 +116,23 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
                 break;
         }
 
+    }
+
+    private bool isNearReactor(GameObject holoPlacement, bool terrainCheck) {
+
+        if (!terrainCheck) {
+            return false;
+        }
+
+        var parts = GameObject.FindGameObjectsWithTag("reactorPart");
+        foreach (var item in parts) {
+            //check if an object with the "reactorPart" tag is within x meters of the placement structure
+            if (Vector3.Distance(item.transform.position, holoPlacement.transform.position) < 8) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Use this for initialization

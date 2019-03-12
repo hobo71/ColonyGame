@@ -12,6 +12,7 @@ public class Building : MonoBehaviour {
     public GameObject buildingMarker;
 
     private GameObject currentlyBuilding = null;
+    private BuildingManager.structureData currentData = null;
     private bool onUI = false;
     private GameObject holoPlacement = null;
     public GameObject rotationbar;
@@ -100,6 +101,10 @@ public class Building : MonoBehaviour {
         if (!valid) {
             holoPlacement.transform.position = origPos;
             canBuild = false;
+        }
+
+        if (currentData.buildCheck != null) {
+            canBuild = currentData.buildCheck(holoPlacement, canBuild);
         }
 
         var renderers = holoPlacement.GetComponentsInChildren<MeshRenderer>();
@@ -192,6 +197,7 @@ public class Building : MonoBehaviour {
 
         holoPlacement = GameObject.Instantiate(data.placement, startPos, data.placement.transform.rotation);
         currentlyBuilding = data.prefab;
+        currentData = data;
 
         initialRotation = holoPlacement.transform.rotation;
 
