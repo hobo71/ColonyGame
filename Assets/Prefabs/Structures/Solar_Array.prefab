@@ -24,7 +24,7 @@ GameObject:
   m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1548746393492496
 GameObject:
@@ -39,7 +39,7 @@ GameObject:
   m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1863327036055788
 GameObject:
@@ -54,7 +54,7 @@ GameObject:
   m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &1972664782141374
 GameObject:
@@ -93,7 +93,7 @@ GameObject:
   m_TagString: connectionPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4153110595402488
 Transform:

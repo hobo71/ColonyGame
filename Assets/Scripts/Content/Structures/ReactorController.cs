@@ -6,6 +6,15 @@ using UnityEngine;
 public class ReactorController : MonoBehaviour, clickable, Structure {
 
     public Sprite infoBut;
+    public Sprite buildCoreBut;
+    public GameObject corePrefab;
+    public GameObject corePlacement;
+    public Sprite buildBoilerBut;
+    public GameObject boilerPrefab;
+    public GameObject boilerPlacement;
+    public Sprite buildWallBut;
+    public GameObject wallPrefab;
+    public GameObject wallPlacement;
     bool salvaging = false;
 
     public void displayInfo() {
@@ -34,11 +43,14 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
     }
 
     public PopUpCanvas.popUpOption[] getOptions() {
-         PopUpCanvas.popUpOption[] options;
+        PopUpCanvas.popUpOption[] options;
 
-         PopUpCanvas.popUpOption info = new  PopUpCanvas.popUpOption("Info", infoBut);
-        
-        options = new PopUpCanvas.popUpOption[]{info};
+        PopUpCanvas.popUpOption info = new PopUpCanvas.popUpOption("Info", infoBut);
+        PopUpCanvas.popUpOption buildReactor = new PopUpCanvas.popUpOption("BuildReactor", buildCoreBut);
+        PopUpCanvas.popUpOption buildBoiler = new PopUpCanvas.popUpOption("BuildBoiler", buildBoilerBut);
+        PopUpCanvas.popUpOption buildWall = new PopUpCanvas.popUpOption("BuildWall", buildWallBut);
+
+        options = new PopUpCanvas.popUpOption[] { info, buildReactor, buildBoiler, buildWall};
         return options;
     }
 
@@ -67,25 +79,51 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
 
     public void handleOption(string option) {
         Debug.Log("handling option: " + option);
+        BuildingManager.structureData data;
 
         switch (option) {
             case "Info":
                 displayInfo();
                 break;
+            case "BuildReactor":
+                data = new BuildingManager.structureData(corePrefab, corePlacement, null, "reactorcore", "reactorcore", new List<HPHandler.ressourceStack> {
+                    new HPHandler.ressourceStack(250, HPHandler.ressources.Stone),
+                    new HPHandler.ressourceStack(50, HPHandler.ressources.Wood),
+                    new HPHandler.ressourceStack(20, HPHandler.ressources.Gold),
+                    new HPHandler.ressourceStack(200, HPHandler.ressources.Iron)});
+                GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
+                GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
+                break;
+            case "BuildBoiler":
+                data = new BuildingManager.structureData(boilerPrefab, boilerPlacement, null, "reactorboiler", "reactorboiler", new List<HPHandler.ressourceStack> {
+                    new HPHandler.ressourceStack(200, HPHandler.ressources.Stone),
+                    new HPHandler.ressourceStack(200, HPHandler.ressources.Wood),
+                    new HPHandler.ressourceStack(500, HPHandler.ressources.Iron)});
+                GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
+                GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
+                break;
+            case "BuildWall":
+                data = new BuildingManager.structureData(wallPrefab, wallPlacement, null, "reactorwall", "reactorwall", new List<HPHandler.ressourceStack> {
+                    new HPHandler.ressourceStack(100, HPHandler.ressources.Stone),
+                    new HPHandler.ressourceStack(50, HPHandler.ressources.Iron)});
+                GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
+                GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
+                break;
             default:
                 break;
         }
+
     }
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+    }
 
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
@@ -117,7 +155,7 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
     }
 
     public HPHandler.ressourceStack[] getResources() {
-        return new HPHandler.ressourceStack[]{new HPHandler.ressourceStack(1000, HPHandler.ressources.Scrap)};
+        return new HPHandler.ressourceStack[] { new HPHandler.ressourceStack(1000, HPHandler.ressources.Scrap) };
     }
 
     public HPHandler getHP() {

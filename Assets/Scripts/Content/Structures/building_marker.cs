@@ -7,28 +7,36 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 
     public GameObject buildTo = null;
     private Structure Info = null;
+    public HPHandler.ressourceStack[] overrideCost = null;
     private bool inited = false;
     private List<HPHandler.ressourceStack> missing = new List<HPHandler.ressourceStack>();
     private List<HPHandler.ressourceStack> ordered = new List<HPHandler.ressourceStack>();
 
-	// Use this for initialization
-	void Init () {
+    // Use this for initialization
+    void Init() {
 
         Debug.Log("initing building marker that will be built to: " + buildTo);
         fixScale();
 
-		Info = buildTo.GetComponent<Structure>();
+        Info = buildTo.GetComponent<Structure>();
         inited = true;
 
-        foreach(HPHandler.ressourceStack stack in Info.getCost()) {
-            missing.Add(stack);
+        if (overrideCost != null) {
+            foreach (HPHandler.ressourceStack stack in overrideCost) {
+                missing.Add(stack);
+            }
+        } else {
+            foreach (HPHandler.ressourceStack stack in Info.getCost()) {
+                missing.Add(stack);
+            }
         }
 
+
         orderIdle();
-	}
+    }
 
     private void fixScale() {
-        
+
         this.transform.localScale = this.buildTo.transform.localScale;
         Vector3 childScale = new Vector3(1, 1, 1);
 
@@ -42,11 +50,11 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             this.transform.localScale = new Vector3(3f, 3f, 3f);
         }
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
     long count = 0;
-	void FixedUpdate () {
-		if (buildTo == null) {
+    void FixedUpdate() {
+        if (buildTo == null) {
             return;
         }
 
@@ -63,13 +71,18 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             hasAll();
         }
 
-	}
+    }
 
     private bool checkDone() {
 
         inventory own = this.gameObject.GetComponent<inventory>();
 
-        foreach (HPHandler.ressourceStack elem in Info.getCost()) {
+        var iterateList = Info.getCost();
+        if (overrideCost != null) {
+            iterateList = overrideCost;
+        }
+
+        foreach (HPHandler.ressourceStack elem in iterateList) {
             if (!own.canTake(elem)) {
                 return false;
             }
@@ -81,6 +94,13 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
     private void hasAll() {
         Debug.Log("got all required ressources, building structure now!");
         GameObject done = GameObject.Instantiate(buildTo, this.transform.position, this.transform.rotation);
+
+        var pos = done.transform.position;
+
+        if (buildTo.name.Contains("SteamBoiler")) {
+            pos.y -= 2.5f;
+        }
+        done.transform.position = pos;
         GameObject.Destroy(this.gameObject);
     }
 
@@ -97,7 +117,12 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 
     private void reloadMissing() {
         missing.Clear();
-        foreach(HPHandler.ressourceStack stack in Info.getCost()) {
+        var iterateList = Info.getCost();
+        if (overrideCost != null) {
+            iterateList = overrideCost;
+        }
+
+        foreach (HPHandler.ressourceStack stack in iterateList) {
             inventory inv = this.GetComponent<inventory>();
             HPHandler.ressourceStack stillMissing = stack;
             stillMissing.addAmount(-inv.getAmount(stack.getRessource()));
@@ -110,13 +135,13 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         reloadMissing();
         ordered.Clear();
 
-        foreach(GameObject elem in GameObject.FindGameObjectsWithTag("mover")) {
+        foreach (GameObject elem in GameObject.FindGameObjectsWithTag("mover")) {
             ActionController controller = elem.GetComponent<ActionController>();
 
             //check if it is delivering to this
             if (controller.getState().Equals(ActionController.State.ConstructionDelivering) && controller.getDeliverTarget().Equals(this.gameObject)) {
                 bool added = false;
-                foreach(HPHandler.ressourceStack stack in ordered) {
+                foreach (HPHandler.ressourceStack stack in ordered) {
                     if (stack.getRessource().Equals(controller.getDelivery().getRessource())) {
                         stack.addAmount(controller.getDelivery().getAmount());
                         added = true;
@@ -149,8 +174,8 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             return;
         }
 
-        foreach(GameObject elem in GameObject.FindGameObjectsWithTag("dropBase")) {
-            foreach(HPHandler.ressourceStack stack in missing) {
+        foreach (GameObject elem in GameObject.FindGameObjectsWithTag("dropBase")) {
+            foreach (HPHandler.ressourceStack stack in missing) {
 
                 if (stack.getAmount() <= 0) {
                     continue;
@@ -178,7 +203,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
                         stack.addAmount(-takeable);
                         take.setAmount(takeable);
                     }
-                    
+
                     Debug.Log("delivering to marker: " + take);
                     mover.gameObject.GetComponent<ActionController>().deliverTo(elem, this.gameObject, take);
                 }
@@ -202,13 +227,13 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 
     }
 
-    private Transform GetClosestMover (GameObject[] movers) {
+    private Transform GetClosestMover(GameObject[] movers) {
 
         Transform bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
 
-        foreach(GameObject potentialTarget in movers) {
+        foreach (GameObject potentialTarget in movers) {
 
             if (!potentialTarget.GetComponent<ActionController>().getState().Equals(ActionController.State.Idle)) {
                 continue;
@@ -216,12 +241,12 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 
             Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if(dSqrToTarget < closestDistanceSqr) {
+            if (dSqrToTarget < closestDistanceSqr) {
                 closestDistanceSqr = dSqrToTarget;
                 bestTarget = potentialTarget.transform;
             }
         }
-     
+
         return bestTarget;
     }
 
@@ -246,21 +271,21 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 
     private string printList(List<HPHandler.ressourceStack> list) {
         string toReturn = "";
-        foreach(HPHandler.ressourceStack stack in list) {
+        foreach (HPHandler.ressourceStack stack in list) {
             toReturn += stack;
         }
         return toReturn;
     }
 
-    
+
     public SaveLoad.SerializationInfo getSerialize() {
-        return new serializationData(buildTo, inited, missing, ordered);
+        return new serializationData(buildTo, inited, missing, ordered, overrideCost);
     }
 
     public void handleDeserialization(SaveLoad.SerializationInfo info) {
         print("got deserialization for: " + info.scriptTarget);
 
-        serializationData data = (serializationData) info;
+        serializationData data = (serializationData)info;
         print("deserilazing building_marker...");
 
         List<GameObject> prefabs = GameObject.Find("Terrain").GetComponent<SaveLoad>().prefabs;
@@ -275,6 +300,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         this.buildTo = prefabFound;
         this.inited = data.inited;
         this.Info = buildTo.GetComponent<Structure>();
+        this.overrideCost = data.overrideCost;
         this.missing = data.missing;
         this.ordered = data.ordered;
         this.GetComponent<MeshFilter>().sharedMesh = buildTo.GetComponent<MeshFilter>().sharedMesh;
@@ -312,8 +338,9 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         public bool inited;
         public List<HPHandler.ressourceStack> missing;
         public List<HPHandler.ressourceStack> ordered;
+        public HPHandler.ressourceStack[] overrideCost;
 
-        public serializationData(GameObject buildTo, bool inited, List<HPHandler.ressourceStack> missing, List<HPHandler.ressourceStack> ordered) {
+        public serializationData(GameObject buildTo, bool inited, List<HPHandler.ressourceStack> missing, List<HPHandler.ressourceStack> ordered, HPHandler.ressourceStack[] overrideCost) {
             string prefabName = buildTo.name;
             prefabName = prefabName.Replace("Clone", "");
             prefabName = prefabName.Replace(" ", "");
@@ -324,6 +351,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             this.inited = inited;
             this.missing = missing;
             this.ordered = ordered;
+            this.overrideCost = overrideCost;
         }
 
         public override string scriptTarget {

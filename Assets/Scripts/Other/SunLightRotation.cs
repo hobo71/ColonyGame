@@ -26,7 +26,8 @@ public class SunLightRotation : MonoBehaviour {
 		}
 
 		counter = 0;
-		this.transform.Rotate(new Vector3(0, 0.4f * 1.5f * Time.deltaTime * counterTimer, 0.4f * 0.6f * Time.deltaTime * counterTimer), Space.World);
+		float speedHack = 1f;
+		this.transform.Rotate(new Vector3(0, speedHack * 0.4f * 1.5f * Time.deltaTime * counterTimer, speedHack * 0.4f * 0.3f * Time.deltaTime * counterTimer), Space.World);
 
 		intensity = (this.transform.localRotation.eulerAngles.x % 360 + this.transform.rotation.z % 360) / 60f + 0.45f;
 		this.gameObject.GetComponent<Light>().intensity = intensity;

@@ -21,6 +21,7 @@ public class Building : MonoBehaviour {
 
     private static float deviceWidth = 0;
     private static float deviceHeight = 0;
+    private HPHandler.ressourceStack[] overrideCost = null;
 
     // Use this for initialization
     void Start() {
@@ -48,7 +49,7 @@ public class Building : MonoBehaviour {
             inputY = Input.GetTouch(0).position.y;
         }
 
-        print("inputX=" + inputX + " inputY=" + inputY + " barPos=" + rotationbar.transform.position + " barWidth=" + barWidth);
+        //print("inputX=" + inputX + " inputY=" + inputY + " barPos=" + rotationbar.transform.position + " barWidth=" + barWidth);
 
         var grow = Screen.height * 0.05f;
         if (inputX >= rotationbar.transform.position.x - grow && inputX < rotationbar.transform.position.x + barWidth + grow) {    //x matching
@@ -73,7 +74,7 @@ public class Building : MonoBehaviour {
 
         Vector3 origPos = holoPlacement.transform.position;
         Vector3 early = raycastHit.point;
-        if (holoPlacement.name.Contains("WoodReprocessor"))
+        if (holoPlacement.name.Contains("WoodReprocessor") || holoPlacement.name.Contains("SteamBoiler"))
             early.y -= 2.5f;
         //early.y -= 1.0f;
         holoPlacement.transform.position = early;
@@ -136,6 +137,8 @@ public class Building : MonoBehaviour {
         rotationbar.SetActive(true);
         clickDetector.clearPopUps();
         GameObject.Find("Terrain").GetComponent<Scene_Controller>().buildButton.SetActive(true);
+        print("reset override cost");
+        overrideCost = null;
 
         NavMeshTriangulation triangulation = NavMesh.CalculateTriangulation();
 
@@ -196,8 +199,15 @@ public class Building : MonoBehaviour {
 
     }
 
+    public void setOverrideCost(HPHandler.ressourceStack[] cost) {
+        this.overrideCost = cost;
+    }
+
     public void rotateChanged(float value) {
         var rot = initialRotation * Quaternion.Euler(Vector3.forward * (value - 0.5f) * 360);
+        if (holoPlacement.name.Contains("ReactorWall")) {
+            rot = initialRotation * Quaternion.Euler(Vector3.up * (value - 0.5f) * 360);
+        }
         holoPlacement.transform.rotation = rot;
 
     }
@@ -212,7 +222,7 @@ public class Building : MonoBehaviour {
         finalPos.y -= 1.0f;
 
         
-        if (holoPlacement.name.Contains("WoodReprocessor"))
+        if (holoPlacement.name.Contains("WoodReprocessor") || holoPlacement.name.Contains("SteamBoiler"))
             finalPos.y += 2.5f;
 
         Quaternion rotation = holoPlacement.transform.rotation;
@@ -226,6 +236,10 @@ public class Building : MonoBehaviour {
         beacon.GetComponent<MeshFilter>().sharedMesh = currentlyBuilding.GetComponent<MeshFilter>().sharedMesh;
 
         beacon.GetComponent<building_marker>().buildTo = currentlyBuilding;
+        beacon.GetComponent<building_marker>().overrideCost = overrideCost;
+        print("setting override cost to: " + overrideCost[0]);
+
+        overrideCost = null;
     }
 
     public void onGui(bool state) {
@@ -240,10 +254,10 @@ public class Building : MonoBehaviour {
         Vector3 move = Vector3.zero;
 
         //left
-        if (pos.x / deviceWidth < 0.15f) move.x -= 0.05f;
-        if (pos.x / deviceWidth > 0.85f) move.x += 0.05f;
-        if (pos.y / deviceHeight < 0.15) move.y -= 0.05f;
-        if (pos.y / deviceHeight > 0.85f) move.y += 0.05f;
+        if (pos.x / deviceWidth < 0.15f) move.x -= 0.25f;
+        if (pos.x / deviceWidth > 0.85f) move.x += 0.25f;
+        if (pos.y / deviceHeight < 0.15) move.y -= 0.25f;
+        if (pos.y / deviceHeight > 0.85f) move.y += 0.25f;
 
         move = GameObject.Find("Main Camera").transform.rotation * move;
         move.y = 0;
