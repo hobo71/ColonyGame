@@ -41,6 +41,10 @@ public class ResourceDisplay : MonoBehaviour {
 		icons.Add("oregold", sprites[7]);
 		icons.Add("iridium", sprites[8]);
 		icons.Add("oreiridium", sprites[9]);
+		icons.Add("water", sprites[10]);
+		icons.Add("electrum", sprites[11]);
+		icons.Add("uranium", sprites[12]);
+		icons.Add("thorium", sprites[13]);
 
 		active.Add("wood", true);
 		active.Add("stone", true);
@@ -52,6 +56,10 @@ public class ResourceDisplay : MonoBehaviour {
 		active.Add("oregold", false);
 		active.Add("iridium", false);
 		active.Add("oreiridium", false);
+		active.Add("water", false);
+		active.Add("electrum", false);
+		active.Add("uranium", false);
+		active.Add("thorium", false);
 
         int curCount = 0;;
         int cPosX = -20;
@@ -171,7 +179,7 @@ public class ResourceDisplay : MonoBehaviour {
 
             if (curCount > 0 && curCount % 3 == 0) {
                 cPosX = -205;
-                cPosY -= 40;
+                cPosY -= 45;
             }
 
         }

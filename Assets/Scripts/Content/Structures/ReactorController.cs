@@ -6,6 +6,7 @@ using UnityEngine;
 public class ReactorController : MonoBehaviour, clickable, Structure {
 
     public Sprite infoBut;
+    public Sprite activateBut;
     public Sprite buildCoreBut;
     public GameObject corePrefab;
     public GameObject corePlacement;
@@ -49,8 +50,9 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
         PopUpCanvas.popUpOption buildReactor = new PopUpCanvas.popUpOption("BuildReactor", buildCoreBut);
         PopUpCanvas.popUpOption buildBoiler = new PopUpCanvas.popUpOption("BuildBoiler", buildBoilerBut);
         PopUpCanvas.popUpOption buildWall = new PopUpCanvas.popUpOption("BuildWall", buildWallBut);
+        PopUpCanvas.popUpOption activate = new PopUpCanvas.popUpOption("activate", activateBut);
 
-        options = new PopUpCanvas.popUpOption[] { info, buildReactor, buildBoiler, buildWall};
+        options = new PopUpCanvas.popUpOption[] { info, activate, buildReactor, buildBoiler, buildWall};
         return options;
     }
 
@@ -111,6 +113,9 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
                     isNearReactor);
                 GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
                 GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
+                break;
+            case "activate":
+                this.gameObject.GetComponent<ReactorLogic>().activate();
                 break;
             default:
                 break;

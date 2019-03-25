@@ -74,9 +74,11 @@ GameObject:
   - component: {fileID: 23588754653564368}
   - component: {fileID: 65760872465047468}
   - component: {fileID: 114826621248226312}
-  - component: {fileID: 114985333724135244}
   - component: {fileID: 114971278992675996}
-  m_Layer: 0
+  - component: {fileID: 114820735602178116}
+  - component: {fileID: 114879241161195522}
+  - component: {fileID: 114422093052601320}
+  m_Layer: 8
   m_Name: SteamBoiler
   m_TagString: reactorPart
   m_Icon: {fileID: 0}
@@ -107,7 +109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1854736726247092}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: -31.394356, y: 7.87, z: 83.47522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4921388164935756}
@@ -391,6 +393,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5171967, y: 4.595305, z: 2.3249717}
   m_Center: {x: -0.04735565, y: 0.06967735, z: 3.3059106}
+--- !u!114 &114422093052601320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854736726247092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2511c5de70233214b91bf8a93925390b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSize: 1000
+--- !u!114 &114820735602178116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854736726247092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df09c2981eb294f449679a0f356e0597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
+  buildCoolBut: {fileID: 21300000, guid: 8e345bb46f5d8d0428821f4e58e5f068, type: 3}
+  coolPrefab: {fileID: 1703758583822066, guid: d54ec7894da5eec41934098396ee15ba, type: 2}
+  coolPlacement: {fileID: 1305826381373222, guid: 3e25f0dd208277b4090955f97df40060,
+    type: 2}
+  buildHeatBut: {fileID: 21300000, guid: 01f35e87e1af4ca4fa9098a4e7644b99, type: 3}
+  heatPrefab: {fileID: 1255924920313628, guid: 66b047872ade487468d3bb700a4a5d2a, type: 2}
+  heatPlacement: {fileID: 1245647209859698, guid: 5cbd931ec8e4e8f47bbb77e3d5380f8b,
+    type: 2}
 --- !u!114 &114826621248226312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,6 +437,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: 1
+--- !u!114 &114879241161195522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854736726247092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb13f90576ba4df4395f165b942f666f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
+  template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
+  assignEnergyBar: {fileID: 0}
+  assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
 --- !u!114 &114971278992675996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,14 +466,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 850
   type: 1
---- !u!114 &114985333724135244
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1854736726247092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14451cf7ff6d3647a23912edd634c05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

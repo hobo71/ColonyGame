@@ -74,8 +74,9 @@ public class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
         }
     }
 
-    //edit in editor: ressource handle list length
-    public enum ressources {Wood, Stone, Scrap, Trees, Iron, OreIron, Gold, OreGold, Iridium, OreIridium};
+    //edit in editor: ressource handler list length (both ressource display and ressource handler) in terrain + ui elem
+    //also, add 2 entries in the resourceDisplay.cs script
+    public enum ressources {Wood, Stone, Scrap, Trees, Iron, OreIron, Gold, OreGold, Iridium, OreIridium, Water, Electrum, Uranium, Thorium};
 
 	// Use this for initialization
 	void Start () {

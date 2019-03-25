@@ -138,12 +138,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalRessources:
-  - 300
-  - 300
   - 0
   - 0
   - 0
-  - 300
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   - 0
   - 0
   - 0
@@ -255,7 +259,7 @@ MonoBehaviour:
   - {fileID: 1160765061977890, guid: 1f1bb702eb7fd2349a9466164f2412d1, type: 2}
   - {fileID: 1138068360173932, guid: 90c37aa94dc25a249b85e495b6c01a06, type: 2}
   - {fileID: 1873998990425424, guid: eb9ead15246375e4e9d2b6a7cf68b26f, type: 2}
-  - {fileID: 1619389969228398, guid: 009441e5e309d404cacdf4c98b723788, type: 2}
+  - {fileID: 0}
   - {fileID: 1719308571178208, guid: 52f43238d74efbd43af77deb3f80a2bb, type: 2}
   - {fileID: 1876612127480254, guid: ae5e4b9b730271e4ebba1bf1d3562075, type: 2}
   - {fileID: 1255924920313628, guid: 66b047872ade487468d3bb700a4a5d2a, type: 2}
