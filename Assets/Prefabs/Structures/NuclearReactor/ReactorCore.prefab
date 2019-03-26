@@ -126,7 +126,9 @@ GameObject:
   - component: {fileID: 114126204298255866}
   - component: {fileID: 114415062611631814}
   - component: {fileID: 33515677504297632}
-  m_Layer: 0
+  - component: {fileID: 114102310636855644}
+  - component: {fileID: 114150719701023160}
+  m_Layer: 8
   m_Name: ReactorCore
   m_TagString: reactorPart
   m_Icon: {fileID: 0}
@@ -179,7 +181,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1876612127480254}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -60.97003, y: 7.3399963, z: 118.84}
+  m_LocalPosition: {x: -31.636906, y: 9.816299, z: 82.49584}
   m_LocalScale: {x: 0.42753604, y: 0.427536, z: 0.427536}
   m_Children:
   - {fileID: 4140301284966332}
@@ -490,6 +492,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1329057165517666}
   m_Mesh: {fileID: 4300008, guid: 62c9d8ae56914cb47881ba89f6f64e48, type: 3}
+--- !u!114 &114102310636855644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1876612127480254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40265cc376be4d241b47da6c02a1bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114126204298255866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,6 +514,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14451cf7ff6d3647a23912edd634c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114150719701023160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1876612127480254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb13f90576ba4df4395f165b942f666f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
+  template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
+  assignEnergyBar: {fileID: 0}
+  assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
+  tempDisplay: {fileID: 1494790221577038, guid: 99d1da290d365b7479ff02492c93ba89,
+    type: 2}
 --- !u!114 &114415062611631814
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -59,7 +59,9 @@ GameObject:
   - component: {fileID: 114782014718216400}
   - component: {fileID: 114221205231247306}
   - component: {fileID: 136358067674922356}
-  m_Layer: 0
+  - component: {fileID: 114684134530022380}
+  - component: {fileID: 114433592621975970}
+  m_Layer: 8
   m_Name: CoolingGrid
   m_TagString: reactorPart
   m_Icon: {fileID: 0}
@@ -317,6 +319,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14451cf7ff6d3647a23912edd634c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114433592621975970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703758583822066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb13f90576ba4df4395f165b942f666f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 1329715827467212, guid: 5edfe0dda39722643be2382fba9cc055, type: 2}
+  template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
+  assignEnergyBar: {fileID: 0}
+  assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
+  tempDisplay: {fileID: 1494790221577038, guid: 99d1da290d365b7479ff02492c93ba89,
+    type: 2}
 --- !u!114 &114638033618519962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,6 +349,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   area: 1
+--- !u!114 &114684134530022380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703758583822066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40265cc376be4d241b47da6c02a1bc9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114782014718216400
 MonoBehaviour:
   m_ObjectHideFlags: 1

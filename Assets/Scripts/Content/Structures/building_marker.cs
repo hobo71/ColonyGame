@@ -100,6 +100,10 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         if (buildTo.name.Contains("SteamBoiler")) {
             pos.y -= 2.5f;
         }
+
+        if (buildTo.name.Contains("CoolingGrid") || buildTo.name.Contains("HeatReflector")) {
+            pos.y -= 0.2f;
+        }
         done.transform.position = pos;
         GameObject.Destroy(this.gameObject);
     }

@@ -18,6 +18,8 @@ public class ClickOptions : MonoBehaviour {
     private GameObject curBarInv = null;
     private GameObject curBarEnergy = null;
     private GameObject curBarHP = null;
+    private GameObject curTempDisplay = null;
+    public GameObject tempDisplay = null;
 
     public static List<GameObject> PopUps = new List<GameObject>();
     public static bool UIOpen = false;
@@ -40,6 +42,17 @@ public class ClickOptions : MonoBehaviour {
             var hp = this.GetComponent<HPHandler>();
             curBarHP.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) hp.HP / hp.getInitialHP();
 
+        }
+
+        if (curTempDisplay != null) {
+            var textA = curTempDisplay.GetComponent<Text>();
+            var textB = curTempDisplay.transform.GetChild(0).GetComponent<Text>();
+            var temp = this.gameObject.GetComponent<reactorPart.IHeatableElement>();
+            textA.text = temp.getTemp().ToString() + "°";
+            textB.text = temp.getTemp().ToString() + "°";
+            var col = new Color(temp.getTemp() / 2000f, 1 - (temp.getTemp() / 2000f), 0.02f);
+            //textA.color = col;
+            textB.color = col;
         }
     }
 
@@ -128,6 +141,19 @@ public class ClickOptions : MonoBehaviour {
                 obj.transform.localPosition = energyBar.transform.localPosition;
             }
             curBarInv = obj;
+        }
+
+        if (tempDisplay != null && this.GetComponent<reactorPart.IHeatableElement>() != null) {
+            //reactor part found
+            var obj =  GameObject.Instantiate(tempDisplay, parent.transform);
+            var pos = obj.transform.localPosition;
+            pos.y -= 1f;
+            if (options.Length > 0) {
+                pos.x -= 7.5f;
+                pos.y -= 0.5f;
+            }
+            obj.transform.localPosition = pos;
+            this.curTempDisplay = obj;
         }
 
     }

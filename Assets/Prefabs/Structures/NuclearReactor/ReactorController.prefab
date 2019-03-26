@@ -563,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2511c5de70233214b91bf8a93925390b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSize: 100
+  maxSize: 50
 --- !u!114 &114593994617747248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -576,16 +576,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
-  buildCoreBut: {fileID: 21300000, guid: fc49b64a6379307498225a29affeb514, type: 3}
+  activateBut: {fileID: 21300000, guid: 0036304ca6d68334ba79fe76f6088696, type: 3}
+  deactivateBut: {fileID: 21300000, guid: 62fda660fd1eec141ac6a3a04a9771d4, type: 3}
+  buildCoreBut: {fileID: 21300000, guid: 33097277a1580944d97c2634219ad128, type: 3}
   corePrefab: {fileID: 1876612127480254, guid: ae5e4b9b730271e4ebba1bf1d3562075, type: 2}
   corePlacement: {fileID: 1892238511891038, guid: 762be999fa188bb4199564abab611635,
     type: 2}
-  buildBoilerBut: {fileID: 21300000, guid: a25efece46daaf347b54ffc543eec8a2, type: 3}
+  buildBoilerBut: {fileID: 21300000, guid: d9bd10a8a9f67a345b8ef13e8d3e1522, type: 3}
   boilerPrefab: {fileID: 1854736726247092, guid: b30b5bf9952020646a18398dcdc29f8e,
     type: 2}
   boilerPlacement: {fileID: 1398355264718864, guid: e44282ffd0203ae4aa19a076acfcd1db,
     type: 2}
-  buildWallBut: {fileID: 21300000, guid: d9bd10a8a9f67a345b8ef13e8d3e1522, type: 3}
+  buildWallBut: {fileID: 21300000, guid: ddb5368f366cbdc40af19e9785bda3d2, type: 3}
   wallPrefab: {fileID: 1085736737636064, guid: 866c6681209e6db40bd3fced7bb3b1d9, type: 2}
   wallPlacement: {fileID: 1017462187534580, guid: d532bf9680a6cae4dae7440c24617d49,
     type: 2}
@@ -600,8 +602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab76021f9c1dfc44b51866a9c2ad0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 850
-  type: 2
+  HP: 100
+  type: 1
 --- !u!114 &114789847704760302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -613,6 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ca8e1abbba171489fdcaa3992e29dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectionPrefab: {fileID: 1062818339354808, guid: ac738c8f280cbe541ab5c4ba0f634242,
+    type: 2}
 --- !u!114 &114900372252032878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -624,7 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a1e9e443b0e4240abc20806523ca81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  area: 1
+  area: 0
 --- !u!136 &136972883263726866
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -425,6 +425,7 @@ MonoBehaviour:
   heatPrefab: {fileID: 1255924920313628, guid: 66b047872ade487468d3bb700a4a5d2a, type: 2}
   heatPlacement: {fileID: 1245647209859698, guid: 5cbd931ec8e4e8f47bbb77e3d5380f8b,
     type: 2}
+  steamAmount: 0
 --- !u!114 &114826621248226312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,6 +454,8 @@ MonoBehaviour:
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
   assignHPBar: {fileID: 0}
+  tempDisplay: {fileID: 1494790221577038, guid: 99d1da290d365b7479ff02492c93ba89,
+    type: 2}
 --- !u!114 &114971278992675996
 MonoBehaviour:
   m_ObjectHideFlags: 1
