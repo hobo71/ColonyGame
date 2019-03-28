@@ -46,7 +46,7 @@ public class SaveLoad : MonoBehaviour {
                 continue;
             }
 
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.005f);
             try {
                 string prefabName = obj.name;
                 prefabName = prefabName.Replace("Clone", "");

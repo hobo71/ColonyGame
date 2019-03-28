@@ -9,6 +9,10 @@ public class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
     public ressources type = ressources.Stone;
     private float initialHP;
 
+    public interface IDestroyAction {
+        void beforeDestroy();
+    }
+
     [System.Serializable]
     public class ressourceStack {
         private float amount;
@@ -84,7 +88,7 @@ public class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (this.HP <= 0) {
 
             float size = this.gameObject.GetComponent<Collider>().bounds.size.magnitude;
@@ -92,6 +96,10 @@ public class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
             var effect = GameObject.Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().destroyParticle, this.transform.position, this.transform.rotation);
             size = 0.2f + size * 0.1f;
             effect.transform.localScale = new Vector3(size, size, size);
+
+            if (this.GetComponent<IDestroyAction>() != null) {
+                this.GetComponent<IDestroyAction>().beforeDestroy();
+            }
 
             Destroy(this.transform.gameObject);
         }

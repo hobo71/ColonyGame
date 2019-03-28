@@ -50,7 +50,10 @@ public class ClickOptions : MonoBehaviour {
             var temp = this.gameObject.GetComponent<reactorPart.IHeatableElement>();
             textA.text = temp.getTemp().ToString() + "°";
             textB.text = temp.getTemp().ToString() + "°";
-            var col = new Color(temp.getTemp() / 2000f, 1 - (temp.getTemp() / 2000f), 0.02f);
+            var col = new Color(temp.getTemp() / 1000, 1f, 0.02f);
+            if (temp.getTemp() > 1000) {
+                col = new Color(1f, 1f - ((temp.getTemp() - 1000) / 1000f), 0.02f);
+            }
             //textA.color = col;
             textB.color = col;
         }
@@ -120,7 +123,7 @@ public class ClickOptions : MonoBehaviour {
         }
         
         var hp = this.GetComponent<HPHandler>();
-        if (hp != null) {
+        if (hp != null && !(tempDisplay != null && this.GetComponent<reactorPart.IHeatableElement>() != null && hp.HP / hp.getInitialHP() > 0.99)) {
             var obj =  GameObject.Instantiate(HPBar, parent.transform);
             obj.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) hp.HP / hp.getInitialHP();
             curBarHP = obj;

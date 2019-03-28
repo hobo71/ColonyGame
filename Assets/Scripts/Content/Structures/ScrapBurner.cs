@@ -144,7 +144,7 @@ public class ScrapBurner : DefaultStructure {
     private float energyPerSecond = 30f;
     private float scrapPerSecond = 5f;
 
-    void FixedUpdate() {
+    new void FixedUpdate() {
 
         base.FixedUpdate();
 

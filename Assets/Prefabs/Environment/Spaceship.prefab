@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 114978382486659284}
   - component: {fileID: 114690782605872610}
   - component: {fileID: 114860334935720096}
+  - component: {fileID: 114982585798147584}
   m_Layer: 8
   m_Name: Spaceship
   m_TagString: dropBase
@@ -249,6 +250,7 @@ MonoBehaviour:
     type: 2}
   assignHPBar: {fileID: 1923059133938526, guid: c2409a4dfc52b54449f5f78f4dbea0ad,
     type: 2}
+  tempDisplay: {fileID: 0}
 --- !u!114 &114860334935720096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,3 +276,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSize: 5000
+--- !u!114 &114982585798147584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1709416218042398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab76021f9c1dfc44b51866a9c2ad0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 2000
+  type: 2

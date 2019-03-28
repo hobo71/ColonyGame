@@ -108,6 +108,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
     }
 
     public void reloadConnections() {
+        //TODO use job system for this
         Debug.Log("reloading Connections for: " + this.gameObject);
 
         List<GameObject> available = Piping.getInRange(20.0f, this.transform);

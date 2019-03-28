@@ -115,6 +115,8 @@ GameObject:
   - component: {fileID: 114848116037640874}
   - component: {fileID: 114909508134361832}
   - component: {fileID: 114102042064091212}
+  - component: {fileID: 65592371761655984}
+  - component: {fileID: 114886206777768400}
   m_Layer: 0
   m_Name: CyberSoldier
   m_TagString: mover
@@ -961,7 +963,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171672578602282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -766.962, y: -122.96138, z: 126.67706}
+  m_LocalPosition: {x: -749.972, y: -119.35457, z: 85.2934}
   m_LocalScale: {x: 1.1431926, y: 0.8421018, z: 1.1431934}
   m_Children:
   - {fileID: 4877429083052478}
@@ -1236,6 +1238,18 @@ Transform:
   m_Father: {fileID: 4170118225612656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65592371761655984
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171672578602282}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.33, y: 1.31, z: 0.3}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!95 &95187081506536024
 Animator:
   serializedVersion: 3
@@ -1280,6 +1294,19 @@ MonoBehaviour:
   trailEmitter: {fileID: 1073472142359452, guid: 7a21b3ec2e0d7c2499affcaa67856484,
     type: 2}
   agent: {fileID: 0}
+--- !u!114 &114886206777768400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171672578602282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab76021f9c1dfc44b51866a9c2ad0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 10
+  type: 2
 --- !u!114 &114909508134361832
 MonoBehaviour:
   m_ObjectHideFlags: 1

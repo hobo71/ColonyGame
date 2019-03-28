@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReactorLogic : MonoBehaviour {
+public class ReactorLogic : MonoBehaviour, SaveLoad.SerializableInfo {
 
     public GameObject connectionPrefab;
     private List<GameObject> linesDrawn = new List<GameObject>();
-    private List<HeatableStructure> allStructures = new List<HeatableStructure>();
+    public List<HeatableStructure> allStructures = new List<HeatableStructure>();
     private bool active = false;
 
     public void activate() {
+
+        //TODO use job system for logic
 
         active = true;
 
@@ -46,8 +48,10 @@ public class ReactorLogic : MonoBehaviour {
             }
 
             elem.gameObject = item;
-            elem.temperature = 0;
+            elem.temperature = elem.gameObject.GetComponent<reactorPart.IHeatableElement>().getTemp();
+            elem.connectedController = this;
             allStructures.Add(elem);
+
             elem.gameObject.GetComponent<reactorPart.IHeatableElement>().setData(elem);
             print("generated reactor data: " + elem.GetType());
         }
@@ -117,19 +121,71 @@ public class ReactorLogic : MonoBehaviour {
         }
     }
 
+    private int counter = 0;
+
     void FixedUpdate() {
+        counter++;
         if (!active)
             return;
 
+        var inv = this.gameObject.GetComponent<inventory>();
+        float availUran = inv.getAmount(HPHandler.ressources.Uranium);
+        if (!inv.isFull() && counter % 60 == 0) {
+            RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.Uranium);
+        }
+
         //update heat items
         foreach (var item in allStructures) {
-            item.update();
+            item.update(availUran);
+        }
+    }
+
+    public bool isActive() {
+        return active;
+    }
+
+    public SaveLoad.SerializationInfo getSerialize() {
+        return new serializationData(isActive());
+    }
+
+    public void handleDeserialization(SaveLoad.SerializationInfo info) {
+        print("got deserialization for: " + info.scriptTarget);
+
+        serializationData data = (serializationData)info;
+        print("deserilazing...");
+        if (data.active) {
+            //start reactor
+            StartCoroutine(startReactor());
+        }
+
+    }
+
+    IEnumerator startReactor() {
+        yield return new WaitForSeconds(1);
+        print("starting reactor!");
+        activate();
+    }
+
+    [System.Serializable]
+    class serializationData : SaveLoad.SerializationInfo {
+
+        public bool active;
+
+        public serializationData(bool active) {
+            this.active = active;
+        }
+
+        public override string scriptTarget {
+            get {
+                return "ReactorLogic";
+            }
         }
     }
 
     public class HeatableStructure {
         //all speeds are in seconds, time scaled
         public float temperature;
+        public ReactorLogic connectedController = null;
         public virtual float getExchangeBonus() {
             return 0f;
         }
@@ -138,7 +194,7 @@ public class ReactorLogic : MonoBehaviour {
         }
         public GameObject gameObject;
         public List<HeatableStructure> connecteds = new List<HeatableStructure>();
-        public virtual void update() {
+        public virtual void update(float availUran) {
 
             this.temperature -= 2f * Time.deltaTime * (1 + getDisperseBonus());
 
@@ -168,7 +224,7 @@ public class ReactorLogic : MonoBehaviour {
         //cooling grid will be counted by the steam boiler -> every cooled degree will be given to the connected boiler
 
         public SteamBoiler connectedBoiler = null;
-        public override void update() {
+        public override void update(float availUran) {
 
             if (connectedBoiler == null) {
                 var all = GameObject.FindObjectsOfType<SteamBoiler>();
@@ -191,7 +247,7 @@ public class ReactorLogic : MonoBehaviour {
 
             this.temperature -= change;
             connectedBoiler.addSteam(change);
-            base.update();
+            base.update(availUran);
         }
     }
 
@@ -211,6 +267,7 @@ public class ReactorLogic : MonoBehaviour {
     private class reactorCore : HeatableStructure {
         private bool inited = false;
         private float generateMultiplier = 1f;
+        private inventory invController;
         private void init() {
             foreach (var item in connecteds) {
                 if (item.GetType().Equals(typeof(heatReflector))) {
@@ -220,15 +277,26 @@ public class ReactorLogic : MonoBehaviour {
                 }
             }
 
+            invController = this.connectedController.gameObject.GetComponent<inventory>();
+
             inited = true;
             print("final multiplier for reactor: " + generateMultiplier);
         }
-        public override void update() {
+        public override void update(float availUran) {
             if (!inited) {
                 init();
             }
-            this.temperature += 10f * Time.deltaTime * (generateMultiplier);
-            base.update();
+
+            if (invController.getAmount(HPHandler.ressources.Uranium) > 0.2) {
+                this.invController.add(new HPHandler.ressourceStack(-0.1f * Time.deltaTime, HPHandler.ressources.Uranium));
+                this.temperature += 10f * Time.deltaTime * (generateMultiplier);
+            }
+
+            base.update(availUran);
+
+            if (this.temperature > 2000) {
+                this.gameObject.GetComponent<HPHandler>().HP -= 50 * Time.deltaTime;
+            }
         }
     }
 }
