@@ -41,7 +41,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 123
   m_IsActive: 1
 --- !u!4 &4400436510512828
 Transform:
@@ -265,6 +265,7 @@ MonoBehaviour:
   - {fileID: 1255924920313628, guid: 66b047872ade487468d3bb700a4a5d2a, type: 2}
   - {fileID: 1085736737636064, guid: 866c6681209e6db40bd3fced7bb3b1d9, type: 2}
   - {fileID: 1854736726247092, guid: b30b5bf9952020646a18398dcdc29f8e, type: 2}
+  - {fileID: 1620985602291168, guid: 3045b30435b8fb34190c80201ce5209e, type: 2}
   loadingIcon: {fileID: 0}
 --- !u!114 &114768567439674454
 MonoBehaviour:
@@ -325,6 +326,11 @@ MonoBehaviour:
     type: 2}
   ReactorControllerImage: {fileID: 21300000, guid: f39619b37c20c9849b598fdc966adc43,
     type: 3}
+  WaterPumpPrefab: {fileID: 1620985602291168, guid: 3045b30435b8fb34190c80201ce5209e,
+    type: 2}
+  WaterPumpPlacement: {fileID: 1514041749820302, guid: 8142941a1b42d0c45aac008fe0e52211,
+    type: 2}
+  WaterPumpImage: {fileID: 21300000, guid: 527aa1e187240d3459e7611f7d71fe21, type: 3}
 --- !u!114 &114851170104750700
 MonoBehaviour:
   m_ObjectHideFlags: 1

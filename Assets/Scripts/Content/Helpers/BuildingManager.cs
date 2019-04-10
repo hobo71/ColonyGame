@@ -37,6 +37,10 @@ public class BuildingManager : MonoBehaviour {
 	public GameObject ReactorControllerPrefab;
 	public GameObject ReactorControllerPlacement;
 	public Sprite ReactorControllerImage;
+	
+	public GameObject WaterPumpPrefab;
+	public GameObject WaterPumpPlacement;
+	public Sprite WaterPumpImage;
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +57,7 @@ public class BuildingManager : MonoBehaviour {
 		availBuildings.Add("WoodReprocessor", new structureData(WoodReprocessorPrefab, WoodReprocessorPlacement, WoodReprocessorImage, "Used to make Wood out of Trees.", "Wood Reprocessor", WoodReprocessor.getPrice().ToList()));
 		availBuildings.Add("OreProcessingPlant", new structureData(OreProcessingPrefab, OreProcessingPlacement, OreProcessingImage, "The Mineral Processing Plant can be used to make gold and iron ingots out of the corresponding ores", "Ore Processing Plant", MineralProcessingPlant.getPrice().ToList()));
 		availBuildings.Add("ReactorController", new structureData(ReactorControllerPrefab, ReactorControllerPlacement, ReactorControllerImage, "The Central control piece of the Nuclear Reactor. Uses uranium to turn water into steam", "ReactorController", ReactorController.getPrice().ToList()));
+		availBuildings.Add("WaterPump", new structureData(WaterPumpPrefab, WaterPumpPlacement, WaterPumpImage, "The Water Pump can be used to pump water out of a nearby lake", "Water Pump", waterpump.getPrice().ToList()));
 		
 	}
 

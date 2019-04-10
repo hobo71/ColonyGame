@@ -58,6 +58,7 @@ public class deepRessource : harvestableRessource {
         //beacon.transform.localScale = new Vector3(3f, 3f, 3f);
 
         beacon.GetComponent<building_marker>().buildTo = drillPrefab;
+        beacon.GetComponent<building_marker>().overrideCost = null;
         //beacon.transform.Rotate(new Vector3(-90f, 0 , 0), Space.Self);
         var pos = beacon.transform.position;
         pos.y += 1f;

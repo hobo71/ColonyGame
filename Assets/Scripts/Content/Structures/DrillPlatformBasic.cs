@@ -22,8 +22,6 @@ public class DrillPlatformBasic : DefaultStructure {
         cost[1] = new HPHandler.ressourceStack(200, HPHandler.ressources.Stone);
         return cost;
     }
-
-
     public override HPHandler.ressourceStack[] getCost() {
         return DrillPlatformBasic.getPrice();
     }

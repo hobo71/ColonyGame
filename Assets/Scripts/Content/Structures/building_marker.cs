@@ -22,6 +22,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         inited = true;
 
         if (overrideCost != null) {
+            print("using override cost!");
             foreach (HPHandler.ressourceStack stack in overrideCost) {
                 missing.Add(stack);
             }

@@ -243,7 +243,6 @@ public class Building : MonoBehaviour {
 
         beacon.GetComponent<building_marker>().buildTo = currentlyBuilding;
         beacon.GetComponent<building_marker>().overrideCost = overrideCost;
-        print("setting override cost to: " + overrideCost[0]);
 
         overrideCost = null;
     }
