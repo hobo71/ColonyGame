@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2511c5de70233214b91bf8a93925390b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSize: 5000
+  maxSize: 50000
 --- !u!114 &114982585798147584
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -172,10 +172,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             } else if (target.gameObject.Equals(route.getOrigin())) {
                 //arrived at source to take ressources
                 if (route is DeliveryRoutes.routeSolotype) {     //solotype
-                    float transferAmount = inventory.getMaxTransfer(route.getOrigin(), this.gameObject, ((DeliveryRoutes.routeSolotype)route).getType());
-
-                    Debug.Log("transfer Amount:" + transferAmount);
-                    route.getOrigin().GetComponent<inventory>().transferTo(this.GetComponent<inventory>(), ((DeliveryRoutes.routeSolotype)route).getType(), transferAmount);
+                    route.getOrigin().GetComponent<inventory>().transferSafe(this.GetComponent<inventory>(), ((DeliveryRoutes.routeSolotype)route).getType());
                 } else {    //allType
                     route.getOrigin().GetComponent<inventory>().transferAllSafe(this.GetComponent<inventory>());
                 }

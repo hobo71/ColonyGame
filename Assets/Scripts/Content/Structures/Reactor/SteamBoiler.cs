@@ -3,27 +3,18 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class SteamBoiler : MonoBehaviour, clickable, Structure {
+public class SteamBoiler : DefaultStructure {
 
-    public Sprite infoBut;
     public Sprite buildCoolBut;
     public GameObject coolPrefab;
     public GameObject coolPlacement;
     public Sprite buildHeatBut;
     public GameObject heatPrefab;
     public GameObject heatPlacement;
-    private bool salvaging = false;
     public float steamAmount = 0f;
+    private float energy = 0f;
 
-    public void displayInfo() {
-        InfoClicked controller = InfoClicked.getInstance();
-        controller.show();
-
-        controller.setTitle(this.gameObject.name);
-        controller.setDesc(getDesc());
-    }
-
-    private string getDesc() {
+    public override string getDesc() {
         return "The cooling controller and steam generate, typically used with a reactor"
             + Environment.NewLine
             + this.GetComponent<inventory>().ToString();
@@ -40,7 +31,7 @@ public class SteamBoiler : MonoBehaviour, clickable, Structure {
         return cost;
     }
 
-    public PopUpCanvas.popUpOption[] getOptions() {
+    public override PopUpCanvas.popUpOption[] getOptions() {
         PopUpCanvas.popUpOption[] options;
 
         PopUpCanvas.popUpOption info = new PopUpCanvas.popUpOption("Info", infoBut);
@@ -50,31 +41,8 @@ public class SteamBoiler : MonoBehaviour, clickable, Structure {
         options = new PopUpCanvas.popUpOption[] { info, buildHeat, buildCooling};
         return options;
     }
-
-    public void handleClick() {
-        Debug.Log("clicked steam boiler");
-
-        if (Salvaging.isActive()) {
-            Salvaging.createNotification(this.gameObject);
-            return;
-        }
-
-        if (salvaging) {
-            return;
-        }
-    }
-    public void salvage() {
-        Debug.Log("Got salvage request!");
-        this.salvaging = true;
-        Salvaging.displayIndicator(this.gameObject);
-    }
-
-    public void handleLongClick() {
-        this.GetComponent<ClickOptions>().Create();
-        return;
-    }
-
-    public void handleOption(string option) {
+    
+    public override void handleOption(string option) {
         Debug.Log("handling option: " + option);
         BuildingManager.structureData data;
 
@@ -124,7 +92,8 @@ public class SteamBoiler : MonoBehaviour, clickable, Structure {
     /// <summary>
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void FixedUpdate() {
+    new void FixedUpdate() {
+        base.FixedUpdate();
         if (this.salvaging && this.getHP().HP < 3) {
             print("structure salvaged!");
             var pickup = Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().pickupBox, this.transform.position, Quaternion.identity);
@@ -136,38 +105,46 @@ public class SteamBoiler : MonoBehaviour, clickable, Structure {
             this.getHP().HP -= 2.5f;
             return;
         }
+
+        if (steamAmount > 10) {
+            this.addEnergy(10 * Time.deltaTime, this);
+            steamAmount -= 10 * Time.deltaTime;
+            this.getInv().add(HPHandler.ressources.Water, -10f * Time.deltaTime);
+        }
     }
 
-    public bool isWorking() {
-        return !salvaging;
+    new void Start() {
+        base.Start();
+        DeliveryRoutes.addRoute(DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, this.gameObject, HPHandler.ressources.Water);
     }
 
-    public GameObject getGameobject() {
-        return this.gameObject;
+    public bool addSteam(float amount) {
+        if (this.getInv().getAmount(HPHandler.ressources.Water) < 10f * Time.deltaTime) {
+            return false;
+        } else {
+            this.steamAmount += amount;
+            return true;
+        }
     }
 
-    public HPHandler.ressourceStack[] getCost() {
+    public override int getMaxEnergy() {
+        return 3000;
+    }
+
+    public override int getMaxOutput() {
+        return 50;
+    }
+
+    public override int getMaxInput() {
+        return 0;
+    }
+
+    public override int getPriority() {
+        return 5;
+    }
+
+    public override HPHandler.ressourceStack[] getCost() {
         return getPrice();
     }
 
-    public HPHandler.ressourceStack[] getResources() {
-        return new HPHandler.ressourceStack[] { new HPHandler.ressourceStack(1000, HPHandler.ressources.Scrap) };
-    }
-
-    public HPHandler getHP() {
-        return this.GetComponent<HPHandler>();
-    }
-
-    public inventory getInv() {
-        return this.GetComponent<inventory>();
-    }
-
-    public bool isSalvaging() {
-        return salvaging;
-    }
-
-    public void addSteam(float amount) {
-        this.steamAmount += amount;
-        //TODO water usage, feedback, etc. (as bool, if false then cooling grid will not work?)
-    }
 }

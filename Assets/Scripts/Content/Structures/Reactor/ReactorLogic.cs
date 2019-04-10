@@ -245,8 +245,10 @@ public class ReactorLogic : MonoBehaviour, SaveLoad.SerializableInfo {
             var change = delta / 25;
             change *= Time.deltaTime * (1 + this.getExchangeBonus() + 0);
 
-            this.temperature -= change;
-            connectedBoiler.addSteam(change);
+            var success = connectedBoiler.addSteam(change);
+            if (success) {
+                this.temperature -= change;
+            }
             base.update(availUran);
         }
     }

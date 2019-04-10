@@ -7,7 +7,7 @@ public class waterpump : TogglableStructure {
         return getPrice();
     }
     public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[3];
 
         cost[0] = new HPHandler.ressourceStack(50, HPHandler.ressources.Wood);
         cost[1] = new HPHandler.ressourceStack(20, HPHandler.ressources.Stone);
@@ -34,17 +34,12 @@ public class waterpump : TogglableStructure {
     public override int getMaxOutput() {
         return 0;
     }
-
-    /// <summary>
-    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
-    /// </summary>
     new void FixedUpdate() {
         base.FixedUpdate();
         if (this.getCurEnergy() > 5 && this.busy) {
             //working, get water!
             this.addEnergy(-5f * Time.deltaTime, this);
-            var stack = new HPHandler.ressourceStack(10 * Time.deltaTime, HPHandler.ressources.Water);
-            this.getInv().add(stack);
+            this.getInv().add(HPHandler.ressources.Water, 10 * Time.deltaTime);
         }
     }
 }

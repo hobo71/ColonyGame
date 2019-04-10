@@ -91,13 +91,13 @@ public class pipeHandler : MonoBehaviour, clickable, SaveLoad.SerializableInfo {
 
         if (data.drainLeft) {
             foreach (var elem in data.drainingLeft) {
-                data.from.GetComponent<inventory>().transferTo(data.to.GetComponent<inventory>(), elem, data.from.GetComponent<inventory>().getAmount(elem));
+                data.from.GetComponent<inventory>().transfer(data.to.GetComponent<inventory>(), elem, data.from.GetComponent<inventory>().getAmount(elem));
             }
         }
         
         if (data.drainRight) {
             foreach (var elem in data.drainingRight) {
-                data.to.GetComponent<inventory>().transferTo(data.from.GetComponent<inventory>(), elem, data.to.GetComponent<inventory>().getAmount(elem));
+                data.to.GetComponent<inventory>().transfer(data.from.GetComponent<inventory>(), elem, data.to.GetComponent<inventory>().getAmount(elem));
             }
         }
     }
