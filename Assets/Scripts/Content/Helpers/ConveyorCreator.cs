@@ -139,8 +139,8 @@ public class ConveyorCreator : MonoBehaviour {
         public GameObject from;
         public GameObject to;
         public List<GameObject> createdObjs = new List<GameObject>();
-        public List<HPHandler.ressources> drainingLeft = new List<HPHandler.ressources>();
-        public List<HPHandler.ressources> drainingRight = new List<HPHandler.ressources>();
+        public List<ressources> drainingLeft = new List<ressources>();
+        public List<ressources> drainingRight = new List<ressources>();
 		public bool drainAllLeft;
 		public bool drainAllRight;
 		public bool drainLeft;
@@ -156,7 +156,7 @@ public class ConveyorCreator : MonoBehaviour {
             return this.GetHashCode() + " from=" + from.name + " to=" + to.name + " dLeft=" + listToString(drainingLeft) + "dbLeft=" + drainLeft + " dbaLeft=" + drainAllLeft;
         }
 
-        private string listToString(List<HPHandler.ressources> list) {
+        private string listToString(List<ressources> list) {
             var res = "";
             foreach (var elem in list) {
                 res += elem + "; ";

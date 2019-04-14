@@ -7,17 +7,17 @@ public class DeepDrillPlatform : TogglableStructure {
 
     public GameObject workLight;
 
-    private HPHandler.ressources ingot = HPHandler.ressources.OreIron;
+    private ressources ingot = ressources.OreIron;
     private GameObject mineralPatch = null;
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(100, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(100, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(100, ressources.Wood);
+        cost[1] = new ressourceStack(100, ressources.Stone);
         return cost;
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return getPrice();
     }
 
@@ -53,7 +53,7 @@ public class DeepDrillPlatform : TogglableStructure {
         workLight.SetActive(false);
     }
 
-    public void setIngot(HPHandler.ressources ingot, GameObject patch) {
+    public void setIngot(ressources ingot, GameObject patch) {
         print("set ingot type: " + ingot + " on " + this.name);
         this.ingot = ingot;
         this.mineralPatch = patch;
@@ -102,7 +102,7 @@ public class DeepDrillPlatform : TogglableStructure {
             if (this.getCurEnergy() >= 3) {
                 startAnim();
                 this.addEnergy(-EnergyPerSecond * Time.deltaTime, this);
-                var stack = new HPHandler.ressourceStack(OrePerSecond * Time.deltaTime, ingot);
+                var stack = new ressourceStack(OrePerSecond * Time.deltaTime, ingot);
                 this.GetComponent<inventory>().add(stack);
                 try {
                     mineralPatch.GetComponent<HPHandler>().HP -= OrePerSecond * Time.deltaTime;

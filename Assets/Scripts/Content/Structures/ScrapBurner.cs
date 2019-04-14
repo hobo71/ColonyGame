@@ -9,17 +9,17 @@ public class ScrapBurner : DefaultStructure {
 
     private GameObject workLight = null;
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(100, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(250, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(100, ressources.Wood);
+        cost[1] = new ressourceStack(250, ressources.Stone);
         //TODO
         //cost[2] = new HPHandler.ressourceStack(20, HPHandler.ressources.Scrap);
         return cost;
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return getPrice();
     }
 
@@ -158,12 +158,12 @@ public class ScrapBurner : DefaultStructure {
 
         if (this.isBusy()) {
             //check if it has scrap, if true then recycle INFO: 1 Scrap = 3 Energy
-            if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Scrap) >= 1) {
+            if (this.GetComponent<inventory>().getAmount(ressources.Scrap) >= 1) {
                 this.addEnergy(energyPerSecond * Time.deltaTime, this);
-                this.GetComponent<inventory>().remove(new HPHandler.ressourceStack(scrapPerSecond * Time.deltaTime, HPHandler.ressources.Scrap));
+                this.GetComponent<inventory>().remove(new ressourceStack(scrapPerSecond * Time.deltaTime, ressources.Scrap));
             }
 
-            if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Scrap) >= 1) {
+            if (this.GetComponent<inventory>().getAmount(ressources.Scrap) >= 1) {
                 this.GetComponent<Animator>().SetBool("working", true);
                 workLight.GetComponent<Light>().enabled = true;
                 this.transform.Find("DrillSparks").GetComponent<ParticleSystem>().Play();
@@ -174,7 +174,7 @@ public class ScrapBurner : DefaultStructure {
             }
             //send for moar scrap!!
             if (counter % 60 == 0 && !this.GetComponent<inventory>().isFull()) {
-                RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.Scrap);
+                RessourceHelper.deliverTo(this.gameObject, false, ressources.Scrap);
             }
         }
 

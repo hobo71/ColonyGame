@@ -11,17 +11,41 @@ public class DeliveryRoutes : MonoBehaviour {
     private static List<GameObject> workers = new List<GameObject>();
     private static int counter = 100;
 
-    public static void addRoute(GameObject origin, GameObject target, HPHandler.ressources type) {
+    public static void addRoute(GameObject origin, GameObject target, ressources type) {
+        if (routeExists(origin, target)) {
+            return;
+            
+        }
+        
         routes.Add(new routeSolotype(origin, target, type));
         Debug.Log("created new route from " + origin.name + " to" + target.name + " with kind " + type);
     }
 
     public static void addRoute(GameObject origin, GameObject target) {
+        if (routeExists(origin, target)) {
+            return;
+            
+        }
         routesAllType.Add(new routeAllType(origin, target));
         Debug.Log("created new route from " + origin.name + " to" + target.name + " with kind all");
     }
 
-    public static bool deleteRoute(GameObject origin, GameObject target, HPHandler.ressources type) {
+    private static bool routeExists(GameObject origin, GameObject target) {
+        foreach (var route in routes) {
+            if (route.getOrigin().Equals(origin) && route.getTarget().Equals(target)) {
+                return true;
+            }
+        }
+        foreach (var route in routesAllType) {
+            if (route.getOrigin().Equals(origin) && route.getTarget().Equals(target)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool deleteRoute(GameObject origin, GameObject target, ressources type) {
         Debug.Log("deleting route...");
         foreach (routeSolotype route in routes) {
             if (route.isSame(origin, target, type)) {
@@ -180,10 +204,10 @@ public class DeliveryRoutes : MonoBehaviour {
 
         private GameObject origin;
         private GameObject target;
-        private HPHandler.ressources type;
+        private ressources type;
         private List<GameObject> workers = new List<GameObject>();
 
-        public routeSolotype(GameObject origin, GameObject target, HPHandler.ressources type) {
+        public routeSolotype(GameObject origin, GameObject target, ressources type) {
             this.origin = origin;
             this.target = target;
             this.type = type;
@@ -202,11 +226,11 @@ public class DeliveryRoutes : MonoBehaviour {
             return target;
         }
 
-        public HPHandler.ressources getType() {
+        public ressources getType() {
             return type;
         }
 
-        public bool isSame(GameObject origin, GameObject target, HPHandler.ressources type) {
+        public bool isSame(GameObject origin, GameObject target, ressources type) {
             if (origin == this.origin && target == this.target && type == this.type) {
                 return true;
             }

@@ -13,7 +13,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
     private int idleTimer = 0;
     private int idleDeliveryTimer = 0;
     public State curState = State.Idle;
-    private HPHandler.ressourceStack delivery = null;
+    private ressourceStack delivery = null;
     private GameObject target = null;
     private GameObject lastTarget = null;
     private GameObject deliverTarget = null;
@@ -37,7 +37,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             this.GetComponent<movementController>().moveRand();
         }
 
-        if (curState == State.ConstructionDelivering && this.GetComponent<movementController>().agent.velocity.magnitude <= 0.1f) {
+        if ((curState == State.ConstructionDelivering  || curState == State.RouteDelivering) && this.GetComponent<movementController>().agent.velocity.magnitude <= 0.1f) {
             idleTimer++;
             if (idleTimer > 20) {
                 stop();
@@ -45,7 +45,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
                 this.curState = State.Idle;
                 clearDelivery();
             }
-        } else if (curState == State.ConstructionDelivering) {
+        } else if (curState == State.ConstructionDelivering  || curState == State.RouteDelivering) {
             idleTimer = 0;
         }
 
@@ -284,7 +284,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
             return;
         }
 
-        HPHandler.ressourceStack gain = target.GetComponent<HPHandler>().inflictDamage(AD, this);
+        ressourceStack gain = target.GetComponent<HPHandler>().inflictDamage(AD, this);
         GetComponent<inventory>().add(gain);
 
         var origin = new Vector3(this.transform.position.x, this.transform.position.y + 1.5f, this.transform.position.z);
@@ -309,7 +309,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         return curState;
     }
 
-    public void deliverTo(GameObject takeFrom, GameObject bringTo, HPHandler.ressourceStack stack) {
+    public void deliverTo(GameObject takeFrom, GameObject bringTo, ressourceStack stack) {
 
         print(this.name + " is delivering to: " + bringTo);
 
@@ -340,7 +340,7 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         return deliverTarget;
     }
 
-    public HPHandler.ressourceStack getDelivery() {
+    public ressourceStack getDelivery() {
         return this.delivery;
     }
 
@@ -368,13 +368,13 @@ public class ActionController : MonoBehaviour, SaveLoad.SerializableInfo {
         public int idleTimer;
         public int idleDeliveryTimer;
         public State curState;
-        public HPHandler.ressourceStack delivery;
+        public ressourceStack delivery;
         public SaveLoad.SerializableVector3 target;
         public SaveLoad.SerializableVector3 lastTarget;
         public SaveLoad.SerializableVector3 deliverTarget;
         public SaveLoad.SerializableVector3 deliverFrom;
 
-        public serializationData(int idleTimer, int idleDeliveryTimer, State curState, HPHandler.ressourceStack delivery, GameObject target, GameObject lastTarget, GameObject deliverTarget, GameObject deliverFrom) {
+        public serializationData(int idleTimer, int idleDeliveryTimer, State curState, ressourceStack delivery, GameObject target, GameObject lastTarget, GameObject deliverTarget, GameObject deliverFrom) {
             this.idleTimer = idleTimer;
             this.idleDeliveryTimer = idleDeliveryTimer;
             this.curState = curState;

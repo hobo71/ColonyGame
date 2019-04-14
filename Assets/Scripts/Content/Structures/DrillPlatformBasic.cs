@@ -15,14 +15,14 @@ public class DrillPlatformBasic : DefaultStructure {
     private float maxRange = 80;
     private GameObject partSystem = null;
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(50, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(200, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(50, ressources.Wood);
+        cost[1] = new ressourceStack(200, ressources.Stone);
         return cost;
     }
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return DrillPlatformBasic.getPrice();
     }
 
@@ -108,7 +108,7 @@ public class DrillPlatformBasic : DefaultStructure {
         GameObject[] clickables = GameObject.FindGameObjectsWithTag("clickable");
         List<GameObject> stones = new List<GameObject>();
         foreach (GameObject obj in clickables) {
-            if (obj.GetComponent<HPHandler>() != null && (obj.GetComponent<HPHandler>().type == HPHandler.ressources.Stone || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreIron || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreGold || obj.GetComponent<HPHandler>().type == HPHandler.ressources.OreIridium)) {
+            if (obj.GetComponent<HPHandler>() != null && (obj.GetComponent<HPHandler>().type == ressources.Stone || obj.GetComponent<HPHandler>().type == ressources.OreIron || obj.GetComponent<HPHandler>().type == ressources.OreGold || obj.GetComponent<HPHandler>().type == ressources.OreIridium)) {
                 if (obj.GetComponent<deepRessource>() == null)
                     stones.Add(obj);
             }
@@ -166,7 +166,7 @@ public class DrillPlatformBasic : DefaultStructure {
 
     private void handleHarvest(Transform harvesting) {
         var amount = this.getHarvestRate() * Time.deltaTime * harvesting.GetComponent<harvestableRessource>().getHarvestMultiplier();
-        HPHandler.ressourceStack stack = new HPHandler.ressourceStack(amount, harvesting.GetComponent<HPHandler>().type);
+        ressourceStack stack = new ressourceStack(amount, harvesting.GetComponent<HPHandler>().type);
         this.GetComponent<inventory>().add(stack);
         harvesting.GetComponent<HPHandler>().HP -= amount;
     }
@@ -337,9 +337,9 @@ public class DrillPlatformBasic : DefaultStructure {
         public bool built;
         public bool busy;
         public bool salvaging;
-        public HPHandler.ressourceStack[] ownResource;
+        public ressourceStack[] ownResource;
 
-        public serializationData(float storedEnergy, bool busy, bool salvaging, HPHandler.ressourceStack[] ownResource, Transform target) {
+        public serializationData(float storedEnergy, bool busy, bool salvaging, ressourceStack[] ownResource, Transform target) {
             this.storedEnergy = storedEnergy;
             this.busy = busy;
             this.ownResource = ownResource;

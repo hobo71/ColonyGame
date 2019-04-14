@@ -8,16 +8,16 @@ public class Dome_Basic : DefaultStructure {
     public Sprite cloneBut;
     public GameObject toClone;
     
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(50, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(50, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(50, ressources.Wood);
+        cost[1] = new ressourceStack(50, ressources.Stone);
 
         return cost;
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return Dome_Basic.getPrice();
     }
 

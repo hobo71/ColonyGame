@@ -2,7 +2,7 @@
 
 public class PlanetBase : MonoBehaviour, Structure {
     
-    private HPHandler.ressourceStack[] ownResource = new HPHandler.ressourceStack[2];
+    private ressourceStack[] ownResource = new ressourceStack[2];
     private bool built = false;
 
     // Use this for initialization
@@ -23,16 +23,16 @@ public class PlanetBase : MonoBehaviour, Structure {
         return true;
     }
 
-    public HPHandler.ressourceStack[] getCost() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public ressourceStack[] getCost() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(100, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(50, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(100, ressources.Wood);
+        cost[1] = new ressourceStack(50, ressources.Stone);
 
         return cost;
     }
 
-    public HPHandler.ressourceStack[] getResources() {
+    public ressourceStack[] getResources() {
         return this.ownResource;
     }
 

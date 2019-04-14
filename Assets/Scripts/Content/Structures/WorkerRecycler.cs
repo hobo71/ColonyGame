@@ -9,11 +9,11 @@ public class WorkerRecycler : DefaultStructure {
 
     private int lightChange = -1;
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(50, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(10, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(50, ressources.Wood);
+        cost[1] = new ressourceStack(10, ressources.Stone);
         return cost;
     }
 
@@ -26,7 +26,7 @@ public class WorkerRecycler : DefaultStructure {
         }
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return WorkerRecycler.getPrice();
     }
 
@@ -110,7 +110,7 @@ public class WorkerRecycler : DefaultStructure {
         lightChange = 25;
 
         var pickup = Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().pickupBox, workerArrived.transform.position, Quaternion.identity);
-        pickup.GetComponent<inventory>().add(new HPHandler.ressourceStack(50, HPHandler.ressources.Scrap));
+        pickup.GetComponent<inventory>().add(new ressourceStack(50, ressources.Scrap));
     }
 
     public bool hasEnoughEnergy() {

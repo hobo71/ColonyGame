@@ -8,15 +8,15 @@ public class WoodReprocessor : DefaultStructure {
     public Sprite stopBut;
     public Sprite startBut;
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(100, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(250, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(100, ressources.Wood);
+        cost[1] = new ressourceStack(250, ressources.Stone);
         return cost;
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return getPrice();
     }
 
@@ -72,7 +72,7 @@ public class WoodReprocessor : DefaultStructure {
                 break;
             case "doStart":
                 Debug.Log("Clicked start button");
-                DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Wood);
+                DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, ressources.Wood);
                 this.busy = true;
                 Notification.createNotification(this.gameObject, Notification.sprites.Starting, "Processing...", Color.green, true);
                 break;
@@ -100,7 +100,7 @@ public class WoodReprocessor : DefaultStructure {
 
         this.busy = true;
         Notification.createNotification(this.gameObject, Notification.sprites.Working, "Processing...", Color.green, true);
-        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Wood);
+        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, ressources.Wood);
 
     }
 
@@ -118,16 +118,16 @@ public class WoodReprocessor : DefaultStructure {
 
         if (this.isBusy()) {
             if (counter % 180 == 0 && !this.GetComponent<inventory>().isFull()) {
-                RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.Trees);
+                RessourceHelper.deliverTo(this.gameObject, false, ressources.Trees);
             }
             //check if it has scrap, if true then recycle INFO: 1 Scrap = 3 Energy
-            if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Trees) >= 1 && this.getCurEnergy() > 3) {
+            if (this.GetComponent<inventory>().getAmount(ressources.Trees) >= 1 && this.getCurEnergy() > 3) {
                 this.addEnergy(-energyPerSecond * Time.deltaTime, this);
-                this.GetComponent<inventory>().add(new HPHandler.ressourceStack(WoodPerSecond * Time.deltaTime, HPHandler.ressources.Wood));
-                this.GetComponent<inventory>().remove(new HPHandler.ressourceStack(treesPerSecond * Time.deltaTime, HPHandler.ressources.Trees));
+                this.GetComponent<inventory>().add(new ressourceStack(WoodPerSecond * Time.deltaTime, ressources.Wood));
+                this.GetComponent<inventory>().remove(new ressourceStack(treesPerSecond * Time.deltaTime, ressources.Trees));
             }
 
-            if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.Trees) >= 1 && this.getCurEnergy() > 3) {
+            if (this.GetComponent<inventory>().getAmount(ressources.Trees) >= 1 && this.getCurEnergy() > 3) {
                 this.GetComponent<Animator>().SetBool("working", true);
                 if (!this.transform.Find("CFX3_Fire_Shield").GetComponent<ParticleSystem>().isPlaying)
                     this.transform.Find("CFX3_Fire_Shield").GetComponent<ParticleSystem>().Play();

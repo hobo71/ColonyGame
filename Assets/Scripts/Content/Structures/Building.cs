@@ -22,7 +22,7 @@ public class Building : MonoBehaviour {
 
     private static float deviceWidth = 0;
     private static float deviceHeight = 0;
-    private HPHandler.ressourceStack[] overrideCost = null;
+    private ressourceStack[] overrideCost = null;
 
     // Use this for initialization
     void Start() {
@@ -205,7 +205,7 @@ public class Building : MonoBehaviour {
 
     }
 
-    public void setOverrideCost(HPHandler.ressourceStack[] cost) {
+    public void setOverrideCost(ressourceStack[] cost) {
         this.overrideCost = cost;
     }
 

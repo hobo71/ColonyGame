@@ -26,7 +26,7 @@ public class InfoClicked : MonoBehaviour {
         close();
 	}
 
-    public void setPrice(List<HPHandler.ressourceStack> cost) {
+    public void setPrice(List<ressourceStack> cost) {
         displayPrice(BuildingManager.getNiceString(cost));
 
     }

@@ -7,11 +7,11 @@ public class TreeFarm : DefaultStructure {
     public Sprite stopBut;
     public Sprite startBut;
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(150, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(200, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(150, ressources.Wood);
+        cost[1] = new ressourceStack(200, ressources.Stone);
         return cost;
     }
 
@@ -104,7 +104,7 @@ public class TreeFarm : DefaultStructure {
         Notification.createNotification(this.gameObject, Notification.sprites.Working, "Starting", Color.green, true);
         this.busy = true;
                 
-        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Trees);
+        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, ressources.Trees);
     }
     public virtual int getEnergyDrainRate() {
         return 10;
@@ -129,7 +129,7 @@ public class TreeFarm : DefaultStructure {
             this.addEnergy(-getEnergyDrainRate() * Time.deltaTime, this);
             this.GetComponent<Animator>().SetBool("working", true);
             
-            this.GetComponent<inventory>().add(new HPHandler.ressourceStack(treesPerSecond() * Time.deltaTime, HPHandler.ressources.Trees));
+            this.GetComponent<inventory>().add(new ressourceStack(treesPerSecond() * Time.deltaTime, ressources.Trees));
         }
     }
     public new SaveLoad.SerializationInfo getSerialize() {
@@ -143,7 +143,7 @@ public class TreeFarm : DefaultStructure {
         this.ownResource = data.ownResource;
         this.salvaging = data.salvaging;
         if (this.busy) {
-            DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Trees);
+            DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, ressources.Trees);
         }
 
         if (salvaging) {
@@ -153,7 +153,7 @@ public class TreeFarm : DefaultStructure {
         //reloadConnections();
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return getPrice();
     }
 
@@ -163,9 +163,9 @@ public class TreeFarm : DefaultStructure {
         public bool built;
         public bool busy;
         public bool salvaging;
-        public HPHandler.ressourceStack[] ownResource;
+        public ressourceStack[] ownResource;
 
-        public serializationData(float storedEnergy, bool busy, bool salvaging, HPHandler.ressourceStack[] ownResource) {
+        public serializationData(float storedEnergy, bool busy, bool salvaging, ressourceStack[] ownResource) {
             this.storedEnergy = storedEnergy;
             this.busy = busy;
             this.ownResource = ownResource;

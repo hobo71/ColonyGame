@@ -194,8 +194,8 @@ public class pipeHandler : MonoBehaviour, clickable, SaveLoad.SerializableInfo {
 
     [System.Serializable]
     public class conveyorConnectionSave {
-        public List<HPHandler.ressources> drainingLeft = new List<HPHandler.ressources>();
-        public List<HPHandler.ressources> drainingRight = new List<HPHandler.ressources>();
+        public List<ressources> drainingLeft = new List<ressources>();
+        public List<ressources> drainingRight = new List<ressources>();
 		public bool drainAllLeft;
 		public bool drainAllRight;
 		public bool drainLeft;

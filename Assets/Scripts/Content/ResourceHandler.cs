@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceHandler : MonoBehaviour {
     
-    public float[] totalRessources = new float[System.Enum.GetValues(typeof(HPHandler.ressources)).Length];
+    public float[] totalRessources = new float[System.Enum.GetValues(typeof(ressources)).Length];
     
     private static ResourceHandler instance;
 
@@ -28,7 +28,7 @@ public class ResourceHandler : MonoBehaviour {
         
         foreach (inventory inv in inventories) {
             int i = 0;
-            foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+            foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
                 curRessources[i] += inv.getAmount(res);
                 i++;
             }
@@ -56,7 +56,7 @@ public class ResourceHandler : MonoBehaviour {
         string content = "";
 
         int i = 0;
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             content += res.ToString() + ": " + totalRessources[i] + ", ";
             i++;
         }
@@ -67,9 +67,9 @@ public class ResourceHandler : MonoBehaviour {
         return instance;
     }
 
-    public static float getAmoumt(HPHandler.ressources res) {
+    public static float getAmoumt(ressources res) {
         int i = 0;
-        foreach (HPHandler.ressources cur in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources cur in System.Enum.GetValues(typeof(ressources))) {
             if (res.Equals(cur)) {
                 return getInstance().totalRessources[i];
             }

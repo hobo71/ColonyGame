@@ -7,15 +7,15 @@ public class MineralProcessingPlant : DefaultStructure {
     public Sprite stopBut;
     public Sprite startBut;
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(200, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(100, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(200, ressources.Wood);
+        cost[1] = new ressourceStack(100, ressources.Stone);
         return cost;
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return getPrice();
     }
 
@@ -100,8 +100,8 @@ public class MineralProcessingPlant : DefaultStructure {
 
         this.busy = true;
         Notification.createNotification(this.gameObject, Notification.sprites.Working, "Processing...", Color.green, true);
-        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Iron);
-        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, HPHandler.ressources.Gold);
+        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, ressources.Iron);
+        DeliveryRoutes.addRoute(this.gameObject, DeliveryRoutes.getClosest("dropBase", this.gameObject).gameObject, ressources.Gold);
 
 	}
 
@@ -122,15 +122,15 @@ public class MineralProcessingPlant : DefaultStructure {
 
                 //request both ores
 				if (counter % 180 == 0 && !this.GetComponent<inventory>().isFull()) {
-					RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.OreIron);
-					RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.OreGold);
+					RessourceHelper.deliverTo(this.gameObject, false, ressources.OreIron);
+					RessourceHelper.deliverTo(this.gameObject, false, ressources.OreGold);
 				}
 
 				//select right ore
-				var ore = HPHandler.ressources.OreIron;
-				if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.OreIron) < 0.2f) {
-					ore = HPHandler.ressources.OreGold;
-					if (this.GetComponent<inventory>().getAmount(HPHandler.ressources.OreGold) < 0.2f) {
+				var ore = ressources.OreIron;
+				if (this.GetComponent<inventory>().getAmount(ressources.OreIron) < 0.2f) {
+					ore = ressources.OreGold;
+					if (this.GetComponent<inventory>().getAmount(ressources.OreGold) < 0.2f) {
                         this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().Stop();
 						return;
 					}
@@ -141,10 +141,10 @@ public class MineralProcessingPlant : DefaultStructure {
                     this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().Play();
 				
 				this.addEnergy(-energyPerSecond * Time.deltaTime, this);
-				this.GetComponent<inventory>().remove(new HPHandler.ressourceStack(OrePerSecond * Time.deltaTime, ore));
+				this.GetComponent<inventory>().remove(new ressourceStack(OrePerSecond * Time.deltaTime, ore));
 
-				var ingot = ore.Equals(HPHandler.ressources.OreIron) ? HPHandler.ressources.Iron : HPHandler.ressources.Gold;
-				this.GetComponent<inventory>().add(new HPHandler.ressourceStack(IngotsPerSecond * Time.deltaTime, ingot));
+				var ingot = ore.Equals(ressources.OreIron) ? ressources.Iron : ressources.Gold;
+				this.GetComponent<inventory>().add(new ressourceStack(IngotsPerSecond * Time.deltaTime, ingot));
 
 			} else {
                 this.transform.Find("ProcessingPlant_Anim").GetComponent<ParticleSystem>().Stop();

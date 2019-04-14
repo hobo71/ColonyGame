@@ -6,8 +6,8 @@ public interface Structure {
     
     bool isWorking();
     GameObject getGameobject();
-    HPHandler.ressourceStack[] getCost();
-    HPHandler.ressourceStack[] getResources();
+    ressourceStack[] getCost();
+    ressourceStack[] getResources();
     HPHandler getHP();
     inventory getInv();
     void salvage();

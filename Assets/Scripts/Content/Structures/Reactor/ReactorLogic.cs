@@ -129,9 +129,9 @@ public class ReactorLogic : MonoBehaviour, SaveLoad.SerializableInfo {
             return;
 
         var inv = this.gameObject.GetComponent<inventory>();
-        float availUran = inv.getAmount(HPHandler.ressources.Uranium);
+        float availUran = inv.getAmount(ressources.Uranium);
         if (!inv.isFull() && counter % 60 == 0) {
-            RessourceHelper.deliverTo(this.gameObject, false, HPHandler.ressources.Uranium);
+            RessourceHelper.deliverTo(this.gameObject, false, ressources.Uranium);
         }
 
         //update heat items
@@ -241,6 +241,10 @@ public class ReactorLogic : MonoBehaviour, SaveLoad.SerializableInfo {
                 connectedBoiler = closest;
             }
 
+            if (connectedBoiler == null) {
+                base.update(availUran);
+                return;
+            }
             var delta = this.temperature - 0;
             var change = delta / 25;
             change *= Time.deltaTime * (1 + this.getExchangeBonus() + 0);
@@ -289,8 +293,8 @@ public class ReactorLogic : MonoBehaviour, SaveLoad.SerializableInfo {
                 init();
             }
 
-            if (invController.getAmount(HPHandler.ressources.Uranium) > 0.2) {
-                this.invController.add(new HPHandler.ressourceStack(-0.1f * Time.deltaTime, HPHandler.ressources.Uranium));
+            if (invController.getAmount(ressources.Uranium) > 0.2) {
+                this.invController.add(new ressourceStack(-0.1f * Time.deltaTime, ressources.Uranium));
                 this.temperature += 10f * Time.deltaTime * (generateMultiplier);
             }
 

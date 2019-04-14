@@ -7,10 +7,10 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 
     public GameObject buildTo = null;
     private Structure Info = null;
-    public HPHandler.ressourceStack[] overrideCost = null;
+    public ressourceStack[] overrideCost = null;
     private bool inited = false;
-    private List<HPHandler.ressourceStack> missing = new List<HPHandler.ressourceStack>();
-    private List<HPHandler.ressourceStack> ordered = new List<HPHandler.ressourceStack>();
+    private List<ressourceStack> missing = new List<ressourceStack>();
+    private List<ressourceStack> ordered = new List<ressourceStack>();
 
     // Use this for initialization
     void Init() {
@@ -23,11 +23,11 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
 
         if (overrideCost != null) {
             print("using override cost!");
-            foreach (HPHandler.ressourceStack stack in overrideCost) {
+            foreach (ressourceStack stack in overrideCost) {
                 missing.Add(stack);
             }
         } else {
-            foreach (HPHandler.ressourceStack stack in Info.getCost()) {
+            foreach (ressourceStack stack in Info.getCost()) {
                 missing.Add(stack);
             }
         }
@@ -83,7 +83,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             iterateList = overrideCost;
         }
 
-        foreach (HPHandler.ressourceStack elem in iterateList) {
+        foreach (ressourceStack elem in iterateList) {
             if (!own.canTake(elem)) {
                 return false;
             }
@@ -127,9 +127,9 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             iterateList = overrideCost;
         }
 
-        foreach (HPHandler.ressourceStack stack in iterateList) {
+        foreach (ressourceStack stack in iterateList) {
             inventory inv = this.GetComponent<inventory>();
-            HPHandler.ressourceStack stillMissing = stack;
+            ressourceStack stillMissing = stack;
             stillMissing.addAmount(-inv.getAmount(stack.getRessource()));
             missing.Add(stillMissing);
         }
@@ -146,7 +146,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             //check if it is delivering to this
             if (controller.getState().Equals(ActionController.State.ConstructionDelivering) && controller.getDeliverTarget().Equals(this.gameObject)) {
                 bool added = false;
-                foreach (HPHandler.ressourceStack stack in ordered) {
+                foreach (ressourceStack stack in ordered) {
                     if (stack.getRessource().Equals(controller.getDelivery().getRessource())) {
                         stack.addAmount(controller.getDelivery().getAmount());
                         added = true;
@@ -159,8 +159,8 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
             }
         }
 
-        foreach (HPHandler.ressourceStack order in ordered) {
-            foreach (HPHandler.ressourceStack miss in missing) {
+        foreach (ressourceStack order in ordered) {
+            foreach (ressourceStack miss in missing) {
                 if (miss.getRessource().Equals(order.getRessource())) {
                     miss.addAmount(-order.getAmount());
                 }
@@ -180,7 +180,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         }
 
         foreach (GameObject elem in GameObject.FindGameObjectsWithTag("dropBase")) {
-            foreach (HPHandler.ressourceStack stack in missing) {
+            foreach (ressourceStack stack in missing) {
 
                 if (stack.getAmount() <= 0) {
                     continue;
@@ -194,7 +194,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
                     }
 
                     Debug.Log("found valid idle mover");
-                    HPHandler.ressourceStack take = stack.clone();
+                    ressourceStack take = stack.clone();
 
                     float takeable = elem.GetComponent<inventory>().getAmount(stack.getRessource());
                     if (takeable > mover.gameObject.GetComponent<inventory>().maxSize) {
@@ -216,17 +216,17 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         }
     }
 
-    private void removeEmpty(List<HPHandler.ressourceStack> list) {
+    private void removeEmpty(List<ressourceStack> list) {
 
-        List<HPHandler.ressourceStack> remove = new List<HPHandler.ressourceStack>();
+        List<ressourceStack> remove = new List<ressourceStack>();
 
-        foreach (HPHandler.ressourceStack stack in list) {
+        foreach (ressourceStack stack in list) {
             if (stack.getAmount() <= 0) {
                 remove.Add(stack);
             }
         }
 
-        foreach (HPHandler.ressourceStack stack in remove) {
+        foreach (ressourceStack stack in remove) {
             list.Remove(stack);
         }
 
@@ -255,7 +255,7 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         return bestTarget;
     }
 
-    public void deliveryArrived(HPHandler.ressourceStack stack) {
+    public void deliveryArrived(ressourceStack stack) {
         Debug.Log("Delivery arrived: " + stack);
         /*foreach(HPHandler.ressourceStack elem in ordered) {
             if (elem.Equals(stack)) {
@@ -274,9 +274,9 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
         orderIdle();
     }
 
-    private string printList(List<HPHandler.ressourceStack> list) {
+    private string printList(List<ressourceStack> list) {
         string toReturn = "";
-        foreach (HPHandler.ressourceStack stack in list) {
+        foreach (ressourceStack stack in list) {
             toReturn += stack;
         }
         return toReturn;
@@ -341,11 +341,11 @@ public class building_marker : MonoBehaviour, SaveLoad.SerializableInfo, clickab
     class serializationData : SaveLoad.SerializationInfo {
         public string buildTo;
         public bool inited;
-        public List<HPHandler.ressourceStack> missing;
-        public List<HPHandler.ressourceStack> ordered;
-        public HPHandler.ressourceStack[] overrideCost;
+        public List<ressourceStack> missing;
+        public List<ressourceStack> ordered;
+        public ressourceStack[] overrideCost;
 
-        public serializationData(GameObject buildTo, bool inited, List<HPHandler.ressourceStack> missing, List<HPHandler.ressourceStack> ordered, HPHandler.ressourceStack[] overrideCost) {
+        public serializationData(GameObject buildTo, bool inited, List<ressourceStack> missing, List<ressourceStack> ordered, ressourceStack[] overrideCost) {
             string prefabName = buildTo.name;
             prefabName = prefabName.Replace("Clone", "");
             prefabName = prefabName.Replace(" ", "");

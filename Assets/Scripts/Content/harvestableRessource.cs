@@ -86,7 +86,7 @@ public class harvestableRessource : MonoBehaviour, clickable {
 
     private bool setDrill() {
 
-        if (this.GetComponent<HPHandler>().type != HPHandler.ressources.Stone) {
+        if (this.GetComponent<HPHandler>().type != ressources.Stone) {
             return false;
         }
         

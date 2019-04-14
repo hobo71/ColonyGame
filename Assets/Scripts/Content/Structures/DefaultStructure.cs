@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structure, clickable, SaveLoad.SerializableInfo {
 
-	public HPHandler.ressourceStack[] ownResource = new HPHandler.ressourceStack[2];
+	public ressourceStack[] ownResource = new ressourceStack[2];
     public List<EnergyContainer> connections = new List<EnergyContainer>();
     public List<EnergyContainer> network = null;
 
@@ -31,7 +31,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
         if (this.salvaging && this.getHP().HP < 3) {
             print("structure salvaged!");
             var pickup = Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().pickupBox, this.transform.position, Quaternion.identity);
-            pickup.GetComponent<inventory>().add(new HPHandler.ressourceStack(salvageStartHP, HPHandler.ressources.Scrap));
+            pickup.GetComponent<inventory>().add(new ressourceStack(salvageStartHP, ressources.Scrap));
             GameObject.Destroy(this.gameObject);
         }
 
@@ -61,7 +61,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
         return !salvaging;
     }
 
-    abstract public HPHandler.ressourceStack[] getCost();/* {
+    abstract public ressourceStack[] getCost();/* {
         HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
 
         cost[0] = new HPHandler.ressourceStack(100, HPHandler.ressources.Wood);
@@ -70,7 +70,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
         return cost;
     }*/
 
-    public HPHandler.ressourceStack[] getResources() {
+    public ressourceStack[] getResources() {
         return this.ownResource;
     }
 
@@ -364,9 +364,9 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
         public float storedEnergy;
         public bool busy;
         public bool salvaging;
-        public HPHandler.ressourceStack[] ownResource;
+        public ressourceStack[] ownResource;
 
-        public serializationData(float storedEnergy, bool busy, bool salvaging, HPHandler.ressourceStack[] ownResource) {
+        public serializationData(float storedEnergy, bool busy, bool salvaging, ressourceStack[] ownResource) {
             this.storedEnergy = storedEnergy;
             this.busy = busy;
             this.ownResource = ownResource;

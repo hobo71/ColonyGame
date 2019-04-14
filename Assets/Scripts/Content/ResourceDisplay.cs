@@ -14,16 +14,16 @@ public class ResourceDisplay : MonoBehaviour {
     public List<Sprite> sprites;
     private Dictionary<string, Sprite> icons = new Dictionary<string, Sprite>();
     private Dictionary<string, bool> active = new Dictionary<string, bool>();
-    private GameObject[] displays = new GameObject[System.Enum.GetValues(typeof(HPHandler.ressources)).Length];
-    private GameObject[] displaysExt = new GameObject[System.Enum.GetValues(typeof(HPHandler.ressources)).Length];
+    private GameObject[] displays = new GameObject[System.Enum.GetValues(typeof(ressources)).Length];
+    private GameObject[] displaysExt = new GameObject[System.Enum.GetValues(typeof(ressources)).Length];
     private Color colorOn = new Color(96 / 255f, 96 / 255f, 96 / 255f, 0.66f);
     private Color colorOff = new Color(96 / 255f, 0.9f, 96 / 255f, 0.66f);
     private static ResourceDisplay instance;
     private int activeElemsCount = 0;
 
     //used for ressource type selectors
-    public static Action<List<HPHandler.ressources>> closeCallback = null;
-    public static List<HPHandler.ressources> callbackList = null;
+    public static Action<List<ressources>> closeCallback = null;
+    public static List<ressources> callbackList = null;
     public static inventory callbackInv = null;
 
 	// Use this for initialization
@@ -68,7 +68,7 @@ public class ResourceDisplay : MonoBehaviour {
         bool hasPrefs = PlayerPrefs.GetInt("hasPrefsDisplay") == 1;
 
         //create elements
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             displays[curCount] = GameObject.Instantiate(resIconPrefab, this.gameObject.transform);
             displays[curCount].transform.localPosition = new Vector3(cPosX, cPosY, 0);
 
@@ -101,7 +101,7 @@ public class ResourceDisplay : MonoBehaviour {
 
 	}
 
-    public static void openListSelect(List<HPHandler.ressources> elems, Action<List<HPHandler.ressources>> elem, inventory inv) {
+    public static void openListSelect(List<ressources> elems, Action<List<ressources>> elem, inventory inv) {
         print("opening list select!");
         callbackList = elems;
         callbackInv = inv;
@@ -123,7 +123,7 @@ public class ResourceDisplay : MonoBehaviour {
 		stoneCounter.text = ResourceHandler.getAmoumt(HPHandler.ressources.Stone).ToString();*/
         
         int i = 0;
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             var amount = (int) (Math.Round(ResourceHandler.getAmoumt(res)));
             displays[i].transform.GetChild(0).GetComponent<Text>().text = amount.ToString();
             i++;
@@ -139,7 +139,7 @@ public class ResourceDisplay : MonoBehaviour {
             setToList(callbackList);
             //setToInv(callbackInv);
         } else {
-            foreach(HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+            foreach(ressources res in System.Enum.GetValues(typeof(ressources))) {
                 var activated = PlayerPrefs.GetInt(res.ToString()) == 0;
                 active[res.ToString().ToLower()] = activated;
             }
@@ -153,7 +153,7 @@ public class ResourceDisplay : MonoBehaviour {
         int cPosX = -205;
         int cPosY = -20;
 
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             
             displaysExt[curCount] = GameObject.Instantiate(resIconPrefabExt, longDisplay.transform);
             displaysExt[curCount].transform.localPosition = new Vector3(cPosX, cPosY, 0);
@@ -215,7 +215,7 @@ public class ResourceDisplay : MonoBehaviour {
         }
 
         //set current display values again
-        foreach(HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach(ressources res in System.Enum.GetValues(typeof(ressources))) {
             displays[i].transform.localPosition = new Vector3(cPosX, -10, 0);
             
             bool activated = true;
@@ -238,13 +238,13 @@ public class ResourceDisplay : MonoBehaviour {
 
     }
 
-    private void setToList(List<HPHandler.ressources> list) {
+    private void setToList(List<ressources> list) {
 		var listcont = "";
 		foreach (var part in list) {
 			listcont += part.ToString() + "; ";
 		}
 		print("setting to list: " + listcont);
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             if (list.Contains(res)) {
                 active[res.ToString().ToLower()] = true;
             } else {
@@ -257,7 +257,7 @@ public class ResourceDisplay : MonoBehaviour {
         
 		print("setting to inv: " + inv);
         int curCount = 0;
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             var amount = inv.getAmount(res);
             displaysExt[curCount].transform.GetChild(1).GetComponent<Text>().text = amount.ToString();
             curCount++;
@@ -278,7 +278,7 @@ public class ResourceDisplay : MonoBehaviour {
         
         int curCount = 0;
 
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             if (res.ToString().Equals(name)) {
                 if (!activated) {
                     //deselecting elem
@@ -311,7 +311,7 @@ public class ResourceDisplay : MonoBehaviour {
 
     private void save() {
         //0 = enabled; 1 = disabled
-        foreach (HPHandler.ressources res in System.Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources res in System.Enum.GetValues(typeof(ressources))) {
             int enabled = 0;
             bool activated;
             active.TryGetValue(res.ToString().ToLower(), out activated);

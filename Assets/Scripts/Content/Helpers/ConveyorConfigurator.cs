@@ -34,7 +34,7 @@ public class ConveyorConfigurator : MonoBehaviour {
 		data.drainRight = drainRight.GetComponent<Toggle>().isOn;
 	}
 
-	private void selectionDone(List<HPHandler.ressources> selected) {
+	private void selectionDone(List<ressources> selected) {
 		print("ressource select done, got list: ");
 		this.gameObject.SetActive(true);
 		//active.drainingLeft.Add(HPHandler.ressources.Iridium);

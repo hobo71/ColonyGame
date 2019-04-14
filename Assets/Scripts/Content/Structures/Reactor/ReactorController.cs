@@ -34,13 +34,13 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
 
     }
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[4];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[4];
 
-        cost[0] = new HPHandler.ressourceStack(200, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(200, HPHandler.ressources.Stone);
-        cost[2] = new HPHandler.ressourceStack(500, HPHandler.ressources.Iron);
-        cost[3] = new HPHandler.ressourceStack(100, HPHandler.ressources.Gold);
+        cost[0] = new ressourceStack(200, ressources.Wood);
+        cost[1] = new ressourceStack(200, ressources.Stone);
+        cost[2] = new ressourceStack(500, ressources.Iron);
+        cost[3] = new ressourceStack(100, ressources.Gold);
         return cost;
     }
 
@@ -90,28 +90,28 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
                 displayInfo();
                 break;
             case "BuildReactor":
-                data = new BuildingManager.structureData(corePrefab, corePlacement, null, "reactorcore", "reactorcore", new List<HPHandler.ressourceStack> {
-                    new HPHandler.ressourceStack(250, HPHandler.ressources.Stone),
-                    new HPHandler.ressourceStack(50, HPHandler.ressources.Wood),
-                    new HPHandler.ressourceStack(20, HPHandler.ressources.Gold),
-                    new HPHandler.ressourceStack(200, HPHandler.ressources.Iron)},
+                data = new BuildingManager.structureData(corePrefab, corePlacement, null, "reactorcore", "reactorcore", new List<ressourceStack> {
+                    new ressourceStack(250, ressources.Stone),
+                    new ressourceStack(50, ressources.Wood),
+                    new ressourceStack(20, ressources.Gold),
+                    new ressourceStack(200, ressources.Iron)},
                     isNearReactor);
                 GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
                 GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
                 break;
             case "BuildBoiler":
-                data = new BuildingManager.structureData(boilerPrefab, boilerPlacement, null, "reactorboiler", "reactorboiler", new List<HPHandler.ressourceStack> {
-                    new HPHandler.ressourceStack(200, HPHandler.ressources.Stone),
-                    new HPHandler.ressourceStack(200, HPHandler.ressources.Wood),
-                    new HPHandler.ressourceStack(500, HPHandler.ressources.Iron)},
+                data = new BuildingManager.structureData(boilerPrefab, boilerPlacement, null, "reactorboiler", "reactorboiler", new List<ressourceStack> {
+                    new ressourceStack(200, ressources.Stone),
+                    new ressourceStack(200, ressources.Wood),
+                    new ressourceStack(500, ressources.Iron)},
                     isNearReactor);
                 GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
                 GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
                 break;
             case "BuildWall":
-                data = new BuildingManager.structureData(wallPrefab, wallPlacement, null, "reactorwall", "reactorwall", new List<HPHandler.ressourceStack> {
-                    new HPHandler.ressourceStack(100, HPHandler.ressources.Stone),
-                    new HPHandler.ressourceStack(50, HPHandler.ressources.Iron)},
+                data = new BuildingManager.structureData(wallPrefab, wallPlacement, null, "reactorwall", "reactorwall", new List<ressourceStack> {
+                    new ressourceStack(100, ressources.Stone),
+                    new ressourceStack(50, ressources.Iron)},
                     isNearReactor);
                 GameObject.Find("Terrain").GetComponent<Building>().buildClicked(data);
                 GameObject.Find("Terrain").GetComponent<Building>().setOverrideCost(data.cost.ToArray());
@@ -162,7 +162,7 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
         if (this.salvaging && this.getHP().HP < 3) {
             print("structure salvaged!");
             var pickup = Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().pickupBox, this.transform.position, Quaternion.identity);
-            pickup.GetComponent<inventory>().add(new HPHandler.ressourceStack(this.getHP().getInitialHP(), HPHandler.ressources.Scrap));
+            pickup.GetComponent<inventory>().add(new ressourceStack(this.getHP().getInitialHP(), ressources.Scrap));
             GameObject.Destroy(this.gameObject);
         }
 
@@ -180,12 +180,12 @@ public class ReactorController : MonoBehaviour, clickable, Structure {
         return this.gameObject;
     }
 
-    public HPHandler.ressourceStack[] getCost() {
+    public ressourceStack[] getCost() {
         return getPrice();
     }
 
-    public HPHandler.ressourceStack[] getResources() {
-        return new HPHandler.ressourceStack[] { new HPHandler.ressourceStack(1000, HPHandler.ressources.Scrap) };
+    public ressourceStack[] getResources() {
+        return new ressourceStack[] { new ressourceStack(1000, ressources.Scrap) };
     }
 
     public HPHandler getHP() {

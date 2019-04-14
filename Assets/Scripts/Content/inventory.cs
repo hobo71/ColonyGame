@@ -4,40 +4,40 @@ using UnityEngine;
 
 public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
 
-    private Dictionary<HPHandler.ressources, float> newContent = new Dictionary<HPHandler.ressources, float>();
+    private Dictionary<ressources, float> newContent = new Dictionary<ressources, float>();
     public float maxSize = 50f;
 
     /// <summary>
     /// This function is called when the object becomes enabled and active.
     /// </summary>
     void OnEnable() {
-        foreach (HPHandler.ressources item in Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources item in Enum.GetValues(typeof(ressources))) {
             newContent[item] = 0;
         }
     }
 
-    public void remove(HPHandler.ressourceStack stack) {
+    public void remove(ressourceStack stack) {
         newContent[stack.getRessource()] -= stack.getAmount();
 
     }
 
-    public float getAmount(HPHandler.ressources kind) {
+    public float getAmount(ressources kind) {
         return newContent[kind];
     }
 
-    public void takeAmount(HPHandler.ressources kind, float amount) {
+    public void takeAmount(ressources kind, float amount) {
         newContent[kind] -= amount;
     }
 
     public void transferAll(inventory target) {
 
-        foreach (HPHandler.ressources item in Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources item in Enum.GetValues(typeof(ressources))) {
             target.newContent[item] += this.newContent[item];
             this.newContent[item] = 0;
         }
     }
 
-    public void transferSafe(inventory target, HPHandler.ressources item) {
+    public void transferSafe(inventory target, ressources item) {
         var amount = newContent[item];
         if (amount > target.getFreeSpace()) {
             amount = target.getFreeSpace();
@@ -48,32 +48,32 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
     }
 
     public void transferAllSafe(inventory target) {
-        foreach (HPHandler.ressources item in Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources item in Enum.GetValues(typeof(ressources))) {
             transferSafe(target, item);
         }
     }
 
-    public void transfer(inventory target, HPHandler.ressources type, float amount) {
+    public void transfer(inventory target, ressources type, float amount) {
         target.newContent[type] += amount;
         this.newContent[type] -= amount;
     }
 
-    public void transfer(inventory target, HPHandler.ressourceStack stack) {
+    public void transfer(inventory target, ressourceStack stack) {
         target.add(stack);
         this.remove(stack);
     }
 
-    public void add(HPHandler.ressourceStack stack) {
+    public void add(ressourceStack stack) {
         this.newContent[stack.getRessource()] += stack.getAmount();
     }
 
-    public void add(HPHandler.ressources type, float amount) {
+    public void add(ressources type, float amount) {
         this.newContent[type] += amount;
     }
 
     public override string ToString() {
         string text = "";
-        foreach (HPHandler.ressources item in Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources item in Enum.GetValues(typeof(ressources))) {
             text += item.ToString() + ": " + this.newContent[item] + " ";
         }
         return "inventory: " + text + " unit:" + this.transform.gameObject.name;
@@ -86,7 +86,7 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
 
     public float getAmount() {
         float amount = 0;
-        foreach (HPHandler.ressources item in Enum.GetValues(typeof(HPHandler.ressources))) {
+        foreach (ressources item in Enum.GetValues(typeof(ressources))) {
             amount += newContent[item];
         }
 
@@ -94,12 +94,12 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
     }
 
     //checks if there's enough ressources to be taken
-    public bool canTake(HPHandler.ressourceStack stack) {
+    public bool canTake(ressourceStack stack) {
 
         return newContent[stack.getRessource()] >= stack.getAmount();
     }
 
-    public bool canTake(HPHandler.ressources kind, float amount) {
+    public bool canTake(ressources kind, float amount) {
         return newContent[kind] >= amount;
     }
 
@@ -111,7 +111,7 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
         return this.getAmount() / this.maxSize;
     }
 
-    public float getFillPercent(HPHandler.ressources kind) {
+    public float getFillPercent(ressources kind) {
         return this.getAmount(kind) / this.maxSize;
     }
 
@@ -132,9 +132,9 @@ public class inventory : MonoBehaviour, SaveLoad.SerializableInfo {
     class serializationData : SaveLoad.SerializationInfo {
 
         public float maxSize;
-        public Dictionary<HPHandler.ressources, float> newContent = new Dictionary<HPHandler.ressources, float>();
+        public Dictionary<ressources, float> newContent = new Dictionary<ressources, float>();
 
-        public serializationData(float maxSize, Dictionary<HPHandler.ressources, float> newContent) {
+        public serializationData(float maxSize, Dictionary<ressources, float> newContent) {
             this.maxSize = maxSize;
             this.newContent = newContent;
         }

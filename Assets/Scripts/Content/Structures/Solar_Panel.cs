@@ -8,16 +8,16 @@ public class Solar_Panel : DefaultStructure {
     public bool generating = true;
     public float generateAmount = 10;   //per second
 
-    public static HPHandler.ressourceStack[] getPrice() {
-        HPHandler.ressourceStack[] cost = new HPHandler.ressourceStack[2];
+    public static ressourceStack[] getPrice() {
+        ressourceStack[] cost = new ressourceStack[2];
 
-        cost[0] = new HPHandler.ressourceStack(20, HPHandler.ressources.Wood);
-        cost[1] = new HPHandler.ressourceStack(200, HPHandler.ressources.Stone);
+        cost[0] = new ressourceStack(20, ressources.Wood);
+        cost[1] = new ressourceStack(200, ressources.Stone);
 
         return cost;
     }
 
-    public override HPHandler.ressourceStack[] getCost() {
+    public override ressourceStack[] getCost() {
         return Solar_Panel.getPrice();
     }
 
