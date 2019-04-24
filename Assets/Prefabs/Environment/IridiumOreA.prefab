@@ -116,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoBut: {fileID: 21300000, guid: 0c5bb980a75e4e24db86dddc4d4de97c, type: 3}
   moveToBut: {fileID: 21300000, guid: 0036304ca6d68334ba79fe76f6088696, type: 3}
+  harvestMultiplier: 1
 --- !u!114 &114691768864301174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 1000
   type: 9
+  faction: 3
 --- !u!114 &114758635533491722
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,6 +146,8 @@ MonoBehaviour:
   template: {fileID: 1373858447954990, guid: f799a92362ed3c2429826592ea670fdc, type: 2}
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
+  assignHPBar: {fileID: 0}
+  tempDisplay: {fileID: 0}
 --- !u!114 &114929278057369560
 MonoBehaviour:
   m_ObjectHideFlags: 1

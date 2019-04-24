@@ -110,12 +110,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4584046152110568}
   - component: {fileID: 95187081506536024}
+  - component: {fileID: 65592371761655984}
   - component: {fileID: 143133650231196008}
   - component: {fileID: 195251048996284436}
   - component: {fileID: 114848116037640874}
   - component: {fileID: 114909508134361832}
   - component: {fileID: 114102042064091212}
-  - component: {fileID: 65592371761655984}
   - component: {fileID: 114886206777768400}
   m_Layer: 0
   m_Name: CyberSoldier
@@ -1307,6 +1307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 10
   type: 2
+  faction: 0
 --- !u!114 &114909508134361832
 MonoBehaviour:
   m_ObjectHideFlags: 1

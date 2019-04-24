@@ -7,17 +7,32 @@ public partial class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
     
     public float HP = 100;
     public ressources type = ressources.Stone;
+    public Faction faction = Faction.Terran;
     private float initialHP;
+    
+    public static Dictionary<Faction, List<GameObject>> factionMembers = new Dictionary<Faction, List<GameObject>>();
 
     public interface IDestroyAction {
         void beforeDestroy();
     }
 
+    public enum Faction {
+        Terran, Hostile, Alien, Neutral, Ally
+    }
 
     // Use this for initialization
 	void Start () {
 		initialHP = this.HP;
-	}
+        try {
+            factionMembers[faction].Add(this.gameObject);
+        }
+        catch (KeyNotFoundException ex) {
+            foreach (HPHandler.Faction item in Enum.GetValues(typeof(HPHandler.Faction))) {
+                factionMembers[item] = new List<GameObject>();
+            }
+            factionMembers[faction].Add(this.gameObject);
+        }
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -32,6 +47,8 @@ public partial class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
             if (this.GetComponent<IDestroyAction>() != null) {
                 this.GetComponent<IDestroyAction>().beforeDestroy();
             }
+
+            factionMembers[faction].Remove(this.gameObject);
 
             Destroy(this.transform.gameObject);
         }

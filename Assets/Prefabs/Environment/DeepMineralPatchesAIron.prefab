@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100000
   type: 5
+  faction: 3
 --- !u!114 &114464569449832702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,3 +235,4 @@ MonoBehaviour:
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
   assignHPBar: {fileID: 0}
+  tempDisplay: {fileID: 0}
