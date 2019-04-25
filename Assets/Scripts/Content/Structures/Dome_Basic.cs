@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Dome_Basic : DefaultStructure {
-
     public Sprite cloneBut;
     public GameObject toClone;
-    
+
     public static ressourceStack[] getPrice() {
         ressourceStack[] cost = new ressourceStack[2];
 
@@ -22,16 +21,16 @@ public class Dome_Basic : DefaultStructure {
     }
 
     public override PopUpCanvas.popUpOption[] getOptions() {
-         PopUpCanvas.popUpOption[] options;
+        PopUpCanvas.popUpOption[] options;
 
-         PopUpCanvas.popUpOption info = new  PopUpCanvas.popUpOption("Info", infoBut);
-         PopUpCanvas.popUpOption goTo = new  PopUpCanvas.popUpOption("DoClone", cloneBut);
+        PopUpCanvas.popUpOption info = new PopUpCanvas.popUpOption("Info", infoBut);
+        PopUpCanvas.popUpOption goTo = new PopUpCanvas.popUpOption("DoClone", cloneBut);
 
         if (this.getCurEnergy() < 500 || this.busy) {
             goTo.setEnabled(false);
         }
-        
-        options = new PopUpCanvas.popUpOption[]{info, goTo};
+
+        options = new PopUpCanvas.popUpOption[] {info, goTo};
         return options;
     }
 
@@ -76,17 +75,20 @@ public class Dome_Basic : DefaultStructure {
 
         if (this.getCurEnergy() >= 500 && !this.busy) {
             doClone();
-            Notification.createNotification(this.gameObject, Notification.sprites.Starting, this.getCurEnergy() + 500 + "/500", Color.green);
-        } else if (this.busy) {
+            Notification.createNotification(this.gameObject, Notification.sprites.Starting,
+                this.getCurEnergy() + 500 + "/500", Color.green);
+        }
+        else if (this.busy) {
             Notification.createNotification(this.gameObject, Notification.sprites.Working, "", Color.blue, true);
-        } else {
-            Notification.createNotification(this.gameObject, Notification.sprites.Energy_Low, this.getCurEnergy() + "/500", Color.red);
+        }
+        else {
+            Notification.createNotification(this.gameObject, Notification.sprites.Energy_Low,
+                this.getCurEnergy() + "/500", Color.red);
         }
     }
 
     public override string getDesc() {
         return "A small, very basic Dome" + base.getDesc();
-
     }
 
     public override int getMaxEnergy() {
@@ -94,7 +96,6 @@ public class Dome_Basic : DefaultStructure {
     }
 
     public override int getMaxInput() {
-
         if (this.busy) {
             return 0;
         }
@@ -102,6 +103,7 @@ public class Dome_Basic : DefaultStructure {
         if (this.getMaxEnergy() - this.getCurEnergy() < 50) {
             return this.getMaxEnergy() - this.getCurEnergy();
         }
+
         return 50;
     }
 
@@ -125,9 +127,8 @@ public class Dome_Basic : DefaultStructure {
         this.busy = false;
         GameObject cloned = GameObject.Instantiate(toClone, this.transform.position, this.transform.rotation);
         cloned.GetComponent<movementController>().moveRand();
-        
-        Notification.createNotification(this.gameObject, Notification.sprites.Starting, "", Color.green, true);
 
+        Notification.createNotification(this.gameObject, Notification.sprites.Starting, "", Color.green, true);
     }
 
     /*private HPHandler.ressourceStack[] ownResource = new HPHandler.ressourceStack[2];

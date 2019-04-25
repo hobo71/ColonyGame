@@ -51,7 +51,7 @@ public class Projectile : MonoBehaviour {
 		var heightAdd = Vector3.up * maxHeight * (float) (4 * fTime - 4 * Math.Pow(fTime, 2));
 		fPos += heightAdd;
 		
-		print("future position in " + delta + " is: " + fPos);
+		//print("future position in " + delta + " is: " + fPos);
 		return fPos;
 	}
 
