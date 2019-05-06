@@ -29,7 +29,7 @@ public class TeslaTower : SimpleTower {
             print("deactivating tesla tower");
             Invoke("deactivate", 5f);
             this.GetComponent<Animator>().SetTrigger(Deactivate);
-            startPos.SetActive(false);
+            setParticleState(false);
             ready = false;
         }
 
@@ -56,12 +56,17 @@ public class TeslaTower : SimpleTower {
 
     private void activate() {
         this.ready = true;
-        startPos.SetActive(true);
+        setParticleState(true);
         morphing = false;
     }
     private void deactivate() {
         morphing = false;
         startPos.SetActive(false);
+    }
+
+    private void setParticleState(bool state) {
+        startPos.GetComponent<Renderer>().enabled = state;
+        startPos.transform.GetChild(0).gameObject.SetActive(state);
     }
     
     private bool enemyIsClose() {

@@ -62,7 +62,7 @@ public class ClickOptions : MonoBehaviour {
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
-    void Awake() {
+    void Start() {
         if (assignInventoryBar != null) {
             inventoryBar = assignInventoryBar;
         }
@@ -73,6 +73,14 @@ public class ClickOptions : MonoBehaviour {
 
         if (assignHPBar != null) {
             HPBar = assignHPBar;
+        }
+
+        if (Canvas == null) {
+            Canvas = UIPrefabCache.Canvas;
+        }
+
+        if (template == null) {
+            template = UIPrefabCache.Template;
         }
     }
     

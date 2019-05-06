@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class clickDetector : MonoBehaviour {
 
     private float onStart;
-    public static bool overlayClicked = false;
+    public static bool overlayClicked;
     public GameObject ClickableInfo;
 
     //new int, used to display the number of active overlays/menus, click detection is only happening when this equals 0.
     //increment when opening a menu, decrement when closing
     public static int menusOpened = 0;
 
-    //private static GameObject highlight = null;
-    private static float highlightTime = 0.0f;
-    //private static cakeslice.OutlineEffect outlineEffect = null;
     private static List<Outline> outlines = new List<Outline>();
-    private static readonly float hightlightMaxTime = 0.8f;
 
-    private Action<GameObject> nextAction = null;
+    private Action<GameObject> nextAction;
 
     // Update is called once per frame
     void Update() {
@@ -83,7 +78,7 @@ public class clickDetector : MonoBehaviour {
                 try {
                 outline.OutlineWidth -= 0.1f;
                 if (outline.OutlineWidth < 0.1f) {
-                    GameObject.Destroy(outline);
+                    Destroy(outline);
                     //outlines.Remove(outline);
                     toRemove.Add(outline);
                 }
@@ -130,21 +125,15 @@ public class clickDetector : MonoBehaviour {
 
     private void createHighlight(GameObject on) {
         print("creating highlight for: " + on.name);
-        Outline effect = on.AddComponent<Outline>() as Outline;
+        
+        //destroy existing effect
+        if (on.GetComponent<Outline>() != null) {
+            GameObject.Destroy(on.GetComponent<Outline>());
+        }
+        Outline effect = on.AddComponent<Outline>();
         effect.OutlineColor = Color.cyan;
         effect.OutlineWidth = 4.0f;
         outlines.Add(effect);
-        /*cakeslice.Outline outline = on.AddComponent<cakeslice.Outline>() as cakeslice.Outline;
-        outline.color = 0;
-
-        if (highlight != null) {
-            GameObject.Destroy(highlight.GetComponent<cakeslice.Outline>());
-        }
-
-        highlight = on;
-        highlightTime = 0.0f;
-        outlineEffect = GameObject.Find("Main Camera").GetComponent<cakeslice.OutlineEffect>();
-        GameObject.Find("Main Camera").GetComponent<cakeslice.OutlineEffect>().enabled = true;*/
     }
 
     public static void clearPopUps() {
@@ -153,10 +142,10 @@ public class clickDetector : MonoBehaviour {
 
     public void setNextClickAction(Action<GameObject> onClick) {
         print("next click has been overridden");
-        this.nextAction = onClick;
+        nextAction = onClick;
     }
 
     public void resetNextClick() {
-        this.nextAction = null;
+        nextAction = null;
     }
 }
