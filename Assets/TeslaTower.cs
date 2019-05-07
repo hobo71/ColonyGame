@@ -16,9 +16,21 @@ public class TeslaTower : SimpleTower {
     private static readonly int Deactivate = Animator.StringToHash("deactivate");
 
     public override void FixedUpdate() {
-        if (morphing) {
+
+        if (morphing || (!ready && !base.active)) {
             return;
         }
+
+        if (ready && !base.active) {
+            morphing = true;
+            print("deactivating tesla tower");
+            Invoke("deactivate", 5f);
+            this.GetComponent<Animator>().SetTrigger(Deactivate);
+            setParticleState(false);
+            ready = false;
+            return;
+        }
+        
         if (!ready && enemyIsClose()) {
             morphing = true;
             Invoke("activate", 5f);

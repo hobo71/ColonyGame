@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Content.Helpers {
-    public abstract class SimpleTower : MonoBehaviour {
+    public abstract class SimpleTower : MonoBehaviour, TurretConfigurator.ConfigurableTurret {
         public float Damage;
         public float attacksPerSecond;
         public float maxRange;
@@ -13,8 +13,12 @@ namespace Content.Helpers {
         internal GameObject enemy;
         internal Collider enemyCollider;
         internal float timeElapsed = 0f;
+        internal bool active = true;
 
         public virtual void FixedUpdate() {
+
+            if (!active) return;
+            
             if (enemy == null) {
                 enemy = findEnemy(useRandom());
                 if (enemy != null) {
@@ -99,6 +103,14 @@ namespace Content.Helpers {
 
             //using ? operator for absolutely no reason at all, but it looks cool
             return potentialEnemies.Count == 0 ? null : potentialEnemies[Random.Range(0, potentialEnemies.Count)];
+        }
+
+        public void setActive(bool val) {
+            this.active = val;
+        }
+
+        public bool getActive() {
+            return active;
         }
     }
 }

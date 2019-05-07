@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class PointDefenseTurret : MonoBehaviour {
+public class PointDefenseTurret : MonoBehaviour, TurretConfigurator.ConfigurableTurret {
 
 	private GameObject enemy = null;
 	private bool isRotated = false;
@@ -14,6 +15,9 @@ public class PointDefenseTurret : MonoBehaviour {
 	private int barrel = 0;
 	private float timePassed = 0f;
 	private int updateTimer = 0;
+	private bool active = true;
+	private Projectile projectile;
+	private bool isShooting = false;
 	
 	//Debug part
 	
@@ -24,18 +28,28 @@ public class PointDefenseTurret : MonoBehaviour {
 	public float attacksPerSecond = 6f;
 	public float damagePerBullet = 3f;
 	public float deviateAngle = 5f;
+	public bool rotating = false;
 	public LineRenderer lineRenderer;
 	public ParticleSystem emitter;
 	public Transform turret;
 	public List<GameObject> barrels = new List<GameObject>();
 	public List<GameObject> barrelRender = new List<GameObject>();
-	private Projectile projectile;
 
 	private void Start() {
 		emitter.gameObject.GetComponent<BulletShot>().damagePerBullet = damagePerBullet;
 	}
 
+	private void Update() {
+		if (isShooting) {
+			barrelRender[0].transform.Rotate(new Vector3(1, 0 , 0), 35f);
+		}
+	}
+
 	private void FixedUpdate() {
+
+		isShooting = false;
+
+		if (!active) return;
 
 		if (enemy == null) {
 			enemy = findClosestEnemy(range);
@@ -56,6 +70,8 @@ public class PointDefenseTurret : MonoBehaviour {
 			return;
 		}
 		
+		isShooting = true;
+		
 		//attack target
 		Vector3 target;
 		Vector3 dir;
@@ -73,7 +89,9 @@ public class PointDefenseTurret : MonoBehaviour {
 			target = enemyCollider.ClosestPoint(lineRenderer.gameObject.transform.position);
 			dir = rotateTowards(target);
 		}
+		
 		drawTargetingLine(target);
+		
 		if (isRotated) {
 			timePassed += Time.deltaTime;
 			if (timePassed > 1 / attacksPerSecond) {
@@ -87,11 +105,14 @@ public class PointDefenseTurret : MonoBehaviour {
 
 	}
 	private void shoot(Vector3 dir) {
-		
-		//animate barrel movement
-		var xPos = Random.Range(-0.3f, 0.1f);
-		barrelRender[barrel % barrels.Count].transform.localPosition = new Vector3(xPos, 0, 0);
 
+		//animate barrel movement
+		if (!rotating) {
+			var xPos = Random.Range(-0.3f, 0.1f);
+			barrelRender[barrel % barrels.Count].transform.localPosition = new Vector3(xPos, 0, 0);
+
+		}
+		
 		//emit bullet particle
 		var vel = dir.normalized * bulletVelocity;
 		
@@ -179,5 +200,14 @@ public class PointDefenseTurret : MonoBehaviour {
 		//print("invalid raycast: " + target.name + " hit=" + hit.transform.gameObject.name);
 		
 		return false;
+	}
+
+	public void setActive(bool val) {
+		this.active = val;
+		lineRenderer.gameObject.SetActive(val);
+	}
+
+	public bool getActive() {
+		return active;
 	}
 }

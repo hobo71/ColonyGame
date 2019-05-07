@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Notification : MonoBehaviour {
-    
-    public static List<Sprite> availSprites;
+    private static List<Sprite> availSprites;
     public List<Sprite> assignSprites;
     public GameObject assignCanvas;
-    public static GameObject canvas;
+    private static GameObject canvas;
     public GameObject assignText;
-    public static GameObject text;
+    private static GameObject text;
     public GameObject assignImage;
-    public static GameObject image;
+    private static GameObject image;
 
     private static GameObject visibleCanvas = null;
     private static GameObject visibleText = null;

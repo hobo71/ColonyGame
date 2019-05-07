@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Content.Helpers;
 using UnityEngine;
 
-public class BombardTurret : SimpleTower {
+public class BombardTurret : SimpleTower{
 
 	public GameObject projectilePrefab;
 
