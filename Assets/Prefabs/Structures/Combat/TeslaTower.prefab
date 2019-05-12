@@ -1319,9 +1319,9 @@ MonoBehaviour:
   storedEnergy: 0
   salvaging: 0
   active: 0
-  Damage: 50
+  Damage: 40
   attacksPerSecond: 5
-  maxRange: 48
+  maxRange: 40
   minRange: 0
   whipPrefab: {fileID: 1248191008042170, guid: 72af31413a22786409ae82279a17ca6c, type: 2}
   startPos: {fileID: 1624639600765510}
