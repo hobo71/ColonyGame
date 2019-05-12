@@ -10,6 +10,7 @@ public class BuildingMenuDisplay : MonoBehaviour {
 	public GameObject itemPrefab;
 	public GameObject arrowUp;
 	public GameObject arrowDown;
+	public int elemsPerSide = 12;
 	private int curSide = 0;
 	private int sides = 0;
 
@@ -27,7 +28,6 @@ public class BuildingMenuDisplay : MonoBehaviour {
 		var buildings = GameObject.Find("Terrain").GetComponent<BuildingManager>().getBuildings().Values.ToList();
 
 		int count = buildings.Count;
-		int elemsPerSide = (int) ((height / 40) + 1) * 2;
 		int sides = (int) (count / elemsPerSide) + 1;
 		this.sides = sides - 1;
 		print("sides=" + sides + " elemsPerSide=" + elemsPerSide);
@@ -39,7 +39,7 @@ public class BuildingMenuDisplay : MonoBehaviour {
 		//create sides
 		for (int j = 0; j < sides; j++) {
 			//individual side, creating left and right in each iteration
-			for (int i = 0; i < height / 40; i++) {
+			for (int i = 0; i < elemsPerSide / 2; i++) {
 
 				if (tCount >= count) continue;
 

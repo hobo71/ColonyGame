@@ -266,6 +266,12 @@ MonoBehaviour:
   - {fileID: 1085736737636064, guid: 866c6681209e6db40bd3fced7bb3b1d9, type: 2}
   - {fileID: 1854736726247092, guid: b30b5bf9952020646a18398dcdc29f8e, type: 2}
   - {fileID: 1620985602291168, guid: 3045b30435b8fb34190c80201ce5209e, type: 2}
+  - {fileID: 1839713176600564, guid: fc750f1c54fc37e409b8f429b413033d, type: 2}
+  - {fileID: 1662359031190798, guid: 7a8d5f4a2109d754a9400285f93f22f0, type: 2}
+  - {fileID: 1591903946509936, guid: 7a313afce5c5a71488b164560ee4817e, type: 2}
+  - {fileID: 1322057100971590, guid: b9cb26de4688f274fbe7523851d7af27, type: 2}
+  - {fileID: 1085348966062926, guid: 1fdf6668ba2412746a01fe79d43a6d43, type: 2}
+  - {fileID: 1385366326143814, guid: e3a77a79a2155a44094c33d7393a72b8, type: 2}
   loadingIcon: {fileID: 0}
 --- !u!114 &114768567439674454
 MonoBehaviour:
@@ -331,6 +337,50 @@ MonoBehaviour:
   WaterPumpPlacement: {fileID: 1514041749820302, guid: 8142941a1b42d0c45aac008fe0e52211,
     type: 2}
   WaterPumpImage: {fileID: 21300000, guid: 527aa1e187240d3459e7611f7d71fe21, type: 3}
+  PDDPrefab: {fileID: 1662359031190798, guid: 7a8d5f4a2109d754a9400285f93f22f0, type: 2}
+  PDDPlacement: {fileID: 1724827846882262, guid: 642d12246468c234c85c502ce7d50861,
+    type: 2}
+  PDDImage: {fileID: 21300000, guid: 1be1578410b395e4b8cfea5394cddb2d, type: 3}
+  autoPrefabs:
+  - prefab: {fileID: 1385366326143814, guid: e3a77a79a2155a44094c33d7393a72b8, type: 2}
+    placement: {fileID: 1511488333535292, guid: d51729f9f88ae304aa7635cd16d59b59,
+      type: 2}
+    icon: {fileID: 21300000, guid: fc49b64a6379307498225a29affeb514, type: 3}
+    dispName: Twin PDD
+    desc: A 2-barreled Point Defense Turret, useful to defend against incoming projectils
+      and smaller enemies
+    cost: []
+  - prefab: {fileID: 1085348966062926, guid: 1fdf6668ba2412746a01fe79d43a6d43, type: 2}
+    placement: {fileID: 1750740969597384, guid: ca2c2c20c35fab942b300330ec594210,
+      type: 2}
+    icon: {fileID: 21300000, guid: 65dfde86f00fead4ba548cd757cb2b9e, type: 3}
+    dispName: Triple-PDD
+    desc: 3-barrelled Point Defense turret, capable of shooting down most incoming
+      projetiles
+    cost: []
+  - prefab: {fileID: 1591903946509936, guid: 7a313afce5c5a71488b164560ee4817e, type: 2}
+    placement: {fileID: 1668849275431042, guid: 5fba36a05ee7ff740a53661d8bd7daf0,
+      type: 2}
+    icon: {fileID: 21300000, guid: 150d56668bdae6940abf20a23cc8cd31, type: 3}
+    dispName: Gattling-PDD
+    desc: A Point Defense Turret with a rotating barrel, resulting in high-speed emission
+      of bullets.
+    cost: []
+  - prefab: {fileID: 1839713176600564, guid: fc750f1c54fc37e409b8f429b413033d, type: 2}
+    placement: {fileID: 1932680225608458, guid: fe176438354cd134a8d0e76f40f56b6d,
+      type: 2}
+    icon: {fileID: 21300000, guid: ddb5368f366cbdc40af19e9785bda3d2, type: 3}
+    dispName: Bomb Tower
+    desc: Long range turret that bombards enemy buildings with strong bombs
+    cost: []
+  - prefab: {fileID: 1322057100971590, guid: b9cb26de4688f274fbe7523851d7af27, type: 2}
+    placement: {fileID: 1730249464912470, guid: 96f8063b403c4824da9a993d40447475,
+      type: 2}
+    icon: {fileID: 21300000, guid: 8d5620b9dfb08b94c9272cca6613d059, type: 3}
+    dispName: Tesla Tower
+    desc: Medium-Range tower with fast attacks, enemy multiple enemies at once with
+      electric beams.
+    cost: []
 --- !u!114 &114851170104750700
 MonoBehaviour:
   m_ObjectHideFlags: 1

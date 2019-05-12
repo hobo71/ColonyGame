@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Content.Helpers.Combat;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Content.Helpers {
-    public abstract class SimpleTower : MonoBehaviour, TurretConfigurator.ConfigurableTurret {
+    public abstract class SimpleTower : TurretConfigurator {
         public float Damage;
         public float attacksPerSecond;
         public float maxRange;
@@ -13,7 +14,6 @@ namespace Content.Helpers {
         internal GameObject enemy;
         internal Collider enemyCollider;
         internal float timeElapsed = 0f;
-        internal bool active = true;
 
         public virtual void FixedUpdate() {
 
@@ -103,14 +103,6 @@ namespace Content.Helpers {
 
             //using ? operator for absolutely no reason at all, but it looks cool
             return potentialEnemies.Count == 0 ? null : potentialEnemies[Random.Range(0, potentialEnemies.Count)];
-        }
-
-        public void setActive(bool val) {
-            this.active = val;
-        }
-
-        public bool getActive() {
-            return active;
         }
     }
 }
