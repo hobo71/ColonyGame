@@ -18,15 +18,6 @@ public class ConveyorCreator : MonoBehaviour {
         instance = this;
     }
 
-    // Update is called once per frame
-    void Update() {
-
-    }
-
-    void FixedUpdate() {
-
-    }
-
     public static ConveyorCreator getInstance() {
         return instance;
     }

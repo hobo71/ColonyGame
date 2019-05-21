@@ -5,7 +5,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Content.Helpers {
-    public abstract class SimpleTower : TurretConfigurator {
+    public abstract class SimpleTower : TurretConfigurator, IWeapon {
+
         public float Damage;
         public float attacksPerSecond;
         public float maxRange;
@@ -104,5 +105,19 @@ namespace Content.Helpers {
             //using ? operator for absolutely no reason at all, but it looks cool
             return potentialEnemies.Count == 0 ? null : potentialEnemies[Random.Range(0, potentialEnemies.Count)];
         }
+
+        public float getDamage() {
+            return Damage;
+        }
+
+        public float getRange() {
+            return maxRange;
+        }
+
+        public void setRange(float range) {
+            this.maxRange = range;
+        }
+        
+        public abstract string getName();
     }
 }

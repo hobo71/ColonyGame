@@ -100,7 +100,7 @@ public abstract class TogglableStructure : DefaultStructure {
 
     }
 
-    public virtual void doStop() {
+    protected virtual void doStop() {
         //this.GetComponent<Animator>().SetBool("working", false);
         Notification.createNotification(this.gameObject, Notification.sprites.Stopping, "Stopped", Color.red);
         this.busy = false;

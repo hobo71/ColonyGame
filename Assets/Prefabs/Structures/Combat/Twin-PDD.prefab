@@ -949,7 +949,7 @@ MonoBehaviour:
   bulletVelocity: 120
   attacksPerSecond: 20
   damagePerBullet: 3
-  deviateAngle: 5
+  deviateAngle: 3
   rotating: 0
   lineRenderer: {fileID: 120959879762954330}
   emitter: {fileID: 198532108500388168}

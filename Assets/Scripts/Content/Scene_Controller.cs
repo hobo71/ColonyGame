@@ -71,7 +71,7 @@ public class Scene_Controller : MonoBehaviour {
 
     public void hideAllUI () {
 
-        string[] hideable = {"BuildingMenu_Background", "MenuButton", "BuildNow", "RessourceDisplayLarge", "Resources", "BuildingPreview", "BuildingMenu"};
+        string[] hideable = {"BuildingMenu_Background", "MenuButton", "BuildNow", "RessourceDisplayLarge", "Resources", "BuildingPreview", "BuildingMenu", "ConveyorMenu"};
 
         foreach (string elem in hideable) {
             try {

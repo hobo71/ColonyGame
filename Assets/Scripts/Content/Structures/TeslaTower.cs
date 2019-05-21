@@ -113,4 +113,8 @@ public class TeslaTower : SimpleTower {
     public override bool useRandom() {
         return true;
     }
+
+    public override string getName() {
+        return "Electric overcharge";
+    }
 }

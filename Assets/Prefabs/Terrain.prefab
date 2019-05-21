@@ -196,6 +196,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: be652a86bfecb40f8a9991e2ac107307, type: 3}
   - {fileID: 21300000, guid: 88924534b9ea345778719b733ed99479, type: 3}
   - {fileID: 21300000, guid: aca5053f6a0434f8881d370a7094b82d, type: 3}
+  - {fileID: 21300000, guid: 87f376a736cea4550ad1466f64a2f432, type: 3}
   assignCanvas: {fileID: 1329715827467212, guid: c6b5d70e156a1344180812e564e78bb2,
     type: 2}
   assignText: {fileID: 1236951381839766, guid: 841c7ba68c6f6d34c8d13b3c6c07d20b, type: 2}
@@ -272,6 +273,10 @@ MonoBehaviour:
   - {fileID: 1322057100971590, guid: b9cb26de4688f274fbe7523851d7af27, type: 2}
   - {fileID: 1085348966062926, guid: 1fdf6668ba2412746a01fe79d43a6d43, type: 2}
   - {fileID: 1385366326143814, guid: e3a77a79a2155a44094c33d7393a72b8, type: 2}
+  - {fileID: 1886284784832728, guid: b8e679ee0f2722f428012b2459fa1148, type: 2}
+  - {fileID: 1304155975588136, guid: 1ede88d4d773f5a418daab392703d81f, type: 2}
+  - {fileID: 1879523899935926, guid: 895e883b1d96ee04b977d9c42c88d035, type: 2}
+  - {fileID: 1375010055404266, guid: 3cf150e4df2d08b499c8e6ffa6ee9b12, type: 2}
   loadingIcon: {fileID: 0}
 --- !u!114 &114768567439674454
 MonoBehaviour:
@@ -380,6 +385,13 @@ MonoBehaviour:
     dispName: Tesla Tower
     desc: Medium-Range tower with fast attacks, enemy multiple enemies at once with
       electric beams.
+    cost: []
+  - prefab: {fileID: 1375010055404266, guid: 3cf150e4df2d08b499c8e6ffa6ee9b12, type: 2}
+    placement: {fileID: 1345966847287354, guid: dc9f5d54f5bcfb94696fe8aa463b50fe,
+      type: 2}
+    icon: {fileID: 21300000, guid: bc5b8020c5647c5429114feed966fdc4, type: 3}
+    dispName: Ore Washing Plant
+    desc: Used to refine Ores, resulting in a higher yield
     cost: []
 --- !u!114 &114851170104750700
 MonoBehaviour:

@@ -11,11 +11,13 @@ public class SphereExplosion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, range);
+		var alreadyHit = new List<GameObject>();
 		int i = 0;
 		while (i < hitColliders.Length) {
 			var hp = hitColliders[i].gameObject.GetComponent<HPHandler>();
-			if (hp != null) {
+			if (hp != null && !alreadyHit.Contains(hp.gameObject)) {
 				hp.HP -= Damage;
+				alreadyHit.Add(hp.gameObject);
 			}
 			i++;
 		}
@@ -24,7 +26,7 @@ public class SphereExplosion : MonoBehaviour {
 	private void FixedUpdate() {
 		timePassed += Time.deltaTime;
 		if (timePassed > 3f) {
-			Destroy(this.gameObject);
+			GameObject.Destroy(this.gameObject);
 		}
 	}
 }

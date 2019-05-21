@@ -1318,8 +1318,8 @@ MonoBehaviour:
   counter: 0
   storedEnergy: 0
   salvaging: 0
-  active: 0
-  Damage: 40
+  active: 1
+  Damage: 8
   attacksPerSecond: 5
   maxRange: 40
   minRange: 0

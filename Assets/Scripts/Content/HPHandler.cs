@@ -10,7 +10,7 @@ public partial class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
     public Faction faction = Faction.Terran;
     private float initialHP;
     
-    public static Dictionary<Faction, List<GameObject>> factionMembers = new Dictionary<Faction, List<GameObject>>();
+    public static readonly Dictionary<Faction, List<GameObject>> factionMembers = new Dictionary<Faction, List<GameObject>>();
 
     public interface IDestroyAction {
         void beforeDestroy();

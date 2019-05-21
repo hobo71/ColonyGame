@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 33566709010585214}
   - component: {fileID: 23040756258460668}
   - component: {fileID: 136972883263726866}
-  - component: {fileID: 64987751916472484}
   - component: {fileID: 114593994617747248}
   - component: {fileID: 114332569974865358}
   - component: {fileID: 114415510437904372}
@@ -486,20 +485,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1108771196014912}
   m_Mesh: {fileID: 4300004, guid: f50b1d1e06a78e74eafd270fb2358184, type: 3}
---- !u!64 &64987751916472484
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1719308571178208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: f50b1d1e06a78e74eafd270fb2358184, type: 3}
 --- !u!108 &108671395344420104
 Light:
   m_ObjectHideFlags: 1
@@ -552,6 +537,7 @@ MonoBehaviour:
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
   assignHPBar: {fileID: 0}
+  tempDisplay: {fileID: 0}
 --- !u!114 &114415510437904372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -604,6 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   type: 1
+  faction: 0
 --- !u!114 &114789847704760302
 MonoBehaviour:
   m_ObjectHideFlags: 1

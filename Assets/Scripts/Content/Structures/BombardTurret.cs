@@ -12,12 +12,16 @@ public class BombardTurret : SimpleTower{
 		var bullet = GameObject.Instantiate(projectilePrefab, this.transform.position + Vector3.up * 10f,
 			Quaternion.LookRotation(Vector3.up));
 		
-		bullet.GetComponent<Projectile>().init(target, impactPos);
+		bullet.GetComponent<Projectile>().init(target, impactPos, Damage, 4f);
 		bullet.GetComponent<HPHandler>().faction = this.GetComponent<HPHandler>().faction;
 	}
 
 	public override bool useRandom() {
 		return false;
+	}
+
+	public override string getName() {
+		return "Unguided Rockets";
 	}
 
 	public override Vector3 getImpactPos() {

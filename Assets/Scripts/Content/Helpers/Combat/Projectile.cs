@@ -12,19 +12,22 @@ public class Projectile : MonoBehaviour {
 	private float progress = 0;
 	private float flightTime;
 	private float maxHeight;
+	private float damage;
+	private float damageRadius;
+	private bool done = false;
 	
 	public float speed;
-	public float damage;
-	public float damageRadius;
 	public GameObject explosionPrefab;
 	
-	public void init([NotNull] GameObject target, Vector3 impactPos) {
+	public void init([NotNull] GameObject target, Vector3 impactPos, float damage, float damageRadius) {
 		if (target == null) throw new ArgumentNullException("target");
 		this.target = target;
 		this.impactPos = impactPos;
 		this.startPos = this.transform.position;
 		this.flightTime = (impactPos - startPos).magnitude / speed;
 		maxHeight = 4f * flightTime;
+		this.damage = damage;
+		this.damageRadius = damageRadius;
 	}
 
 	private void FixedUpdate() {
@@ -56,11 +59,14 @@ public class Projectile : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter(Collision other) {
+		if (done) return;
 		print("projectile hit: " + other.gameObject.name);
+		done = true;
 		
 		var explosion = GameObject.Instantiate(explosionPrefab, this.transform.position, Quaternion.identity);
 		explosion.GetComponent<SphereExplosion>().range = damageRadius;
 		explosion.GetComponent<SphereExplosion>().Damage = damage;
-		GameObject.Destroy(this);
+		
+		this.GetComponent<HPHandler>().HP = -1;
 	}
 }

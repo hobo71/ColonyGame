@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Content.Helpers.Combat;
 using UnityEngine;
 
 public class Dome_Basic : DefaultStructure {
     public Sprite cloneBut;
     public GameObject toClone;
+    public Sprite soldierbut;
+    public GameObject toSoldier;
 
     public static ressourceStack[] getPrice() {
         ressourceStack[] cost = new ressourceStack[2];
@@ -25,12 +28,16 @@ public class Dome_Basic : DefaultStructure {
 
         PopUpCanvas.popUpOption info = new PopUpCanvas.popUpOption("Info", infoBut);
         PopUpCanvas.popUpOption goTo = new PopUpCanvas.popUpOption("DoClone", cloneBut);
+        PopUpCanvas.popUpOption DoSoldier = new PopUpCanvas.popUpOption("DoSoldier", soldierbut);
 
         if (this.getCurEnergy() < 500 || this.busy) {
             goTo.setEnabled(false);
         }
+        if (this.getCurEnergy() < 1000 || this.busy) {
+            DoSoldier.setEnabled(false);
+        }
 
-        options = new PopUpCanvas.popUpOption[] {info, goTo};
+        options = new PopUpCanvas.popUpOption[] {info, goTo, DoSoldier};
         return options;
     }
 
@@ -45,6 +52,11 @@ public class Dome_Basic : DefaultStructure {
             case "DoClone":
                 Debug.Log("Clicked clone button");
                 doClone();
+                Notification.createNotification(this.gameObject, Notification.sprites.Starting, "", Color.green);
+                break;
+            case "DoSoldier":
+                Debug.Log("Clicked Soldier clone button");
+                doSoldier();
                 Notification.createNotification(this.gameObject, Notification.sprites.Starting, "", Color.green);
                 break;
             default:
@@ -122,11 +134,27 @@ public class Dome_Basic : DefaultStructure {
         this.Invoke("cloneDone", 10);
     }
 
+
+    private void doSoldier() {
+        this.addEnergy(-1000, this);
+        this.busy = true;
+        Debug.Log("Beginning to clone soldier...");
+        this.Invoke("soldierDone", 10);
+    }
+    
     private void cloneDone() {
         Debug.Log("Cloned succesfully!");
         this.busy = false;
         GameObject cloned = GameObject.Instantiate(toClone, this.transform.position, this.transform.rotation);
         cloned.GetComponent<movementController>().moveRand();
+
+        Notification.createNotification(this.gameObject, Notification.sprites.Starting, "", Color.green, true);
+    }
+    private void soldierDone() {
+        Debug.Log("Cloned soldier successfully!");
+        this.busy = false;
+        GameObject cloned = GameObject.Instantiate(toSoldier, this.transform.position, this.transform.rotation);
+        cloned.GetComponent<CombatUnit>().moveRand();
 
         Notification.createNotification(this.gameObject, Notification.sprites.Starting, "", Color.green, true);
     }

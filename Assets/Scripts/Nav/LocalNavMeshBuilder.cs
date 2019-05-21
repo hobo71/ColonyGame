@@ -15,12 +15,13 @@ public class LocalNavMeshBuilder : MonoBehaviour {
     public float reloadTime = 5f;
     public bool aSync = true;
 
-    NavMeshData m_NavMesh;
+    public NavMeshData m_NavMesh;
     AsyncOperation m_Operation;
     NavMeshDataInstance m_Instance;
     List<NavMeshBuildSource> m_Sources = new List<NavMeshBuildSource>();
 
     IEnumerator Start() {
+        yield return new WaitForSeconds(5);
         while (true) {
             UpdateNavMesh(true);
             yield return m_Operation;

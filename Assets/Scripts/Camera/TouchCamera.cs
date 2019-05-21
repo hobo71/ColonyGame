@@ -10,7 +10,7 @@ public class TouchCamera : MonoBehaviour {
 
     public static readonly float[] BoundsX = new float[] { -450f, 400f };
     public static readonly float[] BoundsZ = new float[] { -410f, 400f };
-    public static readonly float[] ZoomBounds = new float[] { 7f, 60f };
+    public static readonly float[] ZoomBounds = new float[] { 0f, 60f };
 
     private Camera cam;
 
@@ -58,7 +58,6 @@ public class TouchCamera : MonoBehaviour {
 
             case 1: // Panning
                 zoomActive = false;
-
                 // If the touch began, capture its position and its finger ID.
                 // Otherwise, if the finger ID of the touch doesn't match, skip it.
                 Touch touch = Input.GetTouch(0);
@@ -146,7 +145,7 @@ public class TouchCamera : MonoBehaviour {
 
         move = transform.rotation * move;
         move.y = 0;
-        move *= transform.position.y * 0.2f;
+        move *= transform.position.y * 0.1f + 0.5f;
         transform.Translate(move, Space.World);
         //ClampToBounds();
         camTargetOffset = move;

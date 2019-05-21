@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveLoad : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class SaveLoad : MonoBehaviour {
 
     void Start() {
         InvokeRepeating("autoSave", 120, 120);
+            SceneManager.sceneLoaded += ExecuteLoad;
     }
 
     void autoSave() {
@@ -34,7 +36,17 @@ public class SaveLoad : MonoBehaviour {
         List<System.Object> toSave = new List<System.Object>();
         yield return new WaitForSeconds(0.1f);
 
-        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        var rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+        var allObjects = new List<GameObject>();
+        allObjects.AddRange(rootObjects);
+        var editorTests = GameObject.Find("TestingObjects");
+        if (editorTests != null) {
+            foreach (Transform elem in editorTests.transform) {
+                allObjects.Add(elem.gameObject);
+            }
+        }
+        
+        //iterate over all root objects (and TestingObjects)
 
         foreach (GameObject obj in allObjects) {
             try {
@@ -46,7 +58,7 @@ public class SaveLoad : MonoBehaviour {
                 continue;
             }
 
-            yield return new WaitForSeconds(0.005f);
+            yield return new WaitForSeconds(0.0001f);
             try {
                 string prefabName = obj.name;
                 prefabName = prefabName.Replace("Clone", "");
@@ -65,7 +77,7 @@ public class SaveLoad : MonoBehaviour {
                 }
 
                 if (prefabFound == null) {
-                    print("found no valid prefab, going to next item, searched for: " + prefabName);
+                    //print("found no valid prefab, going to next item, searched for: " + prefabName);
                     continue;
                 }
 
@@ -246,9 +258,9 @@ public class SaveLoad : MonoBehaviour {
         }
     }
 
-    void OnLevelWasLoaded(int level) {
+    void ExecuteLoad(Scene scene, LoadSceneMode mode) {
 
-        if (level != 3) {
+        if (scene.name != "Game_Emptyload") {
             return;
         }
 

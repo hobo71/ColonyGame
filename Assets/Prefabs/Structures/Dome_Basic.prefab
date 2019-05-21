@@ -235,6 +235,7 @@ MonoBehaviour:
   assignEnergyBar: {fileID: 0}
   assignInventoryBar: {fileID: 0}
   assignHPBar: {fileID: 0}
+  tempDisplay: {fileID: 0}
 --- !u!114 &114574220181720300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 500
   type: 2
+  faction: 0
 --- !u!114 &114870090859479568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,3 +293,5 @@ MonoBehaviour:
   salvaging: 0
   cloneBut: {fileID: 21300000, guid: a4143a106dfc29b4ab16dc13d36a6687, type: 3}
   toClone: {fileID: 1171672578602282, guid: 6aaff07906d5a1148ae35bfd29036062, type: 2}
+  soldierbut: {fileID: 21300000, guid: 33097277a1580944d97c2634219ad128, type: 3}
+  toSoldier: {fileID: 1886284784832728, guid: b8e679ee0f2722f428012b2459fa1148, type: 2}

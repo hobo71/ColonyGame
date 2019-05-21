@@ -19,7 +19,7 @@ public class Notification : MonoBehaviour {
     private static bool spinMode2 = false;
 
     public enum sprites {
-        Energy_Low, Working, Starting, Stopping
+        Energy_Low, Working, Starting, Stopping, Targeting
     }
 
 
@@ -33,6 +33,8 @@ public class Notification : MonoBehaviour {
                 return availSprites[2];
             case sprites.Stopping:
                 return availSprites[3];
+            case sprites.Targeting:
+                return availSprites[4];
             default:
                 return null;
         }
