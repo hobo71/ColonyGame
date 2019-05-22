@@ -13,10 +13,15 @@ public class SaveLoad : MonoBehaviour {
     public GameObject loadingIcon;
 
     public static bool creatingNew = false;
+    public static bool fromMenu = false;
 
     void Start() {
         InvokeRepeating("autoSave", 120, 120);
-            SceneManager.sceneLoaded += ExecuteLoad;
+    }
+
+    private void OnEnable() {
+        if (!fromMenu) return;
+        SceneManager.sceneLoaded += ExecuteLoad;
     }
 
     void autoSave() {
@@ -259,6 +264,8 @@ public class SaveLoad : MonoBehaviour {
     }
 
     void ExecuteLoad(Scene scene, LoadSceneMode mode) {
+        
+        print("scene loaded: " + scene.name);
 
         if (scene.name != "Game_Emptyload") {
             return;
@@ -272,7 +279,7 @@ public class SaveLoad : MonoBehaviour {
         StartCoroutine(Load());
     }
 
-    public IEnumerator Load() {
+    private IEnumerator Load() {
 
         print("loading last save");
         List<System.Object> list = null;

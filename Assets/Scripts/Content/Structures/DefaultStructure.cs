@@ -32,7 +32,7 @@ public abstract class DefaultStructure : MonoBehaviour, EnergyContainer, Structu
             print("structure salvaged!");
             var pickup = Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().pickupBox, this.transform.position, Quaternion.identity);
             pickup.GetComponent<inventory>().add(new ressourceStack(salvageStartHP, ressources.Scrap));
-            GameObject.Destroy(this.gameObject);
+            getHP().destruct();
         }
 
         if (salvaging) {

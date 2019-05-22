@@ -133,6 +133,7 @@ public class MenuController : MonoBehaviour {
     private void createClicked() {
         Debug.Log("Creating new empty scene...");
         SaveLoad.creatingNew = true;
+        SaveLoad.fromMenu = true;
         
         SceneManager.LoadScene("Game_Emptyload", LoadSceneMode.Single);
         print("scene loaded " + SceneManager.GetActiveScene().name);
@@ -146,6 +147,7 @@ public class MenuController : MonoBehaviour {
 
     private void continueClicked() {
         print("Continuing last save...");
+        SaveLoad.fromMenu = true;
         //this.GetComponent<SaveLoad>().Load();
         
         SceneManager.LoadScene("Game_Emptyload", LoadSceneMode.Single);

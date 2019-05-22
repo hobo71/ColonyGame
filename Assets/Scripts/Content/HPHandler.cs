@@ -37,22 +37,25 @@ public partial class HPHandler : MonoBehaviour, SaveLoad.SerializableInfo {
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (this.HP <= 0) {
-
-            float size = this.gameObject.GetComponent<Collider>().bounds.size.magnitude;
-            Debug.Log("destroying object: " + this.transform.gameObject.name + " size:" + size);
-            var effect = GameObject.Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().destroyParticle, this.transform.position, this.transform.rotation);
-            size = 0.2f + size * 0.1f;
-            effect.transform.localScale = new Vector3(size, size, size);
-
-            if (this.GetComponent<IDestroyAction>() != null) {
-                this.GetComponent<IDestroyAction>().beforeDestroy();
-            }
-
-            factionMembers[faction].Remove(this.gameObject);
-
-            Destroy(this.transform.gameObject);
+            destruct();
         }
 	}
+
+    public void destruct() {
+        factionMembers[faction].Remove(this.gameObject);
+
+        float size = this.gameObject.GetComponent<Collider>().bounds.size.magnitude;
+        Debug.Log("destroying object: " + this.transform.gameObject.name + " size:" + size);
+        var effect = GameObject.Instantiate(GameObject.Find("Terrain").GetComponent<Scene_Controller>().destroyParticle, this.transform.position, this.transform.rotation);
+        size = 0.2f + size * 0.1f;
+        effect.transform.localScale = new Vector3(size, size, size);
+
+        if (this.GetComponent<IDestroyAction>() != null) {
+            this.GetComponent<IDestroyAction>().beforeDestroy();
+        }
+
+        Destroy(this.transform.gameObject);
+    }
 
     public ressourceStack inflictDamage(float amount, ActionController attacker) {
         //Debug.Log("taking damage: " + amount + " hp: " + HP);
