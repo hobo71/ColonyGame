@@ -8,6 +8,11 @@ namespace Content.Helpers {
     public abstract class SimpleTower : TurretConfigurator, IWeapon {
 
         public float Damage;
+
+        private void Start() {
+            energyContainer = this.GetComponent<EnergyContainer>();
+        }
+
         public float attacksPerSecond;
         public float maxRange;
         public float minRange;
@@ -15,10 +20,13 @@ namespace Content.Helpers {
         internal GameObject enemy;
         internal Collider enemyCollider;
         internal float timeElapsed = 0f;
+        private EnergyContainer energyContainer;
 
-        public virtual void FixedUpdate() {
+        public new virtual void FixedUpdate() {
 
-            if (!active) return;
+            if (!active || energyContainer.getCurEnergy() < 1) return;
+            
+            energyContainer.addEnergy(-idleEnergyUsage * Time.deltaTime, energyContainer);
             
             if (enemy == null) {
                 enemy = findEnemy(useRandom());
@@ -36,6 +44,7 @@ namespace Content.Helpers {
             if (timeElapsed >= 1 / attacksPerSecond) {
                 timeElapsed -= 1 / attacksPerSecond;
                 shoot(enemy, impactPos);
+                energyContainer.addEnergy(-energyPerShot * Time.deltaTime, energyContainer);
             }
         }
 

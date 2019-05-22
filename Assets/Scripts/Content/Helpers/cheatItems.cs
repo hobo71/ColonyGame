@@ -13,6 +13,7 @@ public class cheatItems : MonoBehaviour {
 		this.GetComponent<inventory>().add(new ressourceStack(600, ressources.Iron));
 		this.GetComponent<inventory>().add(new ressourceStack(1000, ressources.Water));
 		this.GetComponent<inventory>().add(new ressourceStack(100, ressources.Uranium));
+		this.GetComponent<inventory>().add(new ressourceStack(1000, ressources.Scrap));
 	}
 	
 	// Update is called once per frame

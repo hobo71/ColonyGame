@@ -3,6 +3,8 @@
 namespace Content.Helpers.Combat {
     public abstract class TurretConfigurator : DefaultStructure, TurretConfigurator.ConfigurableTurret {
         public bool active = true;
+        public float idleEnergyUsage = 0.1f;
+        public float energyPerShot = 1f;
         public interface ConfigurableTurret {
             void setActive(bool val);
             bool getActive();

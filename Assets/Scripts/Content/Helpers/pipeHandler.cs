@@ -25,11 +25,9 @@ public class pipeHandler : MonoBehaviour, clickable, SaveLoad.SerializableInfo {
     }
 
     public PopUpCanvas.popUpOption[] getOptions() {
-        PopUpCanvas.popUpOption[] options;
-
         PopUpCanvas.popUpOption conf = new PopUpCanvas.popUpOption("conf", infoBut);
 
-        options = new PopUpCanvas.popUpOption[] {conf};
+        var options = new PopUpCanvas.popUpOption[] {conf};
         return options;
     }
 
@@ -56,7 +54,6 @@ public class pipeHandler : MonoBehaviour, clickable, SaveLoad.SerializableInfo {
         Scene_Controller.getInstance().conveyorConfigurator.SetActive(true);
         Scene_Controller.getInstance().conveyorConfigurator.GetComponent<ConveyorConfigurator>().setInstance(this);
         clickDetector.menusOpened++;
-        //TODO
     }
 
     void FixedUpdate() {
@@ -91,13 +88,13 @@ public class pipeHandler : MonoBehaviour, clickable, SaveLoad.SerializableInfo {
 
         if (data.drainLeft) {
             foreach (var elem in data.drainingLeft) {
-                data.from.GetComponent<inventory>().transfer(data.to.GetComponent<inventory>(), elem, data.from.GetComponent<inventory>().getAmount(elem));
+                data.from.GetComponent<inventory>().transferSafe(data.to.GetComponent<inventory>(), elem);
             }
         }
         
         if (data.drainRight) {
             foreach (var elem in data.drainingRight) {
-                data.to.GetComponent<inventory>().transfer(data.from.GetComponent<inventory>(), elem, data.to.GetComponent<inventory>().getAmount(elem));
+                data.to.GetComponent<inventory>().transferSafe(data.from.GetComponent<inventory>(), elem);
             }
         }
     }

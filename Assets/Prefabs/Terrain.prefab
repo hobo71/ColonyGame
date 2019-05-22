@@ -277,6 +277,7 @@ MonoBehaviour:
   - {fileID: 1304155975588136, guid: 1ede88d4d773f5a418daab392703d81f, type: 2}
   - {fileID: 1879523899935926, guid: 895e883b1d96ee04b977d9c42c88d035, type: 2}
   - {fileID: 1375010055404266, guid: 3cf150e4df2d08b499c8e6ffa6ee9b12, type: 2}
+  - {fileID: 1223860870989624, guid: 92bceb5cb624fe34b99c7ddcc660df08, type: 2}
   loadingIcon: {fileID: 0}
 --- !u!114 &114768567439674454
 MonoBehaviour:
@@ -392,6 +393,13 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: bc5b8020c5647c5429114feed966fdc4, type: 3}
     dispName: Ore Washing Plant
     desc: Used to refine Ores, resulting in a higher yield
+    cost: []
+  - prefab: {fileID: 1223860870989624, guid: 92bceb5cb624fe34b99c7ddcc660df08, type: 2}
+    placement: {fileID: 1681057571235944, guid: 0614e670bd9f1bd4f97357b8e83120d6,
+      type: 2}
+    icon: {fileID: 21300000, guid: 6f2dd0e350f5f7d429338432c7688fa3, type: 3}
+    dispName: Scrap Recycler
+    desc: Used to recycle Scrap into Stone, Wood, and Iron
     cost: []
 --- !u!114 &114851170104750700
 MonoBehaviour:

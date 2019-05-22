@@ -14,16 +14,6 @@ public class ConveyorConfigurator : MonoBehaviour {
 	public GameObject drainRight;
 	public GameObject drainallRight;
 
-	// Use this for initialization
-	void Start () {
-		//clickDetector.menusOpened++;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public void closePressed() {
 		this.gameObject.SetActive(false);
 		clickDetector.menusOpened--;

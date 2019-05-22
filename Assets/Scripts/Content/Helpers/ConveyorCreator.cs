@@ -31,7 +31,7 @@ public class ConveyorCreator : MonoBehaviour {
     }
 
     private void onBuildingClick(GameObject target) {
-        print("got next click on: " + target);
+        print("got first click on: " + target);
         if (target.GetComponent<inventory>() == null || target.CompareTag("mover")) {
             Notification.createNotification(target, Notification.sprites.Stopping, "Invalid", Color.red, false);
             GameObject.Find("Main Camera").GetComponent<clickDetector>().setNextClickAction(onBuildingClick);

@@ -1319,6 +1319,8 @@ MonoBehaviour:
   storedEnergy: 0
   salvaging: 0
   active: 1
+  idleEnergyUsage: 0.1
+  energyPerShot: 5
   Damage: 8
   attacksPerSecond: 5
   maxRange: 40

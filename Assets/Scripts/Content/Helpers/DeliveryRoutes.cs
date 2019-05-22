@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class DeliveryRoutes : MonoBehaviour {
 
-    private static List<routeSolotype> routes = new List<routeSolotype>();
-    private static List<routeAllType> routesAllType = new List<routeAllType>();
-    private static List<GameObject> workers = new List<GameObject>();
+    private static readonly List<routeSolotype> routes = new List<routeSolotype>();
+    private static readonly List<routeAllType> routesAllType = new List<routeAllType>();
+    private static readonly List<GameObject> workers = new List<GameObject>();
     private static int counter = 100;
 
     public static void addRoute(GameObject origin, GameObject target, ressources type) {
@@ -57,11 +57,6 @@ public class DeliveryRoutes : MonoBehaviour {
 
         return false;
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {

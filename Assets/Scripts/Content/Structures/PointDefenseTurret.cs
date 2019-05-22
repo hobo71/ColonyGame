@@ -34,10 +34,12 @@ public class PointDefenseTurret : TurretConfigurator, TurretConfigurator.Configu
 	public Transform turret;
 	public List<GameObject> barrels = new List<GameObject>();
 	public List<GameObject> barrelRender = new List<GameObject>();
+	private EnergyContainer energyContainer;
 
 	public override void Start() {
 		base.Start();
 		emitter.gameObject.GetComponent<BulletShot>().damagePerBullet = damagePerBullet;
+		energyContainer = this.GetComponent<EnergyContainer>();
 	}
 
 	public void Update() {
@@ -51,7 +53,8 @@ public class PointDefenseTurret : TurretConfigurator, TurretConfigurator.Configu
 
 		isShooting = false;
 
-		if (!active) return;
+		if (!active || energyContainer.getCurEnergy() < 1) return;
+		energyContainer.addEnergy(-idleEnergyUsage * Time.deltaTime, energyContainer);
 
 		if (enemy == null) {
 			enemy = findClosestEnemy(range);
@@ -100,7 +103,7 @@ public class PointDefenseTurret : TurretConfigurator, TurretConfigurator.Configu
 				timePassed -= 1 / attacksPerSecond;
 				lineRenderer.gameObject.SetActive(true);
 
-				
+				energyContainer.addEnergy(-energyPerShot * Time.deltaTime, energyContainer);
 				shoot(dir);
 			}
 		}
